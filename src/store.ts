@@ -30,12 +30,12 @@ export interface ActivityTypes {
   en: KeyValue[]
 }
 
-export interface ActivitySizes {
+export interface ActivityLocations {
   da: KeyValue[]
   en: KeyValue[]
 }
 
-export interface activityLanguages {
+export interface ActivitySizes {
   da: KeyValue[]
   en: KeyValue[]
 }
@@ -46,7 +46,7 @@ export interface KeyValue {
 }
 
 export interface Location {
-  name: string
+  id: string
   lat: number
   lon: number
 }
@@ -58,6 +58,8 @@ export interface AppState {
 export const activities = writable<Activity[]>([])
 
 export const activityTypes = writable<ActivityTypes>(null)
+
+export const activityLocations = writable<ActivityLocations>(null)
 
 export const activitySizes = writable<ActivitySizes>(null)
 

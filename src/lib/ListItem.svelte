@@ -13,6 +13,8 @@
   export let area: string | null
   export let location: Location
   export let size: string[]
+  export let danish: boolean
+  export let english: boolean
 
   $: types = getTypes(type, $activityTypes[lang])
 
@@ -41,20 +43,16 @@
   }
 </script>
 
-<a use:link={`/activity/${id}`} class="card bordered bg-slate-50" id="activity-{id}">
-  <figure>
-    <img src={images.sm} alt={title[lang]} class="w-full" />
+<a
+  use:link={`/activity/${id}`}
+  class="delay-50 duration-50 card bordered card-side card-compact transform-gpu shadow-sm transition ease-in-out hover:scale-105"
+  id="activity-{id}"
+>
+  <figure class="p-4">
+    <img src={images.sm} alt={title[lang]} class="h-40 w-40" />
   </figure>
-  <div class="card-body">
-    <div class="card-title truncate">{title[lang]}</div>
-    <p class="text-xs line-clamp-4">{@html description[lang]}</p>
-    <div class="absolute bottom-1 right-2 flex flex-row justify-end">
-      {#each ages as t}<div class="badge badge-outline text-sl-yellow">{t}</div> {/each}
-      {#each types as t}<div class="badge badge-outline text-sl-turquis">{t.value}</div> {/each}
-      <div />
-    </div>
-    <div class="card-actions">
-      <button class="btn btn-primary btn-sm">Tilmelding</button>
-    </div>
+  <div class="py-3 pr-3">
+    <div class="card-title text-base">{title[lang]}</div>
+    <p class="text-xs line-clamp-6">{@html description[lang]}</p>
   </div>
 </a>

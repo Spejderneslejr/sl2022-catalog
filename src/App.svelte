@@ -8,10 +8,11 @@
     activityAges,
     activitySizes,
     activityLanguages,
+    activityLocations
   } from './store'
 
-  const { data: request } = useSWR('https://sl22.test/api/activities', {
-    dedupingInterval: 10,
+  const { data: request } = useSWR('https://aktiviteter.sl22.dk/api/activities', {
+    dedupingInterval: 60,
     revalidateOnReconnect: true,
   })
 
@@ -19,6 +20,7 @@
     if (value) {
       activities.set(value.data)
       activityTypes.set(value.meta.types)
+      activityLocations.set(value.meta.locations)
       activityAges.set(value.meta.ages)
       activitySizes.set(value.meta.sizes)
       activityLanguages.set(value.meta.languages)
