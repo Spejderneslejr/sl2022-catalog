@@ -72,7 +72,7 @@
   })
 </script>
 
-<h1 class="text-lg mb-2">Aktiviteter</h1>
+<h1 class="mb-2 text-lg">Aktiviteter</h1>
 <div class="mb-4 border-t-4 border-dashed border-gray-400" />
 
 <div class="flex flex-col gap-y-4">
@@ -86,7 +86,7 @@
         result = null
       }
     }}
-    class="w-64 p-3 border-2 border-dashed border-gray-400 focus:border-blue-500 outline-none"
+    class="w-64 border-2 border-dashed border-gray-400 p-3 outline-none focus:border-blue-500"
     placeholder="Søg efter aktivitet"
   />
 
@@ -94,10 +94,10 @@
     <div class="">
       <div class="text-gray-400">Aktivitetstype</div>
       <div
-        class="p-3 border-2 border-dashed border-sl-turquis grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-y-2"
+        class="grid grid-cols-2 gap-y-2 border-2 border-dashed border-sl-turquis p-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5"
       >
         {#each $activityTypes[$state.lang] as option}
-          <label class="cursor-pointer flex gap-x-2">
+          <label class="flex cursor-pointer gap-x-2">
             <input bind:group={typeSelected} value={option.key} type="checkbox" class="checkbox" />
             <span class="label-text select-none">{option.value}</span>
           </label>
@@ -106,13 +106,13 @@
     </div>
   {/if}
 
-  <div class="flex flex-col gap-y-4 md:gap-y-0 md:flex-row md:gap-x-4">
+  <div class="flex flex-col gap-y-4 md:flex-row md:gap-y-0 md:gap-x-4">
     {#if $activityAges}
       <div class="md:w-1/2">
         <div class="text-gray-400">Alder</div>
-        <div class="p-3 border-2 border-dashed border-sl-yellow flex flex-row justify-between">
+        <div class="flex flex-row justify-between border-2 border-dashed border-sl-yellow p-3">
           {#each $activityAges as option}
-            <label class="cursor-pointer flex gap-x-2">
+            <label class="flex cursor-pointer gap-x-2">
               <input bind:group={ageSelected} value={option} type="checkbox" class="checkbox" />
               <span class="label-text select-none whitespace-nowrap">{option}</span>
             </label>
@@ -120,52 +120,51 @@
         </div>
       </div>
     {/if}
-    
-    <div class="flex flex-row gap-x-4 w-full md:w-1/2">
-    {#if $activitySizes}
-      <div class="w-1/2">
-        <div class="text-gray-400">Egnet til</div>
-        <div class="p-3 border-2 border-dashed border-sl-flamingo flex flex-row justify-between">
-          {#each $activitySizes[$state.lang] as option}
-            <label class="cursor-pointer flex gap-x-2">
-              <input
-                bind:group={sizeSelected}
-                value={option.key}
-                type="checkbox"
-                class="checkbox"
-              />
-              <span class="label-text select-none whitespace-nowrap">{option.value}</span>
-            </label>
-          {/each}
-        </div>
-      </div>
-    {/if}
 
-    {#if $activityLanguages}
-      <div class="w-1/2">
-        <div class="text-gray-400">Foregår på</div>
-        <div class="p-3 border-2 border-dashed border-gray-400 flex flex-row justify-between">
-          {#each $activityLanguages[$state.lang] as option}
-            <label class="cursor-pointer flex gap-x-2">
-              <input
-                bind:group={languageSelected}
-                value={option.key}
-                type="checkbox"
-                class="checkbox"
-              />
-              <span class="label-text select-none whitespace-nowrap">{option.value}</span>
-            </label>
-          {/each}
+    <div class="flex w-full flex-row gap-x-4 md:w-1/2">
+      {#if $activitySizes}
+        <div class="w-1/2">
+          <div class="text-gray-400">Egnet til</div>
+          <div class="flex flex-row justify-between border-2 border-dashed border-sl-flamingo p-3">
+            {#each $activitySizes[$state.lang] as option}
+              <label class="flex cursor-pointer gap-x-2">
+                <input
+                  bind:group={sizeSelected}
+                  value={option.key}
+                  type="checkbox"
+                  class="checkbox"
+                />
+                <span class="label-text select-none whitespace-nowrap">{option.value}</span>
+              </label>
+            {/each}
+          </div>
         </div>
-      </div>
-    {/if}
+      {/if}
+
+      {#if $activityLanguages}
+        <div class="w-1/2">
+          <div class="text-gray-400">Foregår på</div>
+          <div class="flex flex-row justify-between border-2 border-dashed border-gray-400 p-3">
+            {#each $activityLanguages[$state.lang] as option}
+              <label class="flex cursor-pointer gap-x-2">
+                <input
+                  bind:group={languageSelected}
+                  value={option.key}
+                  type="checkbox"
+                  class="checkbox"
+                />
+                <span class="label-text select-none whitespace-nowrap">{option.value}</span>
+              </label>
+            {/each}
+          </div>
+        </div>
+      {/if}
     </div>
-
   </div>
 </div>
 
 <section class="my-10">
-  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+  <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
     {#each filtered as activity}
       <ListItem {...activity} {activityTypes} {activityAges} lang={$state.lang} id={activity.id} />
     {/each}

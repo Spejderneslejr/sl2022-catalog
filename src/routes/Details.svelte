@@ -14,11 +14,11 @@
 <div class="flex flex-col">
   {#if activity}
     <a class="text-sm" use:link={'/'}>Tilbage til listen</a>
-    <h1 class="text-lg mb-2">{activity.title.da}</h1>
+    <h1 class="mb-2 text-lg">{activity.title.da}</h1>
     <div class="mb-4 border-t-4 border-dashed border-gray-400" />
-    <div class="flex sm:flex-row flex-col gap-x-10 gap-y-10 sm:gap-y-0">
+    <div class="flex flex-col gap-x-10 gap-y-10 sm:flex-row sm:gap-y-0">
       <img
-        class="sm:w-1/3 w-full object-cover h-96"
+        class="h-96 w-full object-cover sm:w-1/3"
         src={activity.images.sm}
         alt={activity.title.da}
       />

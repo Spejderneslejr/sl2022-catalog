@@ -2,7 +2,13 @@
   import Router, { link } from 'svelte-spa-router'
   import routes from './routes'
   import { useSWR } from 'sswr'
-  import { activities, activityTypes, activityAges, activitySizes, activityLanguages } from './store'
+  import {
+    activities,
+    activityTypes,
+    activityAges,
+    activitySizes,
+    activityLanguages,
+  } from './store'
 
   const { data: request } = useSWR('https://sl22.test/api/activities', {
     dedupingInterval: 10,
@@ -18,9 +24,8 @@
       activityLanguages.set(value.meta.languages)
     }
   })
-
 </script>
 
-<section class="p-4 max-w-6xl mx-auto">
+<section class="mx-auto max-w-6xl p-4">
   <Router {routes} />
 </section>

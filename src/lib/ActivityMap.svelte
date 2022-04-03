@@ -16,7 +16,6 @@
   let map
 
   async function createMap(container) {
-  
     const basemap = new WMTSLayer({
       url: 'https://api.dataforsyningen.dk/natur_friluftskort',
       serviceMode: 'KVP',
@@ -51,19 +50,18 @@
 
     const graphicsLayer = new GraphicsLayer()
     map.add(graphicsLayer)
-    
+
     const point = new Point({ x: activity.location.lon, y: activity.location.lat })
 
-    const simpleMarkerSymbol = new SimpleMarkerSymbol( {
+    const simpleMarkerSymbol = new SimpleMarkerSymbol({
       color: [226, 119, 40], // Orange
       outline: {
         color: [255, 255, 255], // White
         width: 1,
       },
       size: 20,
-      style: 'diamond'
-    }
-    )
+      style: 'diamond',
+    })
 
     const pointGraphic = new Graphic({
       geometry: point,

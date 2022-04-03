@@ -48,13 +48,13 @@
   <div class="card-body">
     <div class="card-title truncate">{title[lang]}</div>
     <p class="text-xs line-clamp-4">{@html description[lang]}</p>
-    <div class="flex flex-row justify-end bottom-1 right-2 absolute">
+    <div class="absolute bottom-1 right-2 flex flex-row justify-end">
       {#each ages as t}<div class="badge badge-outline text-sl-yellow">{t}</div> {/each}
       {#each types as t}<div class="badge badge-outline text-sl-turquis">{t.value}</div> {/each}
       <div />
     </div>
     <div class="card-actions">
-      <button class="btn btn-sm btn-primary">Tilmelding</button>
+      <button class="btn btn-primary btn-sm">Tilmelding</button>
     </div>
   </div>
 </a>
