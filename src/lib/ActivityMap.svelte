@@ -32,8 +32,13 @@
       },
     })
 
+    const centers = {
+      a12: { x: 12.080826, y: 55.650466 },
+      lejren: { x: 12.177261, y: 55.626132 },
+    }
+
     const spatialReference = new SpatialReference({ wkid: 25832 })
-    const center = new Point({ x: 12.177261, y: 55.626132 })
+    const center = new Point(centers[activity.location.id])
 
     const view = new MapView({
       map,

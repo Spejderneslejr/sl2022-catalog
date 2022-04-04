@@ -29,5 +29,5 @@
 </script>
 
 <section class="mx-auto max-w-6xl p-4">
-  <Router {routes} />
+  <Router {routes} restoreScrollState={true} />
 </section>
