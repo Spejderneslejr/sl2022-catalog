@@ -36,41 +36,53 @@
     <a class="text-sm" use:link={'/'}>Tilbage til listen</a>
     <div class="mb-4 border-t-4 border-dashed border-gray-400" />
     <div class="flex flex-col gap-x-10 gap-y-10 sm:flex-row sm:gap-y-0">
-      <img
-        class="h-96 w-full object-cover sm:w-1/3"
-        src={activity.images.md}
-        alt={activity.title.da}
-      />
+      <div class="w-full sm:w-1/3">
+        <img class="object-cover" src={activity.images.md} alt={activity.title.da} />
+
+        <div class="flex flex-row gap-x-4 pt-4">
+          {#if activity.patch} <div>{activity.patch}</div>{/if}
+          {#if activity.friendship_award} <div>FRIENDSHIP AWARD</div> {/if}
+        </div>
+      </div>
 
       <div class="flex flex-col gap-y-2">
-        <h1 class="mb-2 text-lg">{activity.title.da}</h1>
-        
+        <h1 class="mb-2 text-lg font-bold">{activity.title.da}</h1>
+
         <div class="flex">
-          <span>Sted:</span><span class="">
-            <span class="ml-3 border-2 border-dotted border-gray-400 px-1"
-            >{activity.area[$state.lang]}</span
-            >
-          </span>
-        </div>
-        
-        {#if types}
-        <div class="flex">
-          <span>Aktivitetstype:</span><span class="">
-            {#each types as type}
-            <span class="ml-3 border-2 border-dotted border-sl-turquis px-1">{type}</span>
-            {/each}
-          </span>
-        </div>
-        {/if}
-        
-        <div class="flex">
-        
-        <span>Alder:</span><span class="">
+          <span>Alder:</span><span class="">
             {#each activity.age as age}
               <span class="ml-3 border-2 border-dotted border-sl-yellow px-1">{age}</span>
             {/each}
           </span>
         </div>
+
+        <div class="flex">
+          <span>Sted:</span><span class="">
+            {#if activity.location.id === 'lejren'}
+              <span class="ml-3 border-2 border-dotted border-gray-400 px-1">
+                {#if $state.lang === 'da'}
+                  Lejren, aktivitetsområde {activity.area[$state.lang]}
+                {:else}
+                  The Camp, activity area {activity.area[$state.lang]}
+                {/if}
+              </span>
+            {:else}
+              <span class="ml-3 border-2 border-dotted border-gray-400 px-1">
+                {activity.area[$state.lang]}
+              </span>
+            {/if}
+          </span>
+        </div>
+
+        {#if types}
+          <div class="flex">
+            <span>Aktivitetstype:</span><span class="">
+              {#each types as type}
+                <span class="ml-3 border-2 border-dotted border-sl-turquis px-1">{type}</span>
+              {/each}
+            </span>
+          </div>
+        {/if}
 
         {#if sizes}
           <div class="flex">
@@ -93,7 +105,7 @@
           </span>
         </div>
 
-        <div class="mb-2 max-w-xl">{@html activity.description.da}</div>
+        <div class="prose mb-2 max-w-xl">{@html activity.description.da}</div>
       </div>
     </div>
     <div class="mt-4">

@@ -13,6 +13,8 @@ export interface Activity {
   images: Images
   danish: boolean
   english: boolean
+  friendship_award: boolean
+  patch: string | null
 }
 
 export interface Images {

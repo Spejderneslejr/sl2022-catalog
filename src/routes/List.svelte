@@ -100,7 +100,9 @@
     {#if $activityLocations}
       <div class="">
         <div class="text-gray-400">Sted</div>
-        <div class="flex flex-row gap-x-1 border-2 border-dashed border-gray-400 p-3 md:gap-x-2 justify-between">
+        <div
+          class="flex flex-row justify-between gap-x-1 border-2 border-dashed border-gray-400 p-3 md:gap-x-2"
+        >
           {#each $activityLocations[$state.lang] as option}
             <label class="flex cursor-pointer gap-x-2">
               <input
@@ -195,7 +197,13 @@
 <section class="my-10">
   <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
     {#each filtered as activity}
-      <ListItem {...activity} {activityTypes} {activityAges} lang={$state.lang} id={activity.id} />
+      <ListItem
+        id={activity.id}
+        lang={$state.lang}
+        title={activity.title}
+        summary={activity.summary}
+        image={activity.images.sm}
+      />
     {/each}
   </div>
 </section>

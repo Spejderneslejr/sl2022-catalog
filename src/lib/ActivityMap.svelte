@@ -45,6 +45,11 @@
       container,
       center: projection.project(center, spatialReference) as Point,
       scale: 16000,
+      navigation: {
+        mouseWheelZoomEnabled: false,
+        browserTouchPanEnabled: false,
+        momentumEnabled: false,
+      },
     })
 
     const areas = new FeatureLayer({
