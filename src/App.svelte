@@ -28,6 +28,6 @@
   })
 </script>
 
-<section class="mx-auto max-w-6xl p-4">
+<section class="mx-auto max-w-6xl p-4 dark:text-white text-gray-900">
   <Router {routes} restoreScrollState={true} />
 </section>
