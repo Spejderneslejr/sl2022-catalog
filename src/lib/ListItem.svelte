@@ -6,6 +6,7 @@
   export let title: { da: string; en: string }
   export let type: string[]
   export let age: string[]
+  export let summary: { da: string; en: string }
   export let description: { da: string; en: string }
   export let images: { sm: string; md: string; lg: string }
   export let activityTypes
@@ -17,6 +18,11 @@
   export let english: boolean
 
   $: types = getTypes(type, $activityTypes[lang])
+
+  const truncate = (str: string, max: number, suffix: string = '...'): string =>
+    str.length < max
+      ? str
+      : `${str.substr(0, str.substr(0, max - suffix.length).lastIndexOf(' '))}${suffix}`
 
   function getTypes(types, allTypes) {
     let res = []
@@ -53,6 +59,6 @@
   </figure>
   <div class="py-3 pr-3">
     <div class="card-title text-base">{title[lang]}</div>
-    <p class="text-xs line-clamp-6">{@html description[lang]}</p>
+    <p class="text-xs">{@html summary[lang]}</p>
   </div>
 </a>
