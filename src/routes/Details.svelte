@@ -10,7 +10,8 @@
   let sizes: string[] | Boolean
   let types: string[] | Boolean
 
-  const lang : string = getContext('lang')
+  const lang: string = getContext('lang')
+  const strings: Record<string, string> = getContext('strings')
 
   const unsubscribe = activities.subscribe((value) => {
     activity = value.find((item) => item.id.toString() === params.id)
@@ -38,21 +39,33 @@
   {#if activity}
     <a use:link={'/'}>
       <button class="btn btn-outline btn-xs mb-4 hover:fill-white">
-        <svg height="12px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="12px" y="12px"
-        viewBox="0 0 477.175 477.175" style="enable-background:new 0 0 477.175 477.175;" xml:space="preserve">
-     <g>
-       <path d="M145.188,238.575l215.5-215.5c5.3-5.3,5.3-13.8,0-19.1s-13.8-5.3-19.1,0l-225.1,225.1c-5.3,5.3-5.3,13.8,0,19.1l225.1,225
-         c2.6,2.6,6.1,4,9.5,4s6.9-1.3,9.5-4c5.3-5.3,5.3-13.8,0-19.1L145.188,238.575z"/>
-     </g>
-     </svg>
-       <span class="ml-1">Tilbage til listen</span>
+        <svg
+          height="12px"
+          version="1.1"
+          id="Capa_1"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          x="12px"
+          y="12px"
+          viewBox="0 0 477.175 477.175"
+          style="enable-background:new 0 0 477.175 477.175;"
+          xml:space="preserve"
+        >
+          <g>
+            <path
+              d="M145.188,238.575l215.5-215.5c5.3-5.3,5.3-13.8,0-19.1s-13.8-5.3-19.1,0l-225.1,225.1c-5.3,5.3-5.3,13.8,0,19.1l225.1,225
+         c2.6,2.6,6.1,4,9.5,4s6.9-1.3,9.5-4c5.3-5.3,5.3-13.8,0-19.1L145.188,238.575z"
+            />
+          </g>
+        </svg>
+        <span class="ml-1">{strings.back}</span>
       </button>
     </a>
 
     <div class="mb-4 border-t-4 border-dashed border-gray-400" />
     <div class="flex flex-col gap-x-10 gap-y-10 sm:flex-row sm:gap-y-0">
       <div class="w-full sm:w-1/3">
-        <img class="object-cover" src={activity.images.md} alt={activity.title.da} />
+        <img class="object-cover" src={activity.images.md} alt={activity.title[lang]} />
 
         <div class="flex flex-row gap-x-4 pt-4">
           {#if activity.patch} <div>{activity.patch}</div>{/if}
@@ -61,10 +74,10 @@
       </div>
 
       <div class="flex flex-col gap-y-2">
-        <h1 class="mb-2 text-lg font-bold">{activity.title.da}</h1>
+        <h1 class="mb-2 text-lg font-bold">{activity.title[lang]}</h1>
 
         <div class="flex">
-          <span>Alder:</span><span class="">
+          <span>{strings.age}:</span><span class="">
             {#each activity.age as age}
               <span class="ml-3 border-2 border-dotted border-sl-yellow px-1">{age}</span>
             {/each}
@@ -72,7 +85,7 @@
         </div>
 
         <div class="flex">
-          <span>Sted:</span><span class="">
+          <span>{strings.location}:</span><span class="">
             {#if activity.location.id === 'lejren'}
               <span class="ml-3 border-2 border-dotted border-gray-400 px-1">
                 {#if lang === 'da'}
@@ -91,7 +104,7 @@
 
         {#if types}
           <div class="flex">
-            <span>Aktivitetstype:</span><span class="">
+            <span>{strings.activity_type}:</span><span class="">
               {#each types as type}
                 <span class="ml-3 border-2 border-dotted border-sl-turquis px-1">{type}</span>
               {/each}
@@ -101,7 +114,7 @@
 
         {#if sizes}
           <div class="flex">
-            <span>Egnet til:</span><span class="">
+            <span>{strings.targetgroup}:</span><span class="">
               {#each sizes as size}
                 <span class="ml-3 border-2 border-dotted border-sl-flamingo px-1">{size}</span>
               {/each}
@@ -110,7 +123,7 @@
         {/if}
 
         <div class="flex">
-          <span>Foregår på:</span><span class="">
+          <span>{strings.languagesupport}:</span><span class="">
             {#if activity.danish}
               <span class="ml-3 border-2 border-dotted border-gray-400 px-1">Dansk</span>
             {/if}
@@ -120,7 +133,7 @@
           </span>
         </div>
 
-        <div class="prose mb-2 max-w-xl">{@html activity.description.da}</div>
+        <div class="prose mb-2 max-w-xl">{@html activity.description[lang]}</div>
       </div>
     </div>
     <div class="mt-4">

@@ -1,20 +1,22 @@
 {
   "da": {
-    "listheader" : "Aktiviteter",
+    "listheader": "Aktiviteter",
     "search": "Søg efter aktivitet",
     "activity_type": "Aktivitetstype",
     "location": "Sted",
     "age": "Alder",
     "targetgroup": "Egnet til",
-    "languagesupport": "Foregår på"
+    "languagesupport": "Foregår på",
+    "back": "Tilbage til listen"
   },
   "en": {
-    "listheader" : "Activities",
+    "listheader": "Activities",
     "search": "Search for activity",
     "activity_type": "Activity type",
     "location": "Location",
     "age": "Age",
     "targetgroup": "Target group",
-    "languagesupport": "Language support"
+    "languagesupport": "Language support",
+    "back": "Back to the list"
   }
 }
