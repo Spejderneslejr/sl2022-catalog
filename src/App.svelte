@@ -12,7 +12,7 @@
     activityLocations,
   } from './store'
   import * as translation from './translation.json'
-  import LanguageSwitcher from './lib/LanguageSwitcher.svelte';
+  import LanguageSwitcher from './lib/LanguageSwitcher.svelte'
 
   const [html] = document.getElementsByTagName('html')
   const lang = html.getAttribute('lang')
@@ -37,6 +37,6 @@
 </script>
 
 <section class="mx-auto max-w-6xl p-4 text-gray-900 dark:text-white">
-  <LanguageSwitcher/>
+  <LanguageSwitcher />
   <Router {routes} restoreScrollState={true} />
 </section>

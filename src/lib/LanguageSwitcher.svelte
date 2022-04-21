@@ -3,7 +3,6 @@
   const lang: string = getContext('lang')
 </script>
 
-<div class="float-right">
-  <a href="/"> Dansk </a>
-  <a href="/index-en.html"> English </a>
+<div class="absolute top-3 right-5">
+  <a href="/"> Dansk </a> | <a href="/index-en.html"> English </a>
 </div>
