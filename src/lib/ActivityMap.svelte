@@ -33,8 +33,8 @@
     })
 
     const centers = {
-      a12: { x: 12.080826, y: 55.650466 },
-      lejren: { x: 12.177261, y: 55.626132 },
+      a12: { x: 12.090826, y: 55.646000, scale: 14000 },
+      lejren: { x: 12.177261, y: 55.626132, scale: 16000 },
     }
 
     const spatialReference = new SpatialReference({ wkid: 25832 })
@@ -44,7 +44,7 @@
       map,
       container,
       center: projection.project(center, spatialReference) as Point,
-      scale: 16000,
+      scale: centers[activity.location.id].scale,
       navigation: {
         mouseWheelZoomEnabled: false,
         browserTouchPanEnabled: false,
