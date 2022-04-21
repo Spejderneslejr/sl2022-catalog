@@ -54,9 +54,9 @@ export interface Location {
   lon: number
 }
 
-export interface AppState {
+/*export interface AppState {
   lang: 'da' | 'en'
-}
+}*/
 
 export const activities = writable<Activity[]>([])
 
@@ -70,4 +70,4 @@ export const activityAges = writable<string[]>(null)
 
 export const activityLanguages = writable<string[]>(null)
 
-export const state = writable<AppState>({ lang: 'da' })
+//export const state = writable<AppState>({ lang: 'da' })

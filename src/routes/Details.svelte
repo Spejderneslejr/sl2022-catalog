@@ -1,7 +1,8 @@
 <script type="ts">
+  import { getContext } from 'svelte'
   import { link } from 'svelte-spa-router'
   export let params: { id?: string } = {}
-  import { activities, activitySizes, activityTypes, activityLocations, state } from '../store'
+  import { activities, activitySizes, activityTypes } from '../store'
   import type { Activity } from '../store'
   import ActivityMap from '../lib/ActivityMap.svelte'
 
@@ -9,20 +10,22 @@
   let sizes: string[] | Boolean
   let types: string[] | Boolean
 
+  const lang : string = getContext('lang')
+
   const unsubscribe = activities.subscribe((value) => {
     activity = value.find((item) => item.id.toString() === params.id)
   })
 
-  $: sizes = getValues('size', $state, activity, $activitySizes)
-  $: types = getValues('type', $state, activity, $activityTypes)
+  $: sizes = getValues('size', lang, activity, $activitySizes)
+  $: types = getValues('type', lang, activity, $activityTypes)
 
-  function getValues(fieldName, state, activity, allSizes) {
-    if (!state || !activity || !allSizes) {
+  function getValues(fieldName, lang, activity, allSizes) {
+    if (!activity || !allSizes) {
       return false
     }
     let res = []
     for (const t of activity[fieldName]) {
-      const found = allSizes[state.lang].find((item) => item.key === t)
+      const found = allSizes[lang].find((item) => item.key === t)
       if (found) {
         res.push(found.value)
       }
@@ -32,7 +35,7 @@
 </script>
 
 <div class="flex flex-col">
-  {#if activity && state}
+  {#if activity}
     <a use:link={'/'}>
       <button class="btn btn-outline btn-xs mb-4 hover:fill-white">
         <svg height="12px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="12px" y="12px"
@@ -72,15 +75,15 @@
           <span>Sted:</span><span class="">
             {#if activity.location.id === 'lejren'}
               <span class="ml-3 border-2 border-dotted border-gray-400 px-1">
-                {#if $state.lang === 'da'}
-                  Lejren, aktivitetsområde {activity.area[$state.lang]}
+                {#if lang === 'da'}
+                  Lejren, aktivitetsområde {activity.area[lang]}
                 {:else}
-                  The Camp, activity area {activity.area[$state.lang]}
+                  The Camp, activity area {activity.area[lang]}
                 {/if}
               </span>
             {:else}
               <span class="ml-3 border-2 border-dotted border-gray-400 px-1">
-                {activity.area[$state.lang]}
+                {activity.area[lang]}
               </span>
             {/if}
           </span>

@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { setContext } from 'svelte'
   import Router, { link } from 'svelte-spa-router'
   import routes from './routes'
   import { useSWR } from 'sswr'
@@ -8,8 +9,15 @@
     activityAges,
     activitySizes,
     activityLanguages,
-    activityLocations
+    activityLocations,
   } from './store'
+  import * as translation from './translation.json'
+  import LanguageSwitcher from './lib/LanguageSwitcher.svelte';
+
+  const [html] = document.getElementsByTagName('html')
+  const lang = html.getAttribute('lang')
+  setContext('lang', lang)
+  setContext('strings', translation[lang])
 
   const { data: request } = useSWR('https://aktiviteter.sl22.dk/api/activities', {
     dedupingInterval: 60,
@@ -28,6 +36,7 @@
   })
 </script>
 
-<section class="mx-auto max-w-6xl p-4 dark:text-white text-gray-900">
+<section class="mx-auto max-w-6xl p-4 text-gray-900 dark:text-white">
+  <LanguageSwitcher/>
   <Router {routes} restoreScrollState={true} />
 </section>

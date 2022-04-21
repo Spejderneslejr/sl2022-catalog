@@ -1,9 +1,9 @@
 <script lang="ts">
   import { beforeUpdate } from 'svelte'
   import Fuse from 'fuse.js'
+  import { getContext } from 'svelte'
   import {
     activities,
-    state,
     activityTypes,
     activityAges,
     activitySizes,
@@ -18,10 +18,13 @@
     item: Activity
   }
 
+  const lang: string = getContext('lang')
+  const strings: Record<string, string> = getContext('strings')
+
   const options = {
     includeScore: true,
     threshold: 0.4,
-    keys: ['title.da'],
+    keys: ['title.' + lang],
   }
 
   let query = ''
@@ -78,7 +81,7 @@
   })
 </script>
 
-<h1 class="mb-2 text-lg">Aktiviteter</h1>
+<h1 class="mb-2 text-lg">{strings.listheader}</h1>
 <div class="mb-4 border-t-4 border-dashed border-gray-400" />
 
 <div class="flex flex-col gap-y-4">
@@ -94,16 +97,16 @@
         }
       }}
       class="w-64 border-2 border-dashed border-gray-400 p-3 outline-none focus:border-blue-500"
-      placeholder="Søg efter aktivitet"
+      placeholder={strings.search}
     />
 
     {#if $activityLocations}
       <div class="">
-        <div class="">Sted</div>
+        <div class="">{strings.location}</div>
         <div
           class="flex flex-row justify-between gap-x-1 border-2 border-dashed border-gray-400 p-3 md:gap-x-2"
         >
-          {#each $activityLocations[$state.lang] as option}
+          {#each $activityLocations[lang] as option}
             <label class="flex cursor-pointer gap-x-2">
               <input
                 bind:group={locationSelected}
@@ -121,11 +124,11 @@
 
   {#if $activityTypes}
     <div class="">
-      <div class="">Aktivitetstype</div>
+      <div class="">{strings.activity_type}</div>
       <div
         class="grid grid-cols-2 gap-y-2 border-2 border-dashed border-sl-turquis p-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5"
       >
-        {#each $activityTypes[$state.lang] as option}
+        {#each $activityTypes[lang] as option}
           <label class="flex cursor-pointer gap-x-2">
             <input bind:group={typeSelected} value={option.key} type="checkbox" class="checkbox" />
             <span class="label-text select-none dark:text-white">{option.value}</span>
@@ -138,7 +141,7 @@
   <div class="flex flex-col gap-y-4 md:flex-row md:gap-y-0 md:gap-x-4">
     {#if $activityAges}
       <div class="md:w-1/2">
-        <div class="">Alder</div>
+        <div class="">{strings.age}</div>
         <div
           class="flex flex-row justify-between border-2 border-dashed border-sl-yellow px-1 py-3 md:px-3"
         >
@@ -155,9 +158,9 @@
     <div class="flex w-full flex-col gap-x-4 gap-y-4 sm:flex-row md:w-1/2">
       {#if $activitySizes}
         <div class="sm:w-1/2">
-          <div class="">Egnet til</div>
+          <div class="">{strings.targetgroup}</div>
           <div class="flex flex-row justify-between border-2 border-dashed border-sl-flamingo p-3">
-            {#each $activitySizes[$state.lang] as option}
+            {#each $activitySizes[lang] as option}
               <label class="flex cursor-pointer gap-x-2">
                 <input
                   bind:group={sizeSelected}
@@ -165,7 +168,9 @@
                   type="checkbox"
                   class="checkbox"
                 />
-                <span class="label-text select-none whitespace-nowrap dark:text-white">{option.value}</span>
+                <span class="label-text select-none whitespace-nowrap dark:text-white"
+                  >{option.value}</span
+                >
               </label>
             {/each}
           </div>
@@ -174,9 +179,9 @@
 
       {#if $activityLanguages}
         <div class="sm:w-1/2">
-          <div class="">Foregår på</div>
+          <div class="">{strings.languagesupport}</div>
           <div class="flex flex-row justify-between border-2 border-dashed border-gray-400 p-3">
-            {#each $activityLanguages[$state.lang] as option}
+            {#each $activityLanguages[lang] as option}
               <label class="flex cursor-pointer gap-x-2">
                 <input
                   bind:group={languageSelected}
@@ -184,7 +189,9 @@
                   type="checkbox"
                   class="checkbox"
                 />
-                <span class="label-text select-none whitespace-nowrap dark:text-white">{option.value}</span>
+                <span class="label-text select-none whitespace-nowrap dark:text-white"
+                  >{option.value}</span
+                >
               </label>
             {/each}
           </div>
@@ -199,7 +206,7 @@
     {#each filtered as activity}
       <ListItem
         id={activity.id}
-        lang={$state.lang}
+        {lang}
         title={activity.title}
         summary={activity.summary}
         image={activity.images.sm}

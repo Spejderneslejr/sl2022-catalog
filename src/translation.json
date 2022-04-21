@@ -1,0 +1,20 @@
+{
+  "da": {
+    "listheader" : "Aktiviteter",
+    "search": "Søg efter aktivitet",
+    "activity_type": "Aktivitetstype",
+    "location": "Sted",
+    "age": "Alder",
+    "targetgroup": "Egnet til",
+    "languagesupport": "Foregår på"
+  },
+  "en": {
+    "listheader" : "Activities",
+    "search": "Search for activity",
+    "activity_type": "Activity type",
+    "location": "Location",
+    "age": "Age",
+    "targetgroup": "Target group",
+    "languagesupport": "Language support"
+  }
+}
