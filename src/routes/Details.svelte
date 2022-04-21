@@ -67,9 +67,11 @@
       <div class="w-full sm:w-1/3">
         <img class="object-cover" src={activity.images.md} alt={activity.title[lang]} />
 
-        <div class="flex flex-row gap-x-4 pt-4">
+        <div class="flex flex-row justify-end gap-x-4 pt-4">
           {#if activity.patch} <div>{activity.patch}</div>{/if}
           {#if activity.friendship_award} <div>FRIENDSHIP AWARD</div> {/if}
+
+          <button class="btn btn-info btn-md">{strings.signup}</button>
         </div>
       </div>
 
