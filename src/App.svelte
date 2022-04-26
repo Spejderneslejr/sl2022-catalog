@@ -20,7 +20,7 @@
   setContext('lang', lang)
   setContext('strings', translation[lang])
 
-  const { data: request } = useSWR('https://aktiviteter.sl22.test/api/activities', {
+  const { data: request } = useSWR('https://aktiviteter.sl22.dk/api/activities', {
     dedupingInterval: 60,
     revalidateOnReconnect: true,
   })
