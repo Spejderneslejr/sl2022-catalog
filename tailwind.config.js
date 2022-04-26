@@ -17,9 +17,13 @@ module.exports = {
       },
     },
   },
-  plugins: [require('daisyui'), require('@tailwindcss/line-clamp')],
+  plugins: [require('daisyui')],
+  important: '#catalog',
   corePlugins: {
-    // preflight: false,
+    preflight: false,
   },
   content: ['src/App.svelte', './src/**/*.svelte'],
+  daisyui: {
+    themes: ['light', 'dark'],
+  }
 }

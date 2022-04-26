@@ -91,9 +91,6 @@
   })
 </script>
 
-<h1 class="mb-2 text-lg">{strings.listheader}</h1>
-<div class="mb-4 border-t-4 border-dashed border-gray-400" />
-
 <div class="flex flex-col gap-y-4">
   <div class="flex flex-col gap-y-4 md:flex-row md:items-end md:gap-y-0 md:gap-x-4">
     <input
