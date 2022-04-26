@@ -2,7 +2,7 @@
   import { getContext } from 'svelte'
   import { link } from 'svelte-spa-router'
   export let params: { id?: string } = {}
-  import { activities, activitySizes, activityTypes } from '../store'
+  import { config, activities, activitySizes, activityTypes } from '../store'
   import type { Activity } from '../store'
   import ActivityMap from '../lib/ActivityMap.svelte'
 
@@ -65,13 +65,23 @@
     <div class="mb-4 border-t-4 border-dashed border-gray-400" />
     <div class="flex flex-col gap-x-10 gap-y-10 sm:flex-row sm:gap-y-0">
       <div class="w-full sm:w-1/3">
-        <img class="object-cover" src={activity.images.md} alt={activity.title[lang]} />
+        <div class="relative">
+          <img class="object-cover" src={activity.images.md} alt={activity.title[lang]} />
+          {#if activity.images.attribution}
+            <div
+              class="absolute bottom-2 right-2 rounded bg-white/30 py-1 px-2 text-xs text-white backdrop-blur-sm"
+            >
+              {activity.images.attribution}
+            </div>
+          {/if}
+        </div>
 
         <div class="flex flex-row justify-end gap-x-4 pt-4">
           {#if activity.patch} <div>{activity.patch}</div>{/if}
           {#if activity.friendship_award} <div>FRIENDSHIP AWARD</div> {/if}
-
+          {#if $config.signup}
           <button class="btn btn-info btn-md">{strings.signup}</button>
+          {/if}
         </div>
       </div>
 

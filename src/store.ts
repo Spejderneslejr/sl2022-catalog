@@ -5,6 +5,8 @@ export interface Activity {
   title: LanguageStrings
   summary: LanguageStrings
   description: LanguageStrings
+  signup: boolean
+  dropin: boolean
   type: string[]
   age: string[]
   size: string[]
@@ -21,6 +23,7 @@ export interface Images {
   sm: string
   md: string
   lg: string
+  attribution: string
 }
 
 export interface LanguageStrings {
@@ -54,9 +57,9 @@ export interface Location {
   lon: number
 }
 
-/*export interface AppState {
-  lang: 'da' | 'en'
-}*/
+export interface Config {
+  signup: boolean
+}
 
 export const activities = writable<Activity[]>([])
 
@@ -70,4 +73,4 @@ export const activityAges = writable<string[]>(null)
 
 export const activityLanguages = writable<string[]>(null)
 
-//export const state = writable<AppState>({ lang: 'da' })
+export const config = writable<Config>({ signup: false })

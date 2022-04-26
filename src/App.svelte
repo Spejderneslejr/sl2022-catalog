@@ -10,6 +10,7 @@
     activitySizes,
     activityLanguages,
     activityLocations,
+    config,
   } from './store'
   import * as translation from './translation.json'
   import LanguageSwitcher from './lib/LanguageSwitcher.svelte'
@@ -19,13 +20,14 @@
   setContext('lang', lang)
   setContext('strings', translation[lang])
 
-  const { data: request } = useSWR('https://aktiviteter.sl22.dk/api/activities', {
+  const { data: request } = useSWR('https://aktiviteter.sl22.test/api/activities', {
     dedupingInterval: 60,
     revalidateOnReconnect: true,
   })
 
   request.subscribe((value) => {
     if (value) {
+      config.set({ signup : value.meta.signup })
       activities.set(value.data)
       activityTypes.set(value.meta.types)
       activityLocations.set(value.meta.locations)
