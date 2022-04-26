@@ -17,7 +17,7 @@
   class="delay-50 duration-50 card bordered card-side card-compact transform-gpu shadow-sm transition ease-in-out hover:scale-105"
   id="activity-{id}"
 >
-  <figure class="p-4">
+  <figure class="px-4 pt-4" style="align-items: start">
     <img src={image} alt={title[lang]} class="h-40 w-40" />
   </figure>
   <div class="py-3 pr-3">

@@ -8,7 +8,11 @@
     "targetgroup": "Egnet til",
     "languagesupport": "Foregår på",
     "back": "Tilbage til listen",
-    "signup": "Tilmeld"
+    "signup_button": "Tilmeld",
+    "signup": "Kræver tilmelding",
+    "dropin": "Drop-in",
+    "enrolment": "Tilmelding"
+
   },
   "en": {
     "listheader": "Activities",
@@ -19,6 +23,9 @@
     "targetgroup": "Target group",
     "languagesupport": "Language support",
     "back": "Back to the list",
-    "signup": "Signup"
+    "signup_button": "Signup",
+    "signup": "Requires signup",
+    "dropin": "Drop-in",
+    "enrolment": "Enrolment"
   }
 }

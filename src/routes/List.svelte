@@ -41,6 +41,7 @@
   let sizeSelected: string[] = []
   let languageSelected: string[] = []
   let locationSelected: string[] = []
+  let enrolmentSelected: string[] = []
 
   beforeUpdate(() => {
     if (result) {
@@ -78,6 +79,15 @@
           (languageSelected.includes('english') && item.english)
       )
     }
+
+    if (enrolmentSelected.length > 0) {
+      filtered = filtered.filter(
+        (item) =>
+          (enrolmentSelected.includes('signup') && item.signup) ||
+          (enrolmentSelected.includes('dropin') && item.dropin)
+      )
+    }
+
   })
 </script>
 
@@ -101,7 +111,7 @@
     />
 
     {#if $activityLocations}
-      <div class="">
+      <div>
         <div class="">{strings.location}</div>
         <div
           class="flex flex-row justify-between gap-x-1 border-2 border-dashed border-gray-400 p-3 md:gap-x-2"
@@ -120,6 +130,25 @@
         </div>
       </div>
     {/if}
+
+    <div>
+      <div class="">{strings.enrolment}</div>
+      <div
+        class="flex flex-row justify-between gap-x-1 border-2 border-dashed border-gray-400 p-3 md:gap-x-2"
+      >
+        {#each ['signup', 'dropin'] as option}
+          <label class="flex cursor-pointer gap-x-2">
+            <input
+              bind:group={enrolmentSelected}
+              value={option}
+              type="checkbox"
+              class="checkbox"
+            />
+            <span class="label-text select-none dark:text-white">{strings[option]}</span>
+          </label>
+        {/each}
+      </div>
+    </div>
   </div>
 
   {#if $activityTypes}
