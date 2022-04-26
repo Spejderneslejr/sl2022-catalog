@@ -97,6 +97,14 @@
         </div>
 
         <div class="flex">
+          <span>{strings.enrolment}:</span><span class="">
+               
+            {#if activity.signup} <span class="ml-3 border-2 border-dotted border-gray-400 px-1">{strings.signup}</span>{/if}
+            {#if activity.dropin} <span class="ml-3 border-2 border-dotted border-gray-400 px-1">{strings.dropin}</span>{/if}
+          </span>
+        </div>
+
+        <div class="flex">
           <span>{strings.location}:</span><span class="">
             {#if activity.location.id === 'lejren'}
               <span class="ml-3 border-2 border-dotted border-gray-400 px-1">

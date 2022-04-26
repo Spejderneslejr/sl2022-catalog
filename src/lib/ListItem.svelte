@@ -1,6 +1,8 @@
 <script lang="ts">
   import { link } from 'svelte-spa-router'
   export let id: number
+  export let dropin: boolean
+  export let signup: boolean
   export let lang: string
   export let title: { da: string; en: string }
   export let summary: { da: string; en: string }
@@ -10,6 +12,9 @@
     str.length < max
       ? str
       : `${str.substr(0, str.substr(0, max - suffix.length).lastIndexOf(' '))}${suffix}`
+
+
+      console.log(signup, dropin)
 </script>
 
 <a
@@ -23,5 +28,21 @@
   <div class="py-3 pr-3">
     <div class="card-title text-base">{title[lang]}</div>
     <p class="text-xs">{@html summary[lang]}</p>
+
+    {#if dropin}
+      <div
+        class="absolute bottom-3 -left-5 rotate-45 bg-gray-400 px-5 text-sm leading-5 text-white"
+      >
+        Drop-in
+      </div>
+    {/if}
+
+    {#if signup}
+    <div
+      class="absolute bottom-5 -left-6 rotate-45 bg-gray-400 px-5 text-sm leading-5 text-white"
+    >
+      Tilmelding
+    </div>
+  {/if}
   </div>
 </a>

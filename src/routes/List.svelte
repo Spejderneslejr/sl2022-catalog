@@ -235,6 +235,8 @@
     {#each filtered as activity}
       <ListItem
         id={activity.id}
+        dropin={activity.dropin}
+        signup={activity.signup}
         {lang}
         title={activity.title}
         summary={activity.summary}
