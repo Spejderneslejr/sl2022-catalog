@@ -9,6 +9,7 @@
     activitySizes,
     activityLanguages,
     activityLocations,
+    search,
   } from '../store'
   import type { Activity } from '../store'
   import ListItem from '../lib/ListItem.svelte'
@@ -31,11 +32,6 @@
   let fuse = null
   let result: null | SearchResult[] = null
 
-  activities.subscribe((value) => {
-    fuse = new Fuse(value, options)
-  })
-
-  let filtered: Activity[]
   let typeSelected: string[] = []
   let ageSelected: string[] = []
   let sizeSelected: string[] = []
@@ -43,8 +39,25 @@
   let locationSelected: string[] = []
   let enrolmentSelected: string[] = []
 
+  search.subscribe((value) => {
+    query = value.query
+    typeSelected = value.typeSelected
+    ageSelected = value.ageSelected
+    sizeSelected = value.sizeSelected
+    languageSelected = value.languageSelected
+    locationSelected = value.locationSelected
+    enrolmentSelected = value.enrolmentSelected
+  })
+
+  activities.subscribe((value) => {
+    fuse = new Fuse(value, options)
+  })
+
+  let filtered: Activity[]
+
   beforeUpdate(() => {
-    if (result) {
+    if (query) {
+      result = fuse.search(query)
       filtered = result.map((hit) => hit.item)
     } else {
       filtered = $activities
@@ -88,6 +101,15 @@
       )
     }
 
+    search.set({
+      query,
+      typeSelected,
+      ageSelected,
+      sizeSelected,
+      languageSelected,
+      locationSelected,
+      enrolmentSelected,
+    })
   })
 </script>
 
@@ -96,13 +118,6 @@
     <input
       type="search"
       bind:value={query}
-      on:input={() => {
-        if (query) {
-          result = fuse.search(query)
-        } else {
-          result = null
-        }
-      }}
       class="w-64 border-2 border-dashed border-gray-400 p-3 outline-none focus:border-blue-500"
       placeholder={strings.search}
     />
@@ -135,12 +150,7 @@
       >
         {#each ['signup', 'dropin'] as option}
           <label class="flex cursor-pointer gap-x-2">
-            <input
-              bind:group={enrolmentSelected}
-              value={option}
-              type="checkbox"
-              class="checkbox"
-            />
+            <input bind:group={enrolmentSelected} value={option} type="checkbox" class="checkbox" />
             <span class="label-text select-none dark:text-white">{strings[option]}</span>
           </label>
         {/each}

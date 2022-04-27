@@ -61,6 +61,16 @@ export interface Config {
   signup: boolean
 }
 
+export interface Search {
+  query: string
+  typeSelected: string[]
+  ageSelected: string[]
+  sizeSelected: string[]
+  languageSelected: string[]
+  locationSelected: string[]
+  enrolmentSelected: string[]
+}
+
 export const activities = writable<Activity[]>([])
 
 export const activityTypes = writable<ActivityTypes>(null)
@@ -74,3 +84,13 @@ export const activityAges = writable<string[]>(null)
 export const activityLanguages = writable<string[]>(null)
 
 export const config = writable<Config>({ signup: false })
+
+export const search = writable<Search>({
+  query: '',
+  typeSelected: [],
+  ageSelected: [],
+  sizeSelected: [],
+  languageSelected: [],
+  locationSelected: [],
+  enrolmentSelected: [],
+})
