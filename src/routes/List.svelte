@@ -68,7 +68,7 @@
 
     if (sizeSelected.length > 0) {
       filtered = filtered.filter((item) =>
-        item.size.some((x) => sizeSelected.includes(x) || x === 'Alle')
+        item.size.some((x) => sizeSelected.includes(x) || x === 'any')
       )
     }
 
