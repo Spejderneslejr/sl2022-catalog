@@ -33,7 +33,9 @@
     })
 
     const centers = {
-      a12: { x: 12.090826, y: 55.646000, scale: 14000 },
+      a12: {x: 12.274835, y: 55.563856,  scale: 20000 },
+      a13: {x: 12.35558, y: 55.59478, scale: 10000 },
+      a14: {x: activity.location.lon, y: activity.location.lat, scale: 18000 },
       lejren: { x: 12.177261, y: 55.626132, scale: 16000 },
     }
 
