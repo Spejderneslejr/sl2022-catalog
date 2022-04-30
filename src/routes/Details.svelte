@@ -109,7 +109,7 @@
             {#if activity.location.id === 'lejren'}
               <span class="ml-3 border-2 border-dotted border-gray-400 px-1">
                 {#if lang === 'da'}
-                  Lejren{#if activity.area[lang]}, aktivitetsområde activity.area[lang]{/if}
+                  Lejren{#if activity.area[lang]}, aktivitetsområde {activity.area[lang]}{/if}
                 {:else}
                   The Camp{#if activity.area[lang]}, activity area {activity.area[lang]}{/if}
                 {/if}
