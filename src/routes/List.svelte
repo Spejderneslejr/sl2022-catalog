@@ -135,8 +135,8 @@
     />
 
     {#if $activityLocations}
-      <div>
-        <div class="">{strings.location}</div>
+      <div class="md:w-1/2">
+        <div class="mb-1">{strings.location}</div>
         <div
           class="flex flex-row justify-between gap-x-1 border-2 border-dashed border-gray-400 p-3 md:gap-x-2"
         >
@@ -155,8 +155,8 @@
       </div>
     {/if}
 
-    <div>
-      <div class="">{strings.enrolment}</div>
+    <div class="md:w-1/4">
+      <div class="mb-1">{strings.enrolment}</div>
       <div
         class="flex flex-row justify-between gap-x-1 border-2 border-dashed border-gray-400 p-3 md:gap-x-2"
       >
@@ -171,7 +171,7 @@
   </div>
 
   {#if $activityTypes}
-    <div class="">
+    <div class="mb-1">
       <div class="">{strings.activity_type}</div>
       <div
         class="grid grid-cols-2 gap-y-2 border-2 border-dashed border-sl-turquis p-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5"
@@ -189,7 +189,7 @@
   <div class="flex flex-col gap-y-4 md:flex-row md:gap-y-0 md:gap-x-4">
     {#if $activityAges}
       <div class="md:w-1/2">
-        <div class="">{strings.age}</div>
+        <div class="mb-1">{strings.age}</div>
         <div
           class="flex flex-row justify-between border-2 border-dashed border-sl-yellow px-1 py-3 md:px-3"
         >
@@ -206,7 +206,7 @@
     <div class="flex w-full flex-col gap-x-4 gap-y-4 sm:flex-row md:w-1/2">
       {#if $activitySizes}
         <div class="sm:w-1/2">
-          <div class="">{strings.targetgroup}</div>
+          <div class="mb-1">{strings.targetgroup}</div>
           <div class="flex flex-row justify-between border-2 border-dashed border-sl-flamingo p-3">
             {#each $activitySizes[lang] as option}
               <label class="flex cursor-pointer gap-x-2">
@@ -227,7 +227,7 @@
 
       {#if $activityLanguages}
         <div class="sm:w-1/2">
-          <div class="">{strings.languagesupport}</div>
+          <div class="mb-1">{strings.languagesupport}</div>
           <div class="flex flex-row justify-between border-2 border-dashed border-gray-400 p-3">
             {#each $activityLanguages[lang] as option}
               <label class="flex cursor-pointer gap-x-2">
