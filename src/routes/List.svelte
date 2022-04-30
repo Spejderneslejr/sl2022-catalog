@@ -132,6 +132,7 @@
   <div class="flex flex-col gap-y-4 md:flex-row md:items-end md:gap-y-0 md:gap-x-4">
     <input
       type="search"
+      style="-webkit-appearance: none"
       bind:value={query}
       class="w-64 border-2 border-dashed border-gray-400 p-3 outline-none focus:border-blue-500"
       placeholder={strings.search}
