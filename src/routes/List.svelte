@@ -31,6 +31,7 @@
   let query = ''
   let fuse = null
   let result: null | SearchResult[] = null
+  let advanced: boolean = false
 
   let typeSelected: string[] = []
   let ageSelected: string[] = []
@@ -47,6 +48,7 @@
     languageSelected = value.languageSelected
     locationSelected = value.locationSelected
     enrolmentSelected = value.enrolmentSelected
+    advanced = value.advanced
   })
 
   activities.subscribe((value) => {
@@ -121,6 +123,7 @@
       languageSelected,
       locationSelected,
       enrolmentSelected,
+      advanced,
     })
   })
 </script>
@@ -170,9 +173,17 @@
     </div>
   </div>
 
+  <div tabindex="0" class="collapse collapse-arrow border border-base-300">
+    <input type="checkbox" bind:checked={advanced}> 
+    <div class="collapse-title text-xl font-medium">
+     {strings.advanced_filters}
+    </div>
+    <div class="collapse-content flex flex-col gap-y-2"> 
+    
+
   {#if $activityTypes}
-    <div class="mb-1">
-      <div class="">{strings.activity_type}</div>
+    <div class="">
+      <div class="mb-1">{strings.activity_type}</div>
       <div
         class="grid grid-cols-2 gap-y-2 border-2 border-dashed border-sl-turquis p-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5"
       >
@@ -246,6 +257,8 @@
         </div>
       {/if}
     </div>
+  </div>
+</div>
   </div>
 </div>
 

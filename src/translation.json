@@ -11,7 +11,8 @@
     "signup_button": "Tilmeld",
     "signup": "Kræver tilmelding",
     "dropin": "Drop-in",
-    "enrolment": "Tilmelding"
+    "enrolment": "Tilmelding",
+    "advanced_filters": "Avancerede filtre"
 
   },
   "en": {
@@ -26,6 +27,7 @@
     "signup_button": "Signup",
     "signup": "Requires signup",
     "dropin": "Drop-in",
-    "enrolment": "Enrolment"
+    "enrolment": "Enrolment",
+    "advanced_filters": "Advanced filters"
   }
 }

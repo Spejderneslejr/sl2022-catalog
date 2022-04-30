@@ -69,6 +69,7 @@ export interface Search {
   languageSelected: string[]
   locationSelected: string[]
   enrolmentSelected: string[]
+  advanced: boolean
 }
 
 export const activities = writable<Activity[]>([])
@@ -93,4 +94,5 @@ export const search = writable<Search>({
   languageSelected: [],
   locationSelected: [],
   enrolmentSelected: [],
+  advanced: false
 })
