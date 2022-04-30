@@ -38,7 +38,7 @@
 <div class="flex flex-col">
   {#if activity}
     <a use:link={'/'}>
-      <button class="btn btn-outline btn-xs mb-4 hover:fill-white">
+      <button class="btn btn-outline btn-sm px-2 mb-4 hover:fill-white">
         <svg
           height="12px"
           version="1.1"
@@ -62,9 +62,9 @@
       </button>
     </a>
 
-    <div class="mb-4 border-t-4 border-dashed border-gray-400" />
     <div class="flex flex-col gap-x-10 gap-y-10 sm:flex-row sm:gap-y-0">
       <div class="w-full sm:w-1/3">
+        <h1 class="sm:hidden mb-2 text-lg font-bold">{activity.title[lang]}</h1>
         <div class="relative">
           <img class="object-cover" src={activity.images.md} alt={activity.title[lang]} />
           {#if activity.images.attribution}
@@ -77,7 +77,7 @@
         </div>
 
         <div class="flex flex-row justify-end gap-x-4 pt-4">
-          {#if activity.patch} <div>{activity.patch}</div>{/if}
+          {#if activity.patch} <img class="w-32" alt="Mærke" src="https://aktiviteter.sl22.dk/images/{activity.patch}.webp">{/if}
           {#if activity.friendship_award} <div>FRIENDSHIP AWARD</div> {/if}
           {#if $config.signup}
           <button class="btn btn-info btn-md">{strings.signup}</button>
@@ -86,7 +86,7 @@
       </div>
 
       <div class="flex flex-col gap-y-2">
-        <h1 class="mb-2 text-lg font-bold">{activity.title[lang]}</h1>
+        <h1 class="hidden sm:block mb-2 text-lg font-bold">{activity.title[lang]}</h1>
 
         <div class="flex">
           <span>{strings.age}:</span><span class="">
@@ -109,9 +109,9 @@
             {#if activity.location.id === 'lejren'}
               <span class="ml-3 border-2 border-dotted border-gray-400 px-1">
                 {#if lang === 'da'}
-                  Lejren, aktivitetsområde {activity.area[lang]}
+                  Lejren{#if activity.area[lang]}, aktivitetsområde activity.area[lang]{/if}
                 {:else}
-                  The Camp, activity area {activity.area[lang]}
+                  The Camp{#if activity.area[lang]}, activity area {activity.area[lang]}{/if}
                 {/if}
               </span>
             {:else}
@@ -153,7 +153,7 @@
           </span>
         </div>
 
-        <div class="prose mb-2 max-w-xl">{@html activity.description[lang]}</div>
+        <div class="prose my-2 max-w-xl">{@html activity.description[lang]}</div>
       </div>
     </div>
     <div class="mt-4">
