@@ -1,5 +1,6 @@
 <script lang="ts">
   import { link } from 'svelte-spa-router'
+import { destroy_component } from 'svelte/internal';
   export let id: number
   export let dropin: boolean
   export let signup: boolean
@@ -35,12 +36,22 @@
       </div>
     {/if}
 
-    {#if signup}
-    <div
-      class="absolute bottom-5 -left-6 rotate-45 bg-gray-400 px-5 text-sm leading-5 text-white"
-    >
-      Tilmelding
-    </div>
-  {/if}
+    {#if signup && !dropin}
+      <div
+        class="absolute bottom-5 -left-6 rotate-45 bg-gray-400 px-5 text-sm leading-5 text-white"
+      >
+        Tilmelding
+      </div>
+    {/if}
+
+    {#if signup && dropin}
+      <div
+        class="absolute bottom-7 -left-7 rotate-45 bg-gray-400 px-8 text-sm leading-5 text-white"
+      >
+        Tilmelding
+      </div>
+    {/if}
+
+
   </div>
 </a>
