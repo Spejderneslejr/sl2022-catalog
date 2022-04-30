@@ -101,6 +101,18 @@
       )
     }
 
+    filtered = filtered.sort((a, b) => {
+      let fa = a.title[lang].toLowerCase(),
+        fb = b.title[lang].toLowerCase()
+      if (fa < fb) {
+        return -1
+      }
+      if (fa > fb) {
+        return 1
+      }
+      return 0
+    })
+
     search.set({
       query,
       typeSelected,
