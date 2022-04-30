@@ -25,7 +25,8 @@
   const options = {
     includeScore: true,
     threshold: 0.4,
-    keys: ['title.' + lang],
+    minMatchCharLength: 2,
+    keys: ['title.' + lang, 'description.' + lang],
   }
 
   let query = ''
@@ -102,8 +103,9 @@
           (enrolmentSelected.includes('dropin') && item.dropin)
       )
     }
-
-    filtered = filtered.sort((a, b) => {
+    
+    // Slice used to copy the array as sort mutates the array
+    filtered = filtered.slice().sort((a, b) => {
       let fa = a.title[lang].toLowerCase(),
         fb = b.title[lang].toLowerCase()
       if (fa < fb) {
