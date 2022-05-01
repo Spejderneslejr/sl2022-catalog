@@ -21,7 +21,7 @@
   setContext('strings', translation[lang])
 
   const { data: request } = useSWR('https://aktiviteter.sl22.dk/api/activities', {
-    dedupingInterval: 60,
+    dedupingInterval: 300,
     revalidateOnReconnect: true,
   })
 

@@ -37,8 +37,7 @@
 
 <div class="flex flex-col">
   {#if activity}
-    <a use:link={'/'}>
-      <button class="btn btn-outline btn-sm px-2 mb-4 hover:fill-white">
+  <button onclick="history.back()" class="w-40 btn btn-outline btn-sm px-2 mb-4 hover:fill-white">
         <svg
           height="12px"
           version="1.1"
@@ -60,7 +59,6 @@
         </svg>
         <span class="ml-1">{strings.back}</span>
       </button>
-    </a>
 
     <div class="flex flex-col gap-x-10 gap-y-10 sm:flex-row sm:gap-y-0">
       <div class="w-full sm:w-1/3">
