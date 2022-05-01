@@ -19,6 +19,11 @@
     item: Activity
   }
 
+  const [html] = document.getElementsByClassName('paragraph--type--text')
+  if (html) {
+    html.style.display="block"
+  }
+
   const lang: string = getContext('lang')
   const strings: Record<string, string> = getContext('strings')
 

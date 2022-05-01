@@ -33,6 +33,12 @@
     }
     return res.length > 0 ? res : false
   }
+
+  const [html] = document.getElementsByClassName('paragraph--type--text')
+  if (html) {
+    html.style.display="none"
+  }
+
 </script>
 
 <div class="flex flex-col">
