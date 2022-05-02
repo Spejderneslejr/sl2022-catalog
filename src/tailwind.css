@@ -312,6 +312,10 @@
     .catalog-preflight pre {
       margin: 0;
   }
+
+  .catalog-preflight blockquote {
+    font-size: 1em;
+  }
   
   .catalog-preflight fieldset {
       margin: 0;
