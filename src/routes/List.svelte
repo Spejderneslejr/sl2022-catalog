@@ -159,7 +159,7 @@
                 type="checkbox"
                 class="checkbox"
               />
-              <span class="label-text select-none dark:text-white">{option.value}</span>
+              <span class="label-text select-none ">{option.value}</span>
             </label>
           {/each}
         </div>
@@ -174,7 +174,7 @@
         {#each ['signup', 'dropin'] as option}
           <label class="flex cursor-pointer gap-x-2">
             <input bind:group={enrolmentSelected} value={option} type="checkbox" class="checkbox" />
-            <span class="label-text select-none dark:text-white">{strings[option]}</span>
+            <span class="label-text select-none ">{strings[option]}</span>
           </label>
         {/each}
       </div>
@@ -201,7 +201,7 @@
                   type="checkbox"
                   class="checkbox"
                 />
-                <span class="label-text select-none dark:text-white">{option.value}</span>
+                <span class="label-text select-none ">{option.value}</span>
               </label>
             {/each}
           </div>
@@ -218,7 +218,7 @@
               {#each $activityAges as option}
                 <label class="flex cursor-pointer gap-x-1 md:gap-x-2">
                   <input bind:group={ageSelected} value={option} type="checkbox" class="checkbox" />
-                  <span class="label-text select-none whitespace-nowrap dark:text-white"
+                  <span class="label-text select-none whitespace-nowrap "
                     >{option}</span
                   >
                 </label>
@@ -242,7 +242,7 @@
                       type="checkbox"
                       class="checkbox"
                     />
-                    <span class="label-text select-none whitespace-nowrap dark:text-white"
+                    <span class="label-text select-none whitespace-nowrap "
                       >{option.value}</span
                     >
                   </label>
@@ -263,7 +263,7 @@
                       type="checkbox"
                       class="checkbox"
                     />
-                    <span class="label-text select-none whitespace-nowrap dark:text-white"
+                    <span class="label-text select-none whitespace-nowrap "
                       >{option.value}</span
                     >
                   </label>

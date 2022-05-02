@@ -24,6 +24,6 @@ module.exports = {
   },
   content: ['src/App.svelte', './src/**/*.svelte'],
   daisyui: {
-    themes: ['light', 'dark'],
+    themes: ['light'],
   }
 }
