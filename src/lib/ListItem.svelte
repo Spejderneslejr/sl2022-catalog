@@ -38,7 +38,7 @@ import { destroy_component } from 'svelte/internal';
 
     {#if signup && !dropin}
       <div
-        class="absolute bottom-5 -left-6 rotate-45 bg-gray-400 px-5 text-sm leading-5 text-whit"
+        class="absolute bottom-5 -left-6 rotate-45 bg-gray-400 px-5 text-sm leading-5 text-white"
       >
         Tilmelding
       </div>
@@ -46,7 +46,7 @@ import { destroy_component } from 'svelte/internal';
 
     {#if signup && dropin}
       <div
-        class="absolute bottom-7 -left-7 rotate-45 bg-gray-400 px-8 text-sm leading-5 text-whit"
+        class="absolute bottom-7 -left-7 rotate-45 bg-gray-400 px-8 text-sm leading-5 text-white"
       >
         Tilmelding
       </div>
