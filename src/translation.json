@@ -12,8 +12,8 @@
     "signup": "Kræver tilmelding",
     "dropin": "Drop-in",
     "enrolment": "Tilmelding",
-    "advanced_filters": "Avancerede filtre"
-
+    "advanced_filters": "Avancerede filtre",
+    "directions": "Vis vej"
   },
   "en": {
     "listheader": "Activities",
@@ -28,6 +28,7 @@
     "signup": "Requires signup",
     "dropin": "Drop-in",
     "enrolment": "Enrolment",
-    "advanced_filters": "Advanced filters"
+    "advanced_filters": "Advanced filters",
+    "directions": "Show directions"
   }
 }

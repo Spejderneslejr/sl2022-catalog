@@ -5,6 +5,7 @@
   import { config, activities, activitySizes, activityTypes } from '../store'
   import type { Activity } from '../store'
   import ActivityMap from '../lib/ActivityMap.svelte'
+  import ShowDirections from '../lib/ShowDirections.svelte'
 
   let activity: Activity
   let sizes: string[] | Boolean
@@ -36,39 +37,38 @@
 
   const [html] = document.getElementsByClassName('paragraph--type--text')
   if (html) {
-    html.style.display="none"
+    html.style.display = 'none'
   }
-
 </script>
 
 <div class="flex flex-col">
   {#if activity}
-  <button onclick="history.back()" class="w-40 btn btn-outline btn-sm px-2 mb-4 hover:fill-white">
-        <svg
-          height="12px"
-          version="1.1"
-          id="Capa_1"
-          xmlns="http://www.w3.org/2000/svg"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          x="12px"
-          y="12px"
-          viewBox="0 0 477.175 477.175"
-          style="enable-background:new 0 0 477.175 477.175;"
-          xml:space="preserve"
-        >
-          <g>
-            <path
-              d="M145.188,238.575l215.5-215.5c5.3-5.3,5.3-13.8,0-19.1s-13.8-5.3-19.1,0l-225.1,225.1c-5.3,5.3-5.3,13.8,0,19.1l225.1,225
+    <button onclick="history.back()" class="btn btn-outline btn-sm mb-4 w-40 px-2 hover:fill-white">
+      <svg
+        height="12px"
+        version="1.1"
+        id="Capa_1"
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+        x="12px"
+        y="12px"
+        viewBox="0 0 477.175 477.175"
+        style="enable-background:new 0 0 477.175 477.175;"
+        xml:space="preserve"
+      >
+        <g>
+          <path
+            d="M145.188,238.575l215.5-215.5c5.3-5.3,5.3-13.8,0-19.1s-13.8-5.3-19.1,0l-225.1,225.1c-5.3,5.3-5.3,13.8,0,19.1l225.1,225
          c2.6,2.6,6.1,4,9.5,4s6.9-1.3,9.5-4c5.3-5.3,5.3-13.8,0-19.1L145.188,238.575z"
-            />
-          </g>
-        </svg>
-        <span class="ml-1">{strings.back}</span>
-      </button>
+          />
+        </g>
+      </svg>
+      <span class="ml-1">{strings.back}</span>
+    </button>
 
     <div class="flex flex-col gap-x-10 gap-y-10 sm:flex-row sm:gap-y-0">
       <div class="w-full sm:w-1/3">
-        <h1 class="sm:hidden mb-2 text-lg font-bold">{activity.title[lang]}</h1>
+        <h1 class="mb-2 text-lg font-bold sm:hidden">{activity.title[lang]}</h1>
         <div class="relative">
           <img class="object-cover" src={activity.images.md} alt={activity.title[lang]} />
           {#if activity.images.attribution}
@@ -81,16 +81,28 @@
         </div>
 
         <div class="flex flex-row justify-end gap-x-4 pt-4">
-          {#if activity.patch} <img class="w-32" alt="Mærke" src="https://aktiviteter.sl22.dk/images/{activity.patch}.webp">{/if}
+          {#if activity.patch}
+            <img
+              class="w-32"
+              alt="Mærke"
+              src="https://aktiviteter.sl22.dk/images/{activity.patch}.webp"
+            />{/if}
           {#if activity.friendship_award} <div>FRIENDSHIP AWARD</div> {/if}
           {#if $config.signup}
-          <button class="btn btn-info btn-md">{strings.signup}</button>
+            <button class="btn btn-info btn-md">{strings.signup}</button>
+          {/if}
+          {#if activity.location.id === 'a12'}
+            <ShowDirections
+              lat={activity.location.lat}
+              lon={activity.location.lon}
+              label={strings.directions}
+            />
           {/if}
         </div>
       </div>
 
-      <div class="flex flex-col gap-y-2">
-        <h1 class="hidden sm:block mb-2 text-lg font-bold">{activity.title[lang]}</h1>
+      <div class="flex flex-col gap-y-3">
+        <h1 class="mb-2 hidden text-lg font-bold sm:block">{activity.title[lang]}</h1>
 
         <div class="flex">
           <span>{strings.age}:</span><span class="">
@@ -101,10 +113,14 @@
         </div>
 
         <div class="flex">
-          <span>{strings.enrolment}:</span><span class="">
-               
-            {#if activity.signup} <span class="ml-3 border-2 border-dotted border-gray-400 px-1">{strings.signup}</span>{/if}
-            {#if activity.dropin} <span class="ml-3 border-2 border-dotted border-gray-400 px-1">{strings.dropin}</span>{/if}
+          <span>{strings.enrolment}:</span>
+          <span class="">
+            {#if activity.signup}
+              <span class="ml-3 border-2 border-dotted border-gray-400 px-1">{strings.signup}</span
+              >{/if}
+            {#if activity.dropin}
+              <span class="ml-3 border-2 border-dotted border-gray-400 px-1">{strings.dropin}</span
+              >{/if}
           </span>
         </div>
 
@@ -128,11 +144,12 @@
 
         {#if types}
           <div class="flex">
-            <span>{strings.activity_type}:</span><span class="">
+            <span>{strings.activity_type}:</span>
+            <div class="flex flex-wrap max-w-md gap-y-2">
               {#each types as type}
-                <span class="ml-3 border-2 border-dotted border-sl-turquis px-1">{type}</span>
+                <div class="ml-3 border-2 border-dotted border-sl-turquis px-1 whitespace-nowrap">{type}</div>
               {/each}
-            </span>
+            </div>
           </div>
         {/if}
 
