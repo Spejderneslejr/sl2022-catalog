@@ -15,6 +15,9 @@ module.exports = {
         'sl-turquis': '#2398a0',
         'sl-darkblue': '#002f66',
       },
+      gridTemplateColumns: {
+        calendar: '5% 12% 12% 12% 12% 12% 12% 12%',
+      },
     },
   },
   plugins: [require('daisyui'), require('@tailwindcss/typography')],
@@ -25,5 +28,5 @@ module.exports = {
   content: ['src/App.svelte', './src/**/*.svelte'],
   daisyui: {
     themes: ['light'],
-  }
+  },
 }

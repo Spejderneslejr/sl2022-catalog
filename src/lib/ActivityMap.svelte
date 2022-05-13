@@ -12,6 +12,7 @@
   import SimpleMarkerSymbol from '@arcgis/core/symbols/SimpleMarkerSymbol'
 
   export let activity: Activity
+  export let strings
 
   let map
 
@@ -33,9 +34,9 @@
     })
 
     const centers = {
-      a12: {x: activity.location.lon, y: activity.location.lat, scale: 18000 },
-      a14: {x: 12.274835, y: 55.563856,  scale: 20000 },
-      a13: {x: 12.35558, y: 55.59478, scale: 10000 },
+      a12: { x: activity.location.lon, y: activity.location.lat, scale: 18000 },
+      a14: { x: 12.274835, y: 55.563856, scale: 20000 },
+      a13: { x: 12.35558, y: 55.59478, scale: 10000 },
       lejren: { x: 12.177261, y: 55.626132, scale: 16000 },
     }
 
@@ -94,4 +95,7 @@
   }
 </script>
 
-<div class="w-full" style="height:600px" use:mapAction />
+<div class="mt-4">
+  <div class="border-b-2 border-gray-200 pb-2 text-lg font-medium">{strings.mapheader}</div>
+  <div class="mt-4 w-full" style="height:600px" use:mapAction />
+</div>

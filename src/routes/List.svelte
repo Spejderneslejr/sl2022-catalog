@@ -285,6 +285,7 @@
         dropin={activity.dropin}
         signup={activity.signup}
         {lang}
+        {strings}
         title={activity.title}
         summary={activity.summary}
         image={activity.images.sm}

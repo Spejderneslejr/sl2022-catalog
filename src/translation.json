@@ -1,5 +1,6 @@
 {
   "da": {
+    "identifier": "Aktivitetsnummer",
     "listheader": "Aktiviteter",
     "search": "Søg efter aktivitet",
     "activity_type": "Aktivitetstype",
@@ -10,12 +11,17 @@
     "back": "Tilbage til listen",
     "signup_button": "Tilmeld",
     "signup": "Kræver tilmelding",
+    "signupshort": "Tilmelding",
     "dropin": "Drop-in",
+    "ontime": "Kom til tiden",
     "enrolment": "Tilmelding",
     "advanced_filters": "Avancerede filtre",
-    "directions": "Vis vej"
+    "directions": "Vis vej",
+    "programheader": "Uge program",
+    "mapheader": "Kort"
   },
   "en": {
+    "identifier": "Activity number",
     "listheader": "Activities",
     "search": "Search for activity",
     "activity_type": "Activity type",
@@ -26,9 +32,13 @@
     "back": "Back to the list",
     "signup_button": "Signup",
     "signup": "Requires signup",
+    "signupshort": "Signup",
     "dropin": "Drop-in",
+    "ontime": "Come on time",
     "enrolment": "Enrolment",
     "advanced_filters": "Advanced filters",
-    "directions": "Show directions"
+    "directions": "Show directions",
+    "programheader": "Week program",
+    "mapheader": "Map"
   }
 }

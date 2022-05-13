@@ -1,11 +1,11 @@
 <script type="ts">
   import { getContext } from 'svelte'
-  import { link } from 'svelte-spa-router'
   export let params: { id?: string } = {}
   import { config, activities, activitySizes, activityTypes } from '../store'
   import type { Activity } from '../store'
   import ActivityMap from '../lib/ActivityMap.svelte'
   import ShowDirections from '../lib/ShowDirections.svelte'
+  import WeekProgram from '../lib/WeekProgram.svelte'
 
   let activity: Activity
   let sizes: string[] | Boolean
@@ -102,7 +102,11 @@
       </div>
 
       <div class="flex flex-col gap-y-3">
-        <h1 class="mb-2 hidden text-lg font-bold sm:block">{activity.title[lang]}</h1>
+        <h1 class="mb-2 hidden text-lg font-medium sm:block">{activity.title[lang]}</h1>
+
+        <div class="flex">
+          <span>{strings.identifier}:</span><span class="ml-3 font-bold">{activity.identifier}</span>
+        </div>
 
         <div class="flex">
           <span>{strings.age}:</span><span class="">
@@ -116,10 +120,11 @@
           <span>{strings.enrolment}:</span>
           <span class="">
             {#if activity.signup}
-              <span class="ml-3 border-2 border-dotted border-gray-400 px-1">{strings.signup}</span
+              <span class="ml-3 border-2 border-dotted border-amber-400 px-1">{strings.signup}</span
               >{/if}
             {#if activity.dropin}
-              <span class="ml-3 border-2 border-dotted border-gray-400 px-1">{strings.dropin}</span
+              <span class="ml-3 border-2 border-dotted border-purple-400 px-1"
+                >{strings.dropin}</span
               >{/if}
           </span>
         </div>
@@ -145,9 +150,11 @@
         {#if types}
           <div class="flex">
             <span>{strings.activity_type}:</span>
-            <div class="flex flex-wrap max-w-md gap-y-2">
+            <div class="flex max-w-md flex-wrap gap-y-2">
               {#each types as type}
-                <div class="ml-3 border-2 border-dotted border-sl-turquis px-1 whitespace-nowrap">{type}</div>
+                <div class="ml-3 whitespace-nowrap border-2 border-dotted border-sl-turquis px-1">
+                  {type}
+                </div>
               {/each}
             </div>
           </div>
@@ -177,9 +184,11 @@
         <div class="prose my-2 max-w-xl">{@html activity.description[lang]}</div>
       </div>
     </div>
-    <div class="mt-4">
-      <ActivityMap {activity} />
-    </div>
+
+    {#if activity.timeslots.length > 0}
+      <WeekProgram timeslots={activity.timeslots} {strings} />
+    {/if}
+    <ActivityMap {activity} {strings} />
   {:else}
     <p class="loading">loading...</p>
   {/if}

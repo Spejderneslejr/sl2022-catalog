@@ -1,7 +1,9 @@
+import type { Dayjs } from 'dayjs'
 import { writable } from 'svelte/store'
 
 export interface Activity {
   id: number
+  identifier: number
   title: LanguageStrings
   summary: LanguageStrings
   description: LanguageStrings
@@ -17,6 +19,7 @@ export interface Activity {
   english: boolean
   friendship_award: boolean
   patch: string | null
+  timeslots: Timeslot[]
 }
 
 export interface Images {
@@ -55,6 +58,20 @@ export interface Location {
   id: string
   lat: number
   lon: number
+}
+
+export interface Timeslot {
+  start:     Date | Dayjs;
+  cancelled: boolean;
+  capacity:  number;
+  duration:  number;
+  type:      Type;
+}
+
+export enum Type {
+  DropIn = "dropin",
+  SignUp = "signup",
+  OnTime = "ontime",
 }
 
 export interface Config {
