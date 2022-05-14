@@ -98,24 +98,26 @@
                 {#if slot.type === 'dropin'}
                   <div style="height:{slot.duration}px" class="bg-purple-200 w-5 md:w-10">
                     <div class="rotate-90 whitespace-nowrap mt-2 md:mt-4">
-                      {slot.start.format('HH:mm')} - {slot.start
-                        .add(slot.duration, 'minute')
-                        .format('HH:mm')}
+                      {slot.start.format('HH:mm')}
+                      {#if slot.duration > 80}
+                      - {slot.start.add(slot.duration, 'minute').format('HH:mm')}
+                      {/if}
                     </div>
                   </div>
                 {:else if slot.type === 'ontime'}
                   <div style="height:{slot.duration}px" class="bg-emerald-200 w-5 md:w-10">
                     <div class="rotate-90 whitespace-nowrap mt-2 md:mt-4">
-                      {slot.start.format('HH:mm')} - {slot.start
-                        .add(slot.duration, 'minute')
-                        .format('HH:mm')}
+                      {slot.start.format('HH:mm')}
+                      {#if slot.duration > 80}
+                      - {slot.start.add(slot.duration, 'minute').format('HH:mm')}
+                      {/if}
                     </div>
                   </div>
                 {:else}
                   <div style="height:{slot.duration}px" class="bg-amber-200 w-5 md:w-10">
                     <div class="rotate-90 whitespace-nowrap mt-2 md:mt-4">
                       {slot.start.format('HH:mm')}
-                      {#if slot.duration > 100}
+                      {#if slot.duration > 80}
                         - {slot.start.add(slot.duration, 'minute').format('HH:mm')}
                       {/if}
                     </div>

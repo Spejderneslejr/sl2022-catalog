@@ -194,7 +194,7 @@
 
         <div class="flex">
           <span>{strings.duration}:</span>
-          <span class="ml-3 font-bold">{activity.duration} {strings.minutes}</span>
+          <span class="ml-3">{activity.duration} {strings.minutes}</span>
         </div>
 
         <div class="prose my-2 max-w-xl">{@html activity.description[lang]}</div>
