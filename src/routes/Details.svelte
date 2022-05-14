@@ -105,8 +105,8 @@
         <h1 class="mb-2 hidden text-lg font-medium sm:block">{activity.title[lang]}</h1>
 
         <div class="flex">
-          <span>
-            {strings.identifier}:</span><span class="ml-3 font-bold">{activity.identifier}
+          <span> {strings.identifier}:</span><span class="ml-3 font-bold"
+            >{activity.identifier}
           </span>
         </div>
 
@@ -181,21 +181,25 @@
           </div>
         {/if}
 
-        <div class="flex">
-          <span>{strings.languagesupport}:</span><span class="">
-            {#if activity.danish}
-              <span class="ml-3 border-2 border-dotted border-gray-400 px-1">Dansk</span>
-            {/if}
-            {#if activity.english}
-              <span class="ml-3 border-2 border-dotted border-gray-400 px-1">Engelsk</span>
-            {/if}
-          </span>
-        </div>
+        {#if activity.danish || activity.english}
+          <div class="flex">
+            <span>{strings.languagesupport}:</span><span class="">
+              {#if activity.danish}
+                <span class="ml-3 border-2 border-dotted border-gray-400 px-1">Dansk</span>
+              {/if}
+              {#if activity.english}
+                <span class="ml-3 border-2 border-dotted border-gray-400 px-1">Engelsk</span>
+              {/if}
+            </span>
+          </div>
+        {/if}
 
-        <div class="flex">
-          <span>{strings.duration}:</span>
-          <span class="ml-3">{activity.duration} {strings.minutes}</span>
-        </div>
+        {#if activity.duration}
+          <div class="flex">
+            <span>{strings.duration}:</span>
+            <span class="ml-3">{activity.duration} {strings.minutes}</span>
+          </div>
+        {/if}
 
         <div class="prose my-2 max-w-xl">{@html activity.description[lang]}</div>
       </div>
