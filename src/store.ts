@@ -4,11 +4,13 @@ import { writable } from 'svelte/store'
 export interface Activity {
   id: number
   identifier: number
+  duration: number
   title: LanguageStrings
   summary: LanguageStrings
   description: LanguageStrings
   signup: boolean
   dropin: boolean
+  ontime: boolean
   type: string[]
   age: string[]
   size: string[]

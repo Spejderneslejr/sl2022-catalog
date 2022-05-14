@@ -96,27 +96,28 @@
             <div class="flex flex-row justify-center md:gap-x-1">
               {#each interval.slots as slot}
                 {#if slot.type === 'dropin'}
-                  <div style="height:{slot.duration}px" class="bg-purple-200">
-                    <div class="mt-2 w-5 rotate-90 whitespace-nowrap md:mt-5 md:w-10">
+                  <div style="height:{slot.duration}px" class="bg-purple-200 w-5 md:w-10">
+                    <div class="rotate-90 whitespace-nowrap mt-2 md:mt-4">
                       {slot.start.format('HH:mm')} - {slot.start
                         .add(slot.duration, 'minute')
                         .format('HH:mm')}
                     </div>
                   </div>
                 {:else if slot.type === 'ontime'}
-                  <div style="height:{slot.duration}px" class="bg-emerald-200">
-                    <div class="rotate-90 whitespace-nowrap w-5 md:w-10 mt-2 md:mt-5">
+                  <div style="height:{slot.duration}px" class="bg-emerald-200 w-5 md:w-10">
+                    <div class="rotate-90 whitespace-nowrap mt-2 md:mt-4">
                       {slot.start.format('HH:mm')} - {slot.start
                         .add(slot.duration, 'minute')
                         .format('HH:mm')}
                     </div>
                   </div>
                 {:else}
-                  <div style="height:{slot.duration}px" class="bg-amber-200">
-                    <div class="rotate-90 whitespace-nowrap w-5 md:w-10 mt-2 md:mt-5">
-                      {slot.start.format('HH:mm')} - {slot.start
-                        .add(slot.duration, 'minute')
-                        .format('HH:mm')}
+                  <div style="height:{slot.duration}px" class="bg-amber-200 w-5 md:w-10">
+                    <div class="rotate-90 whitespace-nowrap mt-2 md:mt-4">
+                      {slot.start.format('HH:mm')}
+                      {#if slot.duration > 100}
+                        - {slot.start.add(slot.duration, 'minute').format('HH:mm')}
+                      {/if}
                     </div>
                   </div>
                 {/if}

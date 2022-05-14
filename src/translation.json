@@ -18,7 +18,9 @@
     "advanced_filters": "Avancerede filtre",
     "directions": "Vis vej",
     "programheader": "Uge program",
-    "mapheader": "Kort"
+    "mapheader": "Kort",
+    "duration": "Varighed",
+    "minutes": "minutter"
   },
   "en": {
     "identifier": "Activity number",
@@ -39,6 +41,8 @@
     "advanced_filters": "Advanced filters",
     "directions": "Show directions",
     "programheader": "Week program",
-    "mapheader": "Map"
+    "mapheader": "Map",
+    "duration": "Duration",
+    "minutes": "minutes"
   }
 }

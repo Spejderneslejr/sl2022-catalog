@@ -105,7 +105,9 @@
         <h1 class="mb-2 hidden text-lg font-medium sm:block">{activity.title[lang]}</h1>
 
         <div class="flex">
-          <span>{strings.identifier}:</span><span class="ml-3 font-bold">{activity.identifier}</span>
+          <span>
+            {strings.identifier}:</span><span class="ml-3 font-bold">{activity.identifier}
+          </span>
         </div>
 
         <div class="flex">
@@ -120,12 +122,21 @@
           <span>{strings.enrolment}:</span>
           <span class="">
             {#if activity.signup}
-              <span class="ml-3 border-2 border-dotted border-amber-400 px-1">{strings.signup}</span
-              >{/if}
+              <span class="ml-3 border-2 border-dotted border-amber-400 px-1">
+                {strings.signup}
+              </span>
+            {/if}
             {#if activity.dropin}
-              <span class="ml-3 border-2 border-dotted border-purple-400 px-1"
-                >{strings.dropin}</span
-              >{/if}
+              {#if activity.ontime}
+                <span class="ml-3 border-2 border-dotted border-emerald-400 px-1">
+                  {strings.dropin} : {strings.ontime}
+                </span>
+              {:else}
+                <span class="ml-3 border-2 border-dotted border-purple-400 px-1">
+                  {strings.dropin}
+                </span>
+              {/if}
+            {/if}
           </span>
         </div>
 
@@ -181,11 +192,16 @@
           </span>
         </div>
 
+        <div class="flex">
+          <span>{strings.duration}:</span>
+          <span class="ml-3 font-bold">{activity.duration} {strings.minutes}</span>
+        </div>
+
         <div class="prose my-2 max-w-xl">{@html activity.description[lang]}</div>
       </div>
     </div>
 
-    {#if activity.timeslots.length > 0}
+    {#if activity.timeslots}
       <WeekProgram timeslots={activity.timeslots} {strings} />
     {/if}
     <ActivityMap {activity} {strings} />
