@@ -308,9 +308,14 @@
     .catalog-preflight h6,
     .catalog-preflight hr,
     .catalog-preflight figure,
-    .catalog-preflight p,
     .catalog-preflight pre {
       margin: 0;
+      font-size: inherit;
+      line-height: inherit;
+      color: inherit;
+  }
+
+  .catalog-preflight p {
       font-size: inherit;
       line-height: inherit;
       color: inherit;
