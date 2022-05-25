@@ -163,12 +163,7 @@
       text-decoration: underline dotted;
   }
   
-  .catalog-preflight h1,
-    .catalog-preflight h2,
-    .catalog-preflight h3,
-    .catalog-preflight h4,
-    .catalog-preflight h5,
-    .catalog-preflight h6 {
+  .catalog-preflight h1 {
       font-size: inherit;
       font-weight: inherit;
   }
@@ -301,11 +296,6 @@
     .catalog-preflight dl,
     .catalog-preflight dd,
     .catalog-preflight h1,
-    .catalog-preflight h2,
-    .catalog-preflight h3,
-    .catalog-preflight h4,
-    .catalog-preflight h5,
-    .catalog-preflight h6,
     .catalog-preflight hr,
     .catalog-preflight figure,
     .catalog-preflight pre {
