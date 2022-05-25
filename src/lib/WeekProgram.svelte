@@ -32,7 +32,7 @@
     ) + 2
 
   let days = []
-  let start = dayjs('2022-07-24')
+  let start = dayjs('2022-07-24').hour(8).minute(0)
   for (let x = 0; x < 7; x++) {
     days.push({ date: start, intervals: intervals(start) })
     start = start.add(1, 'day')
@@ -40,9 +40,8 @@
 
   function intervals(day) {
     let intervals = []
-    const startday = day.day()
-    start = day.hour(firstHour).minute(0)
-    while (start.day() === startday && start.hour() < lastHour) {
+    let start = day.hour(firstHour).minute(0)
+    while (start.day() === day.day() && start.hour() < lastHour) {
       const slots = timeslots.filter((item) => start.isSame(item.start))
       intervals.push({ start, slots })
       start = start.add(5, 'minute')
