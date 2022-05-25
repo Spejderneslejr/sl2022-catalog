@@ -40,8 +40,9 @@
 
   function intervals(day) {
     let intervals = []
+    const startday = day.day()
     start = day.hour(firstHour).minute(0)
-    while (start.hour() < lastHour) {
+    while (start.day() === startday && start.hour() < lastHour) {
       const slots = timeslots.filter((item) => start.isSame(item.start))
       intervals.push({ start, slots })
       start = start.add(5, 'minute')
@@ -96,11 +97,11 @@
             <div class="flex flex-row justify-center md:gap-x-1">
               {#each interval.slots as slot}
                 {#if slot.type === 'dropin'}
-                  <div style="height:{slot.duration}px" class="bg-purple-200 w-5 md:w-10">
-                    <div class="rotate-90 whitespace-nowrap mt-2 md:mt-4">
+                  <div style="height:{slot.duration}px" class="w-5 bg-purple-200 md:w-10">
+                    <div class="mt-2 rotate-90 whitespace-nowrap md:mt-4">
                       {slot.start.format('HH:mm')}
                       {#if slot.duration > 80}
-                      - {slot.start.add(slot.duration, 'minute').format('HH:mm')}
+                        - {slot.start.add(slot.duration, 'minute').format('HH:mm')}
                       {/if}
                     </div>
                   </div>
@@ -109,7 +110,7 @@
                     <div class="rotate-90 whitespace-nowrap mt-2 md:mt-4">
                       {slot.start.format('HH:mm')}
                       {#if slot.duration > 80}
-                      - {slot.start.add(slot.duration, 'minute').format('HH:mm')}
+                        - {slot.start.add(slot.duration, 'minute').format('HH:mm')}
                       {/if}
                     </div>
                   </div>
