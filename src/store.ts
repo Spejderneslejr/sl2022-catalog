@@ -63,7 +63,7 @@ export interface Location {
 }
 
 export interface Timeslot {
-  start:     Date | Dayjs;
+  start:     Dayjs;
   cancelled: boolean;
   capacity:  number;
   duration:  number;

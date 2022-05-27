@@ -70,7 +70,7 @@
       <div class="w-full sm:w-1/3">
         <h1 class="mb-2 text-xl font-bold sm:hidden">{activity.title[lang]}</h1>
         <div class="relative">
-          <img class="object-cover" src={activity.images.md} alt={activity.title[lang]} />
+          <img class="object-cover" src={activity.images.md ?? 'https://aktiviteter.sl22.dk/images/default.webp'} alt={activity.title[lang]} />
           {#if activity.images.attribution}
             <div
               class="absolute bottom-2 right-2 rounded bg-white/30 py-1 px-2 text-xs text-white backdrop-blur-sm"

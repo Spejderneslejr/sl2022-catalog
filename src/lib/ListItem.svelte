@@ -6,13 +6,8 @@
   export let lang: string
   export let title: { da: string; en: string }
   export let summary: { da: string; en: string }
-  export let image: string
-  export let strings
-
-  const truncate = (str: string, max: number, suffix: string = '...'): string =>
-    str.length < max
-      ? str
-      : `${str.substr(0, str.substr(0, max - suffix.length).lastIndexOf(' '))}${suffix}`
+  export let image: string | null
+  export let strings:  Record<string, string>
 </script>
 
 <a
@@ -22,7 +17,7 @@
   tabindex="0"
 >
   <figure class="px-4 pt-4" style="align-items: start">
-    <img src={image} alt={title[lang]} class="h-40 w-40" />
+    <img src={image ?? 'https://aktiviteter.sl22.dk/images/default.webp'} alt={title[lang]} class="h-40 w-40" />
   </figure>
   <div class="py-3 pr-3">
     <div class="card-title text-base">{title[lang]}</div>
@@ -51,7 +46,6 @@
       {strings.signupshort}
       </div>
     {/if}
-
 
   </div>
 </a>

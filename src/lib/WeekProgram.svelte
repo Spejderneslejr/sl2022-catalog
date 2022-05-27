@@ -4,16 +4,11 @@
   import 'dayjs/locale/da' // import locale
   import type { Timeslot } from '../store'
   export let timeslots: Timeslot[]
-  export let strings
+  export let strings:  Record<string, string>
 
   const lang: string = getContext('lang')
 
   dayjs.locale(lang)
-
-  timeslots = timeslots.map((item) => {
-    item.start = dayjs(item.start)
-    return item
-  })
 
   const firstHour =
     timeslots.reduce(
