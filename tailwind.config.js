@@ -18,6 +18,20 @@ module.exports = {
       gridTemplateColumns: {
         calendar: '5% 12% 12% 12% 12% 12% 12% 12%',
       },
+      typography: () => ({
+        DEFAULT: {
+          css: {
+            h2: {
+              fontSize: '1.1em',
+              marginBottom: '0.5em',
+            },
+            h3: {
+              fontSize: '1em',
+              marginBottom: '0.4em',
+            },
+          },
+        },
+      }),
     },
   },
   plugins: [require('daisyui'), require('@tailwindcss/typography')],
