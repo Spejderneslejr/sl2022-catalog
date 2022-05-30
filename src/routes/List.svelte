@@ -105,7 +105,7 @@
       filtered = filtered.filter(
         (item) =>
           (enrolmentSelected.includes('signup') && item.signup) ||
-          (enrolmentSelected.includes('dropin') && item.dropin)
+          (enrolmentSelected.includes('without-signup') && (item.dropin || item.ontime))
       )
     }
     
@@ -166,12 +166,12 @@
       </div>
     {/if}
 
-    <div class="md:w-1/4">
+    <div class="md:w-1/3">
       <div class="mb-1">{strings.enrolment}</div>
       <div
         class="flex flex-row justify-between gap-x-1 border-2 border-dashed border-gray-400 p-3 md:gap-x-2"
       >
-        {#each ['signup', 'dropin'] as option}
+        {#each ['signup', 'without-signup'] as option}
           <label class="flex cursor-pointer gap-x-2">
             <input bind:group={enrolmentSelected} value={option} type="checkbox" class="checkbox" />
             <span class="label-text select-none ">{strings[option]}</span>
@@ -284,6 +284,7 @@
         id={activity.id}
         dropin={activity.dropin}
         signup={activity.signup}
+        ontime={activity.ontime}
         {lang}
         {strings}
         title={activity.title}

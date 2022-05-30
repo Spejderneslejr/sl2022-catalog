@@ -6,6 +6,6 @@
 
 <div class="">
   <a href={`${baseUrl}/${identifier}`}>
-    <button class="btn btn-info btn-sm px-6">{strings.signup_button}</button>
+    <button class="!btn !btn-accent px-4">{strings.signup_button}</button>
   </a>
 </div>

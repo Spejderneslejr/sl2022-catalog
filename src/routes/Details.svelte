@@ -89,9 +89,9 @@
               src="https://aktiviteter.sl22.dk/images/{activity.patch}.webp"
             />{/if}
           {#if activity.friendship_award} <div>FRIENDSHIP AWARD</div> {/if}
-          
-          {#if activity.signup }
-           <Signup identifier={activity.identifier} {strings} />
+
+          {#if activity.signup}
+            <Signup identifier={activity.identifier} {strings} />
           {/if}
 
           {#if activity.location.id === 'a12'}
@@ -129,10 +129,10 @@
                 {strings.signup}
               </span>
             {/if}
-            {#if activity.dropin}
+            {#if activity.dropin || activity.ontime}
               {#if activity.ontime}
                 <span class="ml-3 border-2 border-dotted border-emerald-400 px-1">
-                  {strings.dropin} : {strings.ontime}
+                  {strings.ontime}
                 </span>
               {:else}
                 <span class="ml-3 border-2 border-dotted border-purple-400 px-1">

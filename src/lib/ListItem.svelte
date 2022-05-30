@@ -3,6 +3,7 @@
   export let id: number
   export let dropin: boolean
   export let signup: boolean
+  export let ontime: boolean
   export let lang: string
   export let title: { da: string; en: string }
   export let summary: { da: string; en: string }
@@ -23,29 +24,44 @@
     <div class="card-title text-base">{title[lang]}</div>
     <p class="text-xs">{@html summary[lang]}</p>
 
-    {#if dropin}
-      <div
-        class="absolute bottom-3 -left-5 rotate-45 bg-purple-200 px-5 text-sm leading-5 text-gray-500"
-      >
-        {strings.dropin}
-      </div>
+    {#if ontime || dropin}
+      {#if ontime}
+        <div
+          class="absolute bottom-7 -left-7 rotate-45 bg-emerald-200 px-7 text-sm leading-5 text-gray-500"
+        >
+          {strings.ontime}
+        </div>
+      {:else}
+        <div
+          class="absolute bottom-3 -left-5 rotate-45 bg-purple-200 px-5 text-sm leading-5 text-gray-500"
+        >
+          {strings.dropin}
+        </div>
+      {/if}
     {/if}
 
-    {#if signup && !dropin}
+    {#if signup && !dropin && !ontime}
       <div
         class="absolute bottom-5 -left-6 rotate-45 bg-amber-200 px-5 text-sm leading-5 text-gray-500"
       >
-      {strings.signupshort}
+        {strings.signupshort}
       </div>
     {/if}
 
-    {#if signup && dropin}
+    {#if signup && ontime}
+      <div
+        class="absolute bottom-4 -left-6 rotate-45 bg-amber-200 px-6 text-xs leading-5 text-gray-500"
+      >
+        {strings.signupshort}
+      </div>
+    {/if}
+
+    {#if signup && dropin && !ontime}
       <div
         class="absolute bottom-7 -left-7 rotate-45 bg-amber-200 px-8 text-sm leading-5 text-gray-500"
       >
-      {strings.signupshort}
+        {strings.signupshort}
       </div>
     {/if}
-
   </div>
 </a>
