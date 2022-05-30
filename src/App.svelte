@@ -1,7 +1,8 @@
 <script lang="ts">
   import { setContext } from 'svelte'
-  import Router, { link } from 'svelte-spa-router'
+  import Router from 'svelte-spa-router'
   import routes from './routes'
+  import dayjs from 'dayjs'
   import { useSWR } from 'sswr'
   import {
     activities,
@@ -26,8 +27,18 @@
 
   request.subscribe((value) => {
     if (value) {
-      config.set({ signup : value.meta.signup })
-      activities.set(value.data)
+      const mappedActivities = value.data.map((activity) => {
+        if (activity.timeslots) {
+          activity.timeslots = activity.timeslots.map((item) => {
+            item.start = dayjs(item.start)
+            return item
+          })
+        }
+        return activity
+      })
+
+      config.set({ signup: value.meta.signup })
+      activities.set(mappedActivities)
       activityTypes.set(value.meta.types)
       activityLocations.set(value.meta.locations)
       activityAges.set(value.meta.ages)

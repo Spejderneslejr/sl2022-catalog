@@ -69,9 +69,9 @@
 
     <div class="flex flex-col gap-x-10 gap-y-10 sm:flex-row sm:gap-y-0">
       <div class="w-full sm:w-1/3">
-        <h1 class="mb-2 text-lg font-bold sm:hidden">{activity.title[lang]}</h1>
+        <h1 class="mb-2 text-xl font-bold sm:hidden">{activity.title[lang]}</h1>
         <div class="relative">
-          <img class="object-cover" src={activity.images.md} alt={activity.title[lang]} />
+          <img class="object-cover" src={activity.images.md ?? 'https://aktiviteter.sl22.dk/images/default.webp'} alt={activity.title[lang]} />
           {#if activity.images.attribution}
             <div
               class="absolute bottom-2 right-2 rounded bg-white/30 py-1 px-2 text-xs text-white backdrop-blur-sm"
@@ -105,7 +105,7 @@
       </div>
 
       <div class="flex flex-col gap-y-3">
-        <h1 class="mb-2 hidden text-lg font-medium sm:block">{activity.title[lang]}</h1>
+        <h1 class="mb-2 hidden text-xl font-bold sm:block">{activity.title[lang]}</h1>
 
         <div class="flex">
           <span> {strings.identifier}:</span><span class="ml-3 font-bold"
@@ -204,7 +204,7 @@
           </div>
         {/if}
 
-        <div class="prose my-2 max-w-xl">{@html activity.description[lang]}</div>
+        <div class="!prose my-2 max-w-xl">{@html activity.description[lang]}</div>
       </div>
     </div>
 

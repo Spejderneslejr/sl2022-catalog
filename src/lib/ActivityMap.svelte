@@ -12,7 +12,7 @@
   import SimpleMarkerSymbol from '@arcgis/core/symbols/SimpleMarkerSymbol'
 
   export let activity: Activity
-  export let strings
+  export let strings :  Record<string, string>
 
   let map
 
