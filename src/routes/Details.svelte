@@ -6,6 +6,7 @@
   import ActivityMap from '../lib/ActivityMap.svelte'
   import ShowDirections from '../lib/ShowDirections.svelte'
   import WeekProgram from '../lib/WeekProgram.svelte'
+  import Signup from '../lib/Signup.svelte'
 
   let activity: Activity
   let sizes: string[] | Boolean
@@ -88,9 +89,11 @@
               src="https://aktiviteter.sl22.dk/images/{activity.patch}.webp"
             />{/if}
           {#if activity.friendship_award} <div>FRIENDSHIP AWARD</div> {/if}
-          {#if $config.signup}
-            <button class="btn btn-info btn-md">{strings.signup}</button>
+          
+          {#if activity.signup }
+           <Signup identifier={activity.identifier} {strings} />
           {/if}
+
           {#if activity.location.id === 'a12'}
             <ShowDirections
               lat={activity.location.lat}

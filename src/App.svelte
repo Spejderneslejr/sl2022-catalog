@@ -13,7 +13,6 @@
     config,
   } from './store'
   import * as translation from './translation.json'
-  import LanguageSwitcher from './lib/LanguageSwitcher.svelte'
 
   const [html] = document.getElementsByTagName('html')
   const lang = html.getAttribute('lang')
