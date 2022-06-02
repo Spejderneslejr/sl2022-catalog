@@ -13,6 +13,7 @@
   } from '../store'
   import type { Activity } from '../store'
   import ListItem from '../lib/ListItem.svelte'
+  import ResetSearch from '../lib/ResetSearch.svelte'
 
   interface SearchResult {
     score: number
@@ -21,7 +22,7 @@
 
   const [html] = document.getElementsByClassName('paragraph--type--text')
   if (html) {
-    html.style.display="block"
+    html.style.display = 'block'
   }
 
   const lang: string = getContext('lang')
@@ -108,7 +109,7 @@
           (enrolmentSelected.includes('without-signup') && (item.dropin || item.ontime))
       )
     }
-    
+
     // Slice used to copy the array as sort mutates the array
     filtered = filtered.slice().sort((a, b) => {
       let fa = a.title[lang].toLowerCase(),
@@ -218,9 +219,7 @@
               {#each $activityAges as option}
                 <label class="flex cursor-pointer gap-x-1 md:gap-x-2">
                   <input bind:group={ageSelected} value={option} type="checkbox" class="checkbox" />
-                  <span class="label-text select-none whitespace-nowrap "
-                    >{option}</span
-                  >
+                  <span class="label-text select-none whitespace-nowrap ">{option}</span>
                 </label>
               {/each}
             </div>
@@ -242,9 +241,7 @@
                       type="checkbox"
                       class="checkbox"
                     />
-                    <span class="label-text select-none whitespace-nowrap "
-                      >{option.value}</span
-                    >
+                    <span class="label-text select-none whitespace-nowrap ">{option.value}</span>
                   </label>
                 {/each}
               </div>
@@ -263,9 +260,7 @@
                       type="checkbox"
                       class="checkbox"
                     />
-                    <span class="label-text select-none whitespace-nowrap "
-                      >{option.value}</span
-                    >
+                    <span class="label-text select-none whitespace-nowrap ">{option.value}</span>
                   </label>
                 {/each}
               </div>
@@ -275,6 +270,9 @@
       </div>
     </div>
   </div>
+
+  <ResetSearch  {strings}/>
+  
 </div>
 
 <section class="my-10">

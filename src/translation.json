@@ -21,7 +21,8 @@
     "programheader": "Uge program",
     "mapheader": "Kort",
     "duration": "Varighed",
-    "minutes": "minutter"
+    "minutes": "minutter",
+    "reset_search": "Nulstil søgning"
   },
   "en": {
     "identifier": "Activity number",
@@ -45,6 +46,7 @@
     "programheader": "Week program",
     "mapheader": "Map",
     "duration": "Duration",
-    "minutes": "minutes"
+    "minutes": "minutes",
+    "reset_search": "Reset search"
   }
 }
