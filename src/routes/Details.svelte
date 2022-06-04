@@ -94,9 +94,11 @@
             />{/if}
           {#if activity.friendship_award} <div>FRIENDSHIP AWARD</div> {/if}
 
+          <!--
           {#if activity.signup && activity.timeslots}
             <Signup identifier={activity.identifier} {strings} />
           {/if}
+          -->
 
           {#if activity.location.id === 'a12'}
             <ShowDirections
