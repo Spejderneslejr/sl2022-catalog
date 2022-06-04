@@ -30,9 +30,10 @@
 
   const options = {
     includeScore: true,
-    threshold: 0.4,
+    ignoreLocation: true,
+    threshold: 0.16,
     minMatchCharLength: 2,
-    keys: ['title.' + lang, 'description.' + lang],
+    keys: ['title.' + lang, 'description.' + lang, 'identifier'],
   }
 
   let query = ''
@@ -65,7 +66,7 @@
   let filtered: Activity[]
 
   beforeUpdate(() => {
-    if (query) {
+    if (query.length > 1) {
       result = fuse.search(query)
       filtered = result.map((hit) => hit.item)
     } else {
@@ -280,6 +281,7 @@
     {#each filtered as activity}
       <ListItem
         id={activity.id}
+        identifier={activity.identifier}
         dropin={activity.dropin}
         signup={activity.signup}
         ontime={activity.ontime}

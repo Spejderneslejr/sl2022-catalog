@@ -1,7 +1,7 @@
 <script type="ts">
   import { getContext } from 'svelte'
   export let params: { id?: string } = {}
-  import { config, activities, activitySizes, activityTypes } from '../store'
+  import { activities, activitySizes, activityTypes } from '../store'
   import type { Activity } from '../store'
   import ActivityMap from '../lib/ActivityMap.svelte'
   import ShowDirections from '../lib/ShowDirections.svelte'
@@ -71,7 +71,11 @@
       <div class="w-full sm:w-1/3">
         <h1 class="mb-2 text-xl font-bold sm:hidden">{activity.title[lang]}</h1>
         <div class="relative">
-          <img class="object-cover" src={activity.images.md ?? 'https://aktiviteter.sl22.dk/images/default.webp'} alt={activity.title[lang]} />
+          <img
+            class="object-cover"
+            src={activity.images.md ?? 'https://aktiviteter.sl22.dk/images/default.webp'}
+            alt={activity.title[lang]}
+          />
           {#if activity.images.attribution}
             <div
               class="absolute bottom-2 right-2 rounded bg-white/30 py-1 px-2 text-xs text-white backdrop-blur-sm"
@@ -107,41 +111,49 @@
       <div class="flex flex-col gap-y-3">
         <h1 class="mb-2 hidden text-xl font-bold sm:block">{activity.title[lang]}</h1>
 
-        <div class="flex">
-          <span> {strings.identifier}:</span><span class="ml-3 font-bold"
-            >{activity.identifier}
-          </span>
-        </div>
+        {#if activity.identifier}
+          <div class="flex items-center">
+            <span> {strings.identifier}:</span>
+            <span class="ml-3 rounded-sm bg-slate-100 p-1 font-bold">
+              {activity.identifier}
+            </span>
+          </div>
+        {/if}
 
-        <div class="flex">
-          <span>{strings.age}:</span><span class="">
-            {#each activity.age as age}
-              <span class="ml-3 border-2 border-dotted border-sl-yellow px-1">{age}</span>
-            {/each}
-          </span>
-        </div>
+        {#if activity.age.length > 0}
+          <div class="flex">
+            <span>{strings.age}:</span>
+            <span class="">
+              {#each activity.age as age}
+                <span class="ml-3 border-2 border-dotted border-sl-yellow px-1">{age}</span>
+              {/each}
+            </span>
+          </div>
+        {/if}
 
-        <div class="flex">
-          <span>{strings.enrolment}:</span>
-          <span class="">
-            {#if activity.signup}
-              <span class="ml-3 border-2 border-dotted border-amber-400 px-1">
-                {strings.signup}
-              </span>
-            {/if}
-            {#if activity.dropin || activity.ontime}
-              {#if activity.ontime}
-                <span class="ml-3 border-2 border-dotted border-emerald-400 px-1">
-                  {strings.ontime}
-                </span>
-              {:else}
-                <span class="ml-3 border-2 border-dotted border-purple-400 px-1">
-                  {strings.dropin}
+        {#if activity.signup || activity.dropin || activity.ontime}
+          <div class="flex">
+            <span>{strings.enrolment}:</span>
+            <span class="">
+              {#if activity.signup}
+                <span class="ml-3 border-2 border-dotted border-amber-400 px-1">
+                  {strings.signup}
                 </span>
               {/if}
-            {/if}
-          </span>
-        </div>
+              {#if activity.dropin || activity.ontime}
+                {#if activity.ontime}
+                  <span class="ml-3 border-2 border-dotted border-emerald-400 px-1">
+                    {strings.ontime}
+                  </span>
+                {:else}
+                  <span class="ml-3 border-2 border-dotted border-purple-400 px-1">
+                    {strings.dropin}
+                  </span>
+                {/if}
+              {/if}
+            </span>
+          </div>
+        {/if}
 
         <div class="flex">
           <span>{strings.location}:</span><span class="">
@@ -200,7 +212,7 @@
         {#if activity.duration}
           <div class="flex">
             <span>{strings.duration}:</span>
-            <span class="ml-3">{activity.duration} {strings.minutes}</span>
+            <span class="ml-3">{ activity.duration} {strings.minutes}</span>
           </div>
         {/if}
 

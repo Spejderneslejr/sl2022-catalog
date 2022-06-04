@@ -1,6 +1,7 @@
 <script lang="ts">
   import { link } from 'svelte-spa-router'
   export let id: number
+  export let identifier: number
   export let dropin: boolean
   export let signup: boolean
   export let ontime: boolean
@@ -21,7 +22,7 @@
     <img
       src={image ?? 'https://aktiviteter.sl22.dk/images/default.webp'}
       alt={title[lang]}
-      class="h-40 w-40"
+      class="mb-3 h-40 w-40"
     />
   </figure>
   <div class="py-3 pr-3">
@@ -66,6 +67,10 @@
       >
         {strings.signupshort}
       </div>
+    {/if}
+
+    {#if identifier}
+      <div class="absolute bottom-2 right-2 rounded-sm bg-slate-100 p-1 text-sm">{identifier}</div>
     {/if}
   </div>
 </a>
