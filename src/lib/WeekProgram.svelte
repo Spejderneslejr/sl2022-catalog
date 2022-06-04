@@ -4,45 +4,19 @@
   import 'dayjs/locale/da' // import locale
   import type { Timeslot } from '../store'
   export let timeslots: Timeslot[]
-  export let strings:  Record<string, string>
+  export let strings: Record<string, string>
 
   const lang: string = getContext('lang')
 
   dayjs.locale(lang)
 
-  const firstHour =
-    timeslots.reduce(
-      (previousValue, currentValue) =>
-        currentValue.start.hour() < previousValue ? currentValue.start.hour() : previousValue,
-      24
-    ) - 1
-
-  const lastHour =
-    timeslots.reduce(
-      (previousValue, currentValue) =>
-        currentValue.start.add(currentValue.duration, 'minute').hour() > previousValue
-          ? currentValue.start.add(currentValue.duration, 'minute').hour()
-          : previousValue,
-      0
-    ) + 2
-
   let days = []
   let start = dayjs('2022-07-24').hour(8).minute(0)
+
   for (let x = 0; x < 7; x++) {
-    days.push({ date: start, intervals: intervals(start) })
+    const slots = timeslots.filter((ts) => ts.start.day() === start.day())
+    days.push({ date: start, slots })
     start = start.add(1, 'day')
-  }
-
-  function intervals(day) {
-    let intervals = []
-    let start = day.hour(firstHour).minute(0)
-    while (start.day() === day.day() && start.hour() < lastHour) {
-      const slots = timeslots.filter((item) => start.isSame(item.start))
-      intervals.push({ start, slots })
-      start = start.add(5, 'minute')
-    }
-
-    return intervals
   }
 </script>
 
@@ -65,61 +39,33 @@
     </div>
   </div>
 
-  <div class="mt-2 grid grid-cols-8 gap-x-1 text-xs md:grid-cols-calendar md:gap-x-4">
-    <div class="text-left">
-      <div style="height:24px">&nbsp;</div>
-      {#each intervals(dayjs()) as interval}
-        <div style="height:5px">
-          {interval.start.minute() === 0 ? interval.start.format('HH:mm') : ''}
-        </div>
-      {/each}
-    </div>
-
+  <div class="order-gray-200 grid grid-cols-7  border-b-2 text-xs">
     {#each days as day}
-      <div class="">
-        <div class="border-l-2 border-gray-200 py-1 pl-1 text-center capitalize">
+      <div class="border-l-2 border-gray-200 last-of-type:border-r-2">
+        <div class="border-b-2 border-gray-200 p-4 text-center capitalize">
           <span class="md:hidden">
-            {day.date.format('ddd')}
+            {day.date.format('ddd')} ({day.date.format('D/M')})
           </span>
           <span class="hidden md:block">
-            {day.date.format('dddd')}
+            {day.date.format('dddd')} ({day.date.format('D/M')})
           </span>
         </div>
 
-        {#each day.intervals as interval}
-          <div style="height:5px" class="border-l-2 border-gray-200 pl-1">
-            <div class="flex flex-row justify-center md:gap-x-1">
-              {#each interval.slots as slot}
-                {#if slot.type === 'dropin'}
-                  <div style="height:{slot.duration}px" class="w-5 bg-purple-200 md:w-10">
-                    <div class="mt-2 rotate-90 whitespace-nowrap md:mt-4">
-                      {slot.start.format('HH:mm')}
-                      {#if slot.duration > 80}
-                        - {slot.start.add(slot.duration, 'minute').format('HH:mm')}
-                      {/if}
-                    </div>
-                  </div>
-                {:else if slot.type === 'ontime'}
-                  <div style="height:{slot.duration}px" class="bg-emerald-200 w-5 md:w-10">
-                    <div class="rotate-90 whitespace-nowrap mt-2 md:mt-4">
-                      {slot.start.format('HH:mm')}
-                      {#if slot.duration > 80}
-                        - {slot.start.add(slot.duration, 'minute').format('HH:mm')}
-                      {/if}
-                    </div>
-                  </div>
-                {:else}
-                  <div style="height:{slot.duration}px" class="bg-amber-200 w-5 md:w-10">
-                    <div class="rotate-90 whitespace-nowrap mt-2 md:mt-4">
-                      {slot.start.format('HH:mm')}
-                      {#if slot.duration > 80}
-                        - {slot.start.add(slot.duration, 'minute').format('HH:mm')}
-                      {/if}
-                    </div>
-                  </div>
-                {/if}
-              {/each}
-            </div>
+        {#each day.slots as slot}
+          <div
+            class="m-2 p-2 text-center"
+            class:bg-amber-200={slot.type === 'signup'}
+            class:bg-emerald-200={slot.type === 'ontime'}
+            class:bg-purple-200={slot.type === 'dropin' && slot.type !== 'ontime'}
+          >
+            {slot.start.format('HH:mm')} - {#if slot.end.day() > slot.start.day() && slot.end.hour() > 0}
+              {slot.end.format('D/M')}
+            {/if}
+            {#if slot.end.hour() > 0}
+              {slot.end.format('HH:mm')}
+            {:else}
+              24:00
+            {/if}
           </div>
         {/each}
       </div>

@@ -13,6 +13,7 @@
   } from '../store'
   import type { Activity } from '../store'
   import ListItem from '../lib/ListItem.svelte'
+  import ResetSearch from '../lib/ResetSearch.svelte'
 
   interface SearchResult {
     score: number
@@ -21,7 +22,7 @@
 
   const [html] = document.getElementsByClassName('paragraph--type--text')
   if (html) {
-    html.style.display="block"
+    html.style.display = 'block'
   }
 
   const lang: string = getContext('lang')
@@ -29,9 +30,10 @@
 
   const options = {
     includeScore: true,
-    threshold: 0.4,
+    ignoreLocation: true,
+    threshold: 0.16,
     minMatchCharLength: 2,
-    keys: ['title.' + lang, 'description.' + lang],
+    keys: ['title.' + lang, 'description.' + lang, 'identifier'],
   }
 
   let query = ''
@@ -64,7 +66,7 @@
   let filtered: Activity[]
 
   beforeUpdate(() => {
-    if (query) {
+    if (query.length > 1) {
       result = fuse.search(query)
       filtered = result.map((hit) => hit.item)
     } else {
@@ -105,10 +107,10 @@
       filtered = filtered.filter(
         (item) =>
           (enrolmentSelected.includes('signup') && item.signup) ||
-          (enrolmentSelected.includes('dropin') && item.dropin)
+          (enrolmentSelected.includes('without-signup') && (item.dropin || item.ontime))
       )
     }
-    
+
     // Slice used to copy the array as sort mutates the array
     filtered = filtered.slice().sort((a, b) => {
       let fa = a.title[lang].toLowerCase(),
@@ -166,12 +168,12 @@
       </div>
     {/if}
 
-    <div class="md:w-1/4">
+    <div class="md:w-1/3">
       <div class="mb-1">{strings.enrolment}</div>
       <div
         class="flex flex-row justify-between gap-x-1 border-2 border-dashed border-gray-400 p-3 md:gap-x-2"
       >
-        {#each ['signup', 'dropin'] as option}
+        {#each ['signup', 'without-signup'] as option}
           <label class="flex cursor-pointer gap-x-2">
             <input bind:group={enrolmentSelected} value={option} type="checkbox" class="checkbox" />
             <span class="label-text select-none ">{strings[option]}</span>
@@ -218,9 +220,7 @@
               {#each $activityAges as option}
                 <label class="flex cursor-pointer gap-x-1 md:gap-x-2">
                   <input bind:group={ageSelected} value={option} type="checkbox" class="checkbox" />
-                  <span class="label-text select-none whitespace-nowrap "
-                    >{option}</span
-                  >
+                  <span class="label-text select-none whitespace-nowrap ">{option}</span>
                 </label>
               {/each}
             </div>
@@ -242,9 +242,7 @@
                       type="checkbox"
                       class="checkbox"
                     />
-                    <span class="label-text select-none whitespace-nowrap "
-                      >{option.value}</span
-                    >
+                    <span class="label-text select-none whitespace-nowrap ">{option.value}</span>
                   </label>
                 {/each}
               </div>
@@ -263,9 +261,7 @@
                       type="checkbox"
                       class="checkbox"
                     />
-                    <span class="label-text select-none whitespace-nowrap "
-                      >{option.value}</span
-                    >
+                    <span class="label-text select-none whitespace-nowrap ">{option.value}</span>
                   </label>
                 {/each}
               </div>
@@ -275,6 +271,9 @@
       </div>
     </div>
   </div>
+
+  <ResetSearch  {strings}/>
+  
 </div>
 
 <section class="my-10">
@@ -282,8 +281,10 @@
     {#each filtered as activity}
       <ListItem
         id={activity.id}
+        identifier={activity.identifier}
         dropin={activity.dropin}
         signup={activity.signup}
+        ontime={activity.ontime}
         {lang}
         {strings}
         title={activity.title}

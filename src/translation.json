@@ -11,6 +11,7 @@
     "back": "Tilbage til listen",
     "signup_button": "Tilmeld",
     "signup": "Kræver tilmelding",
+    "without-signup": "Uden tilmelding",
     "signupshort": "Tilmelding",
     "dropin": "Drop-in",
     "ontime": "Kom til tiden",
@@ -20,7 +21,8 @@
     "programheader": "Uge program",
     "mapheader": "Kort",
     "duration": "Varighed",
-    "minutes": "minutter"
+    "minutes": "minutter",
+    "reset_search": "Nulstil søgning"
   },
   "en": {
     "identifier": "Activity number",
@@ -34,6 +36,7 @@
     "back": "Back to the list",
     "signup_button": "Signup",
     "signup": "Requires signup",
+    "without-signup": "Without signup",
     "signupshort": "Signup",
     "dropin": "Drop-in",
     "ontime": "Come on time",
@@ -43,6 +46,7 @@
     "programheader": "Week program",
     "mapheader": "Map",
     "duration": "Duration",
-    "minutes": "minutes"
+    "minutes": "minutes",
+    "reset_search": "Reset search"
   }
 }

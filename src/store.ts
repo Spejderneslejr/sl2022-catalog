@@ -1,5 +1,6 @@
 import type { Dayjs } from 'dayjs'
 import { writable } from 'svelte/store'
+import { persist, localStorage } from '@macfja/svelte-persistent-store'
 
 export interface Activity {
   id: number
@@ -63,17 +64,18 @@ export interface Location {
 }
 
 export interface Timeslot {
-  start:     Dayjs;
-  cancelled: boolean;
-  capacity:  number;
-  duration:  number;
-  type:      Type;
+  start: Dayjs
+  end?: Dayjs
+  cancelled: boolean
+  capacity: number
+  duration: number
+  type: Type
 }
 
 export enum Type {
-  DropIn = "dropin",
-  SignUp = "signup",
-  OnTime = "ontime",
+  DropIn = 'dropin',
+  SignUp = 'signup',
+  OnTime = 'ontime',
 }
 
 export interface Config {
@@ -105,7 +107,7 @@ export const activityLanguages = writable<string[]>(null)
 
 export const config = writable<Config>({ signup: false })
 
-export const search = writable<Search>({
+export const searchInitial = {
   query: '',
   typeSelected: [],
   ageSelected: [],
@@ -113,5 +115,7 @@ export const search = writable<Search>({
   languageSelected: [],
   locationSelected: [],
   enrolmentSelected: [],
-  advanced: false
-})
+  advanced: false,
+}
+
+export const search = persist(writable<Search>(searchInitial), localStorage(), 'search')

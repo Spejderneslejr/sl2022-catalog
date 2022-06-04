@@ -1,11 +1,12 @@
 <script type="ts">
   import { getContext } from 'svelte'
   export let params: { id?: string } = {}
-  import { config, activities, activitySizes, activityTypes } from '../store'
+  import { activities, activitySizes, activityTypes } from '../store'
   import type { Activity } from '../store'
   import ActivityMap from '../lib/ActivityMap.svelte'
   import ShowDirections from '../lib/ShowDirections.svelte'
   import WeekProgram from '../lib/WeekProgram.svelte'
+  import Signup from '../lib/Signup.svelte'
 
   let activity: Activity
   let sizes: string[] | Boolean
@@ -70,7 +71,11 @@
       <div class="w-full sm:w-1/3">
         <h1 class="mb-2 text-xl font-bold sm:hidden">{activity.title[lang]}</h1>
         <div class="relative">
-          <img class="object-cover" src={activity.images.md ?? 'https://aktiviteter.sl22.dk/images/default.webp'} alt={activity.title[lang]} />
+          <img
+            class="object-cover"
+            src={activity.images.md ?? 'https://aktiviteter.sl22.dk/images/default.webp'}
+            alt={activity.title[lang]}
+          />
           {#if activity.images.attribution}
             <div
               class="absolute bottom-2 right-2 rounded bg-white/30 py-1 px-2 text-xs text-white backdrop-blur-sm"
@@ -88,9 +93,13 @@
               src="https://aktiviteter.sl22.dk/images/{activity.patch}.webp"
             />{/if}
           {#if activity.friendship_award} <div>FRIENDSHIP AWARD</div> {/if}
-          {#if $config.signup}
-            <button class="btn btn-info btn-md">{strings.signup}</button>
+
+          <!--
+          {#if activity.signup && activity.timeslots}
+            <Signup identifier={activity.identifier} {strings} />
           {/if}
+          -->
+
           {#if activity.location.id === 'a12'}
             <ShowDirections
               lat={activity.location.lat}
@@ -104,41 +113,49 @@
       <div class="flex flex-col gap-y-3">
         <h1 class="mb-2 hidden text-xl font-bold sm:block">{activity.title[lang]}</h1>
 
-        <div class="flex">
-          <span> {strings.identifier}:</span><span class="ml-3 font-bold"
-            >{activity.identifier}
-          </span>
-        </div>
+        {#if activity.identifier}
+          <div class="flex items-center">
+            <span> {strings.identifier}:</span>
+            <span class="ml-3 rounded-sm bg-slate-100 p-1 font-bold">
+              {activity.identifier}
+            </span>
+          </div>
+        {/if}
 
-        <div class="flex">
-          <span>{strings.age}:</span><span class="">
-            {#each activity.age as age}
-              <span class="ml-3 border-2 border-dotted border-sl-yellow px-1">{age}</span>
-            {/each}
-          </span>
-        </div>
+        {#if activity.age.length > 0}
+          <div class="flex">
+            <span>{strings.age}:</span>
+            <span class="">
+              {#each activity.age as age}
+                <span class="ml-3 border-2 border-dotted border-sl-yellow px-1">{age}</span>
+              {/each}
+            </span>
+          </div>
+        {/if}
 
-        <div class="flex">
-          <span>{strings.enrolment}:</span>
-          <span class="">
-            {#if activity.signup}
-              <span class="ml-3 border-2 border-dotted border-amber-400 px-1">
-                {strings.signup}
-              </span>
-            {/if}
-            {#if activity.dropin}
-              {#if activity.ontime}
-                <span class="ml-3 border-2 border-dotted border-emerald-400 px-1">
-                  {strings.dropin} : {strings.ontime}
-                </span>
-              {:else}
-                <span class="ml-3 border-2 border-dotted border-purple-400 px-1">
-                  {strings.dropin}
+        {#if activity.signup || activity.dropin || activity.ontime}
+          <div class="flex">
+            <span>{strings.enrolment}:</span>
+            <span class="">
+              {#if activity.signup}
+                <span class="ml-3 border-2 border-dotted border-amber-400 px-1">
+                  {strings.signup}
                 </span>
               {/if}
-            {/if}
-          </span>
-        </div>
+              {#if activity.dropin || activity.ontime}
+                {#if activity.ontime}
+                  <span class="ml-3 border-2 border-dotted border-emerald-400 px-1">
+                    {strings.ontime}
+                  </span>
+                {:else}
+                  <span class="ml-3 border-2 border-dotted border-purple-400 px-1">
+                    {strings.dropin}
+                  </span>
+                {/if}
+              {/if}
+            </span>
+          </div>
+        {/if}
 
         <div class="flex">
           <span>{strings.location}:</span><span class="">
@@ -205,9 +222,10 @@
       </div>
     </div>
 
-    {#if activity.timeslots}
+    {#if activity.timeslots?.length > 0}
       <WeekProgram timeslots={activity.timeslots} {strings} />
     {/if}
+
     <ActivityMap {activity} {strings} />
   {:else}
     <p class="loading">loading...</p>
