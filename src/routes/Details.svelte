@@ -212,7 +212,7 @@
         {#if activity.duration}
           <div class="flex">
             <span>{strings.duration}:</span>
-            <span class="ml-3">{ activity.duration} {strings.minutes}</span>
+            <span class="ml-3">{activity.duration} {strings.minutes}</span>
           </div>
         {/if}
 
@@ -220,9 +220,10 @@
       </div>
     </div>
 
-    {#if activity.timeslots}
+    {#if activity.timeslots?.length > 0}
       <WeekProgram timeslots={activity.timeslots} {strings} />
     {/if}
+
     <ActivityMap {activity} {strings} />
   {:else}
     <p class="loading">loading...</p>

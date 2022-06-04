@@ -65,6 +65,7 @@ export interface Location {
 
 export interface Timeslot {
   start: Dayjs
+  end?: Dayjs
   cancelled: boolean
   capacity: number
   duration: number
