@@ -143,15 +143,15 @@
       type="search"
       style="-webkit-appearance: none"
       bind:value={query}
-      class="w-64 border-2 border-dashed border-gray-400 p-3 outline-none focus:border-blue-500"
+      class="grow border-2 border-dashed border-gray-400 p-3 outline-none focus:border-blue-500"
       placeholder={strings.search}
     />
 
     {#if $activityLocations}
-      <div class="md:w-1/2">
+      <div>
         <div class="mb-1">{strings.location}</div>
         <div
-          class="flex flex-row justify-between gap-x-1 border-2 border-dashed border-gray-400 p-3 md:gap-x-2"
+          class="grid grid-cols-3 md:flex md:flex-row md:gap-x-2 gap-y-2 p-3 border-2 border-dashed border-gray-400"
         >
           {#each $activityLocations[lang] as option}
             <label class="flex cursor-pointer gap-x-2">
@@ -168,10 +168,10 @@
       </div>
     {/if}
 
-    <div class="md:w-1/3">
+    <div class="">
       <div class="mb-1">{strings.enrolment}</div>
       <div
-        class="flex flex-row justify-between gap-x-1 border-2 border-dashed border-gray-400 p-3 md:gap-x-2"
+        class="flex flex-row gap-x-2 justify-between border-2 border-dashed border-gray-400 p-3 text-sm"
       >
         {#each ['signup', 'without-signup'] as option}
           <label class="flex cursor-pointer gap-x-2">
@@ -215,10 +215,10 @@
           <div class="md:w-1/2">
             <div class="mb-1">{strings.age}</div>
             <div
-              class="flex flex-row justify-between border-2 border-dashed border-sl-yellow px-1 py-3 md:px-3"
+              class="grid grid-cols-3 md:grid-cols-6 gap-x-2 gap-y-2 border-2 border-dashed border-sl-yellow p-3"
             >
               {#each $activityAges as option}
-                <label class="flex cursor-pointer gap-x-1 md:gap-x-2">
+                <label class="flex cursor-pointer gap-x-2">
                   <input bind:group={ageSelected} value={option} type="checkbox" class="checkbox" />
                   <span class="label-text select-none whitespace-nowrap ">{option}</span>
                 </label>
@@ -272,8 +272,7 @@
     </div>
   </div>
 
-  <ResetSearch  {strings}/>
-  
+  <ResetSearch {strings} />
 </div>
 
 <section class="my-10">
