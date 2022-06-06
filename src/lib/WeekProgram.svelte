@@ -2,20 +2,28 @@
   import { getContext } from 'svelte'
   import dayjs from 'dayjs'
   import 'dayjs/locale/da' // import locale
-  import type { Timeslot } from '../store'
+  import type { Dayjs } from 'dayjs'
+  import type { Config, Timeslot } from '../store'
+  import WeekProgramItem from './WeekProgramItem.svelte'
   export let timeslots: Timeslot[]
   export let strings: Record<string, string>
+  export let config: Config
+  interface day {
+    date: Dayjs
+    timeslots: Timeslot[]
+  }
 
   const lang: string = getContext('lang')
-
   dayjs.locale(lang)
 
-  let days = []
+  let days: day[] = []
   let start = dayjs('2022-07-24').hour(8).minute(0)
 
   for (let x = 0; x < 7; x++) {
-    const slots = timeslots.filter((ts) => ts.start.day() === start.day())
-    days.push({ date: start, slots })
+    days.push({
+      date: start,
+      timeslots: timeslots.filter((ts) => ts.start.day() === start.day()),
+    })
     start = start.add(1, 'day')
   }
 </script>
@@ -51,22 +59,17 @@
           </span>
         </div>
 
-        {#each day.slots as slot}
-          <div
-            class="m-2 p-2 text-center"
-            class:bg-amber-200={slot.type === 'signup'}
-            class:bg-emerald-200={slot.type === 'ontime'}
-            class:bg-purple-200={slot.type === 'dropin' && slot.type !== 'ontime'}
-          >
-            {slot.start.format('HH:mm')} - {#if slot.end.day() > slot.start.day() && slot.end.hour() > 0}
-              {slot.end.format('D/M')}
-            {/if}
-            {#if slot.end.hour() > 0}
-              {slot.end.format('HH:mm')}
-            {:else}
-              24:00
-            {/if}
-          </div>
+        {#each day.timeslots as timeslot}
+          {#if config.signup && timeslot.id && timeslot.available > 0}
+            <a
+              href={`https://${config.odoo}/sl2022/activities/instance/${timeslot.id}`}
+              title={strings.signup_button}
+            >
+              <WeekProgramItem {timeslot} {strings} />
+            </a>
+          {:else}
+            <WeekProgramItem {timeslot} {strings} />
+          {/if}
         {/each}
       </div>
     {/each}

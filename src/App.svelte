@@ -41,7 +41,7 @@
         return activity
       })
 
-      config.set({ signup: value.meta.signup })
+      config.set({ signup: value.meta.signup, odoo: value.meta.odoo })
       activities.set(mappedActivities)
       activityTypes.set(value.meta.types)
       activityLocations.set(value.meta.locations)
@@ -70,7 +70,6 @@
     }
     return 0
   }
-
 </script>
 
 <section class="mx-auto max-w-6xl text-gray-900">
