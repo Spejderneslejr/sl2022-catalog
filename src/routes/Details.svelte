@@ -1,7 +1,7 @@
 <script type="ts">
   import { getContext } from 'svelte'
   export let params: { id?: string } = {}
-  import { activities, activitySizes, activityTypes } from '../store'
+  import { activities, activitySizes, activityTypes, config } from '../store'
   import type { Activity } from '../store'
   import ActivityMap from '../lib/ActivityMap.svelte'
   import ShowDirections from '../lib/ShowDirections.svelte'
@@ -40,6 +40,7 @@
   if (html) {
     html.style.display = 'none'
   }
+
 </script>
 
 <div class="flex flex-col">
@@ -94,11 +95,9 @@
             />{/if}
           {#if activity.friendship_award} <div>FRIENDSHIP AWARD</div> {/if}
 
-          <!--
-          {#if activity.signup && activity.timeslots}
-            <Signup identifier={activity.identifier} {strings} />
+          {#if $config.signup && activity.signup && activity.timeslots && activity.identifier !== 1046}
+            <Signup identifier={activity.identifier} {strings} config={$config} />
           {/if}
-          -->
 
           {#if activity.location.id === 'a12'}
             <ShowDirections
@@ -223,11 +222,11 @@
     </div>
 
     {#if activity.timeslots?.length > 0}
-      <WeekProgram timeslots={activity.timeslots} {strings} />
+      <WeekProgram identifier={activity.identifier} timeslots={activity.timeslots} {strings} config={$config} />
     {/if}
 
     <ActivityMap {activity} {strings} />
   {:else}
-    <p class="loading">loading...</p>
+    <p class="loading">Henter aktiviteter...</p>
   {/if}
 </div>

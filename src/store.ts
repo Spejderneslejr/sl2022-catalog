@@ -64,12 +64,14 @@ export interface Location {
 }
 
 export interface Timeslot {
+  id?: number
   start: Dayjs
   end?: Dayjs
   cancelled: boolean
   capacity: number
   duration: number
   type: Type
+  available?: number
 }
 
 export enum Type {
@@ -80,6 +82,7 @@ export enum Type {
 
 export interface Config {
   signup: boolean
+  odoo: string
 }
 
 export interface Search {
@@ -105,7 +108,7 @@ export const activityAges = writable<string[]>(null)
 
 export const activityLanguages = writable<string[]>(null)
 
-export const config = writable<Config>({ signup: false })
+export const config = writable<Config>({ signup: false, odoo: '' })
 
 export const searchInitial = {
   query: '',

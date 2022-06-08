@@ -22,7 +22,8 @@
     "mapheader": "Kort",
     "duration": "Varighed",
     "minutes": "minutter",
-    "reset_search": "Nulstil søgning"
+    "reset_search": "Nulstil søgning",
+    "full": "Alt optaget"
   },
   "en": {
     "identifier": "Activity number",
@@ -47,6 +48,7 @@
     "mapheader": "Map",
     "duration": "Duration",
     "minutes": "minutes",
-    "reset_search": "Reset search"
+    "reset_search": "Reset search",
+    "full": "No seats left"
   }
 }
