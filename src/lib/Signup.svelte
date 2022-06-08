@@ -3,7 +3,7 @@
   export let identifier: number
   export let strings: Record<string, string>
   export let config: Config
-  const signUpUrl = `https://${config.odoo}/sl2022/activities/${identifier}`
+  const signUpUrl = encodeURIComponent(`https://${config.odoo}/sl2022/activities/${identifier}`)
   const queueItUrl = 'https://spejderneslejr.queue-it.net/?c=spejderneslejr&e=spejderneslejr'
 </script>
 
