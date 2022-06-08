@@ -16,6 +16,8 @@
   const lang: string = getContext('lang')
   dayjs.locale(lang)
 
+  const queueItUrl = 'https://spejderneslejr.queue-it.net/?c=spejderneslejr&e=spejderneslejr'
+
   let days: day[] = []
   let start = dayjs('2022-07-24').hour(8).minute(0)
 
@@ -62,7 +64,7 @@
         {#each day.timeslots as timeslot}
           {#if config.signup && timeslot.id && timeslot.available > 0}
             <a
-              href={`https://${config.odoo}/sl2022/activities/instance/${timeslot.id}`}
+              href={`${queueItUrl}&t=https://${config.odoo}/sl2022/activities/instance/${timeslot.id}`}
               title={strings.signup_button}
             >
               <WeekProgramItem {timeslot} {strings} />
