@@ -37,6 +37,7 @@
       a12: { x: activity.location.lon, y: activity.location.lat, scale: 18000 },
       a14: { x: 12.274835, y: 55.563856, scale: 20000 },
       a13: { x: 12.35558, y: 55.59478, scale: 10000 },
+      a20: { x: activity.location.lon, y: activity.location.lat, scale: 10000 },
       lejren: { x: 12.177261, y: 55.626132, scale: 16000 },
     }
 

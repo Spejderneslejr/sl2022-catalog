@@ -95,7 +95,7 @@
             />{/if}
           {#if activity.friendship_award} <div>FRIENDSHIP AWARD</div> {/if}
 
-          {#if $config.signup && activity.signup && activity.timeslots}
+          {#if $config.signup && activity.signup && activity.timeslots && activity.identifier !== 1046}
             <Signup identifier={activity.identifier} {strings} config={$config} />
           {/if}
 
@@ -222,7 +222,7 @@
     </div>
 
     {#if activity.timeslots?.length > 0}
-      <WeekProgram timeslots={activity.timeslots} {strings} config={$config} />
+      <WeekProgram identifier={activity.identifier} timeslots={activity.timeslots} {strings} config={$config} />
     {/if}
 
     <ActivityMap {activity} {strings} />

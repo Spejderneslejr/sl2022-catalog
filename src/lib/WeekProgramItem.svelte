@@ -1,5 +1,6 @@
 <script lang="ts">
   import type { Timeslot } from '../store'
+  export let identifier: number
   export let timeslot: Timeslot
   export let strings: Record<string, string>
 
@@ -31,7 +32,7 @@
   {:else}
     24:00
   {/if}
-  {#if timeslot.type === 'signup' && timeslot.available < 1}
+  {#if timeslot.type === 'signup' && timeslot.available < 1 && identifier !== 1046}
     <div
       class="absolute bottom-0 right-0 hidden h-full w-4 bg-rose-400 group-hover:w-full md:inline-flex"
     >
