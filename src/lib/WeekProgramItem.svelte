@@ -1,4 +1,6 @@
 <script lang="ts">
+  import Fa from 'svelte-fa'
+  import { faUserPlus, faUserSlash } from '@fortawesome/free-solid-svg-icons'
   import type { Timeslot } from '../store'
   export let identifier: number
   export let timeslot: Timeslot
@@ -23,7 +25,7 @@
   }
 </script>
 
-<div class={`group relative m-1 p-1 text-center md:m-2 md:p-2 ${className}`}>
+<div class={`group relative m-1 flex justify-evenly p-1 text-center md:m-2 md:p-2 ${className}`}>
   {timeslot.start.format('HH:mm')} - {#if timeslot.end.day() > timeslot.start.day() && timeslot.end.hour() > 0}
     {timeslot.end.format('D/M')}
   {/if}
@@ -33,12 +35,14 @@
     24:00
   {/if}
   {#if timeslot.type === 'signup' && timeslot.available < 1 && identifier !== 1046}
+    <Fa class="hidden md:inline-block" icon={faUserSlash} />
     <div
-      class="absolute bottom-0 right-0 hidden h-full w-4 bg-rose-400 group-hover:w-full md:inline-flex"
+      class="absolute right-0 hidden w-full bg-amber-200 text-center text-sm md:group-hover:inline-block"
     >
-      <div class="hidden w-full pt-2 text-center text-sm text-white md:group-hover:inline-block">
-        {strings.full}
-      </div>
+      {strings.full}
     </div>
+  {/if}
+  {#if timeslot.type === 'signup' && timeslot.available > 1 && identifier !== 1046}
+    <Fa class="hidden md:inline-block" icon={faUserPlus} />
   {/if}
 </div>

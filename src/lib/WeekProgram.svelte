@@ -71,7 +71,7 @@
               <WeekProgramItem {timeslot} {strings} {identifier} />
             </a>
           {:else}
-            <WeekProgramItem {timeslot} {strings} {identifier} />
+            <WeekProgramItem {timeslot} {strings} {identifier} /> 
           {/if}
         {/each}
       </div>
