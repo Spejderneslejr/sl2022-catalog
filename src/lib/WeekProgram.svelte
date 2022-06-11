@@ -65,7 +65,7 @@
         {#each day.timeslots as timeslot}
           {#if config.signup && timeslot.id && timeslot.available > 0 && identifier !== 1046}
             <a
-              href={`${queueItUrl}&t=https://${config.odoo}/sl2022/activities/instance/${timeslot.id}`}
+              href={`${queueItUrl}&t=https://${config.odoo}/${lang}/sl2022/activities/instance/${timeslot.id}`}
               title={strings.signup_button}
             >
               <WeekProgramItem {timeslot} {strings} {identifier} />

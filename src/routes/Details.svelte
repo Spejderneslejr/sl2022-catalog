@@ -104,7 +104,7 @@
           {#if activity.friendship_award} <div>FRIENDSHIP AWARD</div> {/if}
 
           {#if $config.signup && activity.signup && activity.timeslots && activity.identifier !== 1046}
-            <Signup identifier={activity.identifier} {strings} config={$config} />
+            <Signup identifier={activity.identifier} {lang} {strings} config={$config} />
           {/if}
 
           {#if activity.location.id === 'a12'}
