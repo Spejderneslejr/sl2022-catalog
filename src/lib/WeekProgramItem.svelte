@@ -4,7 +4,7 @@
   export let timeslot: Timeslot
   export let strings: Record<string, string>
 
-  let className
+  let className: string
   switch (timeslot.type) {
     case 'signup': {
       className =

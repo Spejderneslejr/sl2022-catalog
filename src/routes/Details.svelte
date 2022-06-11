@@ -1,7 +1,14 @@
 <script type="ts">
   import { getContext } from 'svelte'
   export let params: { id?: string } = {}
-  import { activities, activitySizes, activityTypes, config } from '../store'
+  import {
+    activities,
+    activitySizes,
+    activityTypes,
+    config,
+    type ActivitySizes,
+    type KeyValue,
+  } from '../store'
   import type { Activity } from '../store'
   import ActivityMap from '../lib/ActivityMap.svelte'
   import ShowDirections from '../lib/ShowDirections.svelte'
@@ -9,38 +16,39 @@
   import Signup from '../lib/Signup.svelte'
 
   let activity: Activity
-  let sizes: string[] | Boolean
-  let types: string[] | Boolean
+  let sizes: string[]
+  let types: string[]
 
   const lang: string = getContext('lang')
   const strings: Record<string, string> = getContext('strings')
 
-  const unsubscribe = activities.subscribe((value) => {
+  activities.subscribe((value) => {
     activity = value.find((item) => item.id.toString() === params.id)
   })
 
   $: sizes = getValues('size', lang, activity, $activitySizes)
   $: types = getValues('type', lang, activity, $activityTypes)
 
-  function getValues(fieldName, lang, activity, allSizes) {
+  function getValues(fieldName: string, lang: string, activity: Activity, allSizes: ActivitySizes) {
     if (!activity || !allSizes) {
-      return false
+      return null
     }
     let res = []
     for (const t of activity[fieldName]) {
-      const found = allSizes[lang].find((item) => item.key === t)
+      const found = allSizes[lang].find((item: KeyValue) => item.key === t)
       if (found) {
         res.push(found.value)
       }
     }
-    return res.length > 0 ? res : false
+    return res.length > 0 ? res : null
   }
 
-  const [html] = document.getElementsByClassName('paragraph--type--text')
+  const [html] = document.getElementsByClassName(
+    'paragraph--type--text'
+  ) as HTMLCollectionOf<HTMLElement>
   if (html) {
     html.style.display = 'none'
   }
-
 </script>
 
 <div class="flex flex-col">
@@ -222,7 +230,12 @@
     </div>
 
     {#if activity.timeslots?.length > 0}
-      <WeekProgram identifier={activity.identifier} timeslots={activity.timeslots} {strings} config={$config} />
+      <WeekProgram
+        identifier={activity.identifier}
+        timeslots={activity.timeslots}
+        {strings}
+        config={$config}
+      />
     {/if}
 
     <ActivityMap {activity} {strings} />

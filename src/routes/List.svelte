@@ -20,7 +20,7 @@
     item: Activity
   }
 
-  const [html] = document.getElementsByClassName('paragraph--type--text')
+  const [html] = document.getElementsByClassName('paragraph--type--text') as HTMLCollectionOf<HTMLElement>
   if (html) {
     html.style.display = 'block'
   }

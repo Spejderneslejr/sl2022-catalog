@@ -13,6 +13,7 @@
     activityLocations,
     config,
     type Timeslot,
+    type Activity,
   } from './store'
   import * as translation from './translation.json'
 
@@ -28,7 +29,7 @@
 
   request.subscribe((value) => {
     if (value) {
-      const mappedActivities = value.data.map((activity) => {
+      const mappedActivities = value.data.map((activity: Activity) => {
         if (activity.timeslots) {
           activity.timeslots = activity.timeslots.map((item) => {
             item.start = dayjs(item.start)
@@ -41,8 +42,8 @@
         return activity
       })
 
-      // config.set({ signup: value.meta.signup, odoo: value.meta.odoo })
-      config.set({ signup: false, odoo: value.meta.odoo })
+      config.set({ signup: value.meta.signup, odoo: value.meta.odoo })
+      // config.set({ signup: false, odoo: value.meta.odoo })
       activities.set(mappedActivities)
       activityTypes.set(value.meta.types)
       activityLocations.set(value.meta.locations)
