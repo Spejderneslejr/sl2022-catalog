@@ -21,6 +21,9 @@
   const lang = html.getAttribute('lang')
   setContext('lang', lang)
   setContext('strings', translation[lang])
+  
+  const searchParams = new URLSearchParams(window.location.search)
+  setContext('noqueue', searchParams.has('noqueue'))
 
   const { data: request } = useSWR('https://aktiviteter.sl22.dk/api/activities', {
     dedupingInterval: 300,

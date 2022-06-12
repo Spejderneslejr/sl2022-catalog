@@ -17,7 +17,7 @@
   const lang: string = getContext('lang')
   dayjs.locale(lang)
 
-  const queueItUrl = 'https://spejderneslejr.queue-it.net/?c=spejderneslejr&e=spejderneslejr'
+  const noqueue: boolean = getContext('noqueue')
 
   let days: day[] = []
   let start = dayjs('2022-07-24').hour(8).minute(0)
@@ -28,6 +28,19 @@
       timeslots: timeslots.filter((ts) => ts.start.day() === start.day()),
     })
     start = start.add(1, 'day')
+  }
+
+  function signupUrl(timeslot: Timeslot): string {
+    let signUpUrl = `https://${config.odoo}/${lang}/sl2022/activities/instance/${timeslot.id}`
+
+    if (!noqueue) {
+      const encodeSignUpUrl = encodeURIComponent(
+        `https://${config.odoo}/${lang}/sl2022/activities/${identifier}`
+      )
+      signUpUrl = `https://spejderneslejr.queue-it.net/?c=spejderneslejr&e=spejderneslejr&t=${encodeSignUpUrl}`
+    }
+
+    return signUpUrl
   }
 </script>
 
@@ -64,10 +77,7 @@
 
         {#each day.timeslots as timeslot}
           {#if config.signup && timeslot.id && timeslot.available > 0 && identifier !== 1046}
-            {@const signUpUrl = encodeURIComponent(
-              `https://${config.odoo}/${lang}/sl2022/activities/instance/${timeslot.id}`
-            )}
-            <a href={`${queueItUrl}&t=${signUpUrl}`} title={strings.signup_button}>
+            <a href={signupUrl(timeslot)} title={strings.signup_button}>
               <WeekProgramItem {timeslot} {strings} {identifier} />
             </a>
           {:else}

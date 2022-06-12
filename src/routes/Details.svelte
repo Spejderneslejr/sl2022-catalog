@@ -1,6 +1,5 @@
 <script type="ts">
   import { getContext } from 'svelte'
-  import { querystring } from 'svelte-spa-router'
 
   import Fa from 'svelte-fa'
   import { faAngleLeft } from '@fortawesome/free-solid-svg-icons'
@@ -25,9 +24,6 @@
 
   const lang: string = getContext('lang')
   const strings: Record<string, string> = getContext('strings')
-  
-  const searchParams = new URLSearchParams($querystring)
-  const noqueue = searchParams.has('noqueue')
 
   activities.subscribe((value) => {
     activity = value.find((item) => item.id.toString() === params.id)
@@ -93,7 +89,7 @@
           {#if activity.friendship_award} <div>FRIENDSHIP AWARD</div> {/if}
 
           {#if $config.signup && activity.signup && activity.timeslots && activity.identifier !== 1046}
-            <Signup identifier={activity.identifier} {lang} {strings} config={$config} {noqueue} />
+            <Signup identifier={activity.identifier} {lang} {strings} config={$config} />
           {/if}
 
           {#if activity.location.id === 'a12'}

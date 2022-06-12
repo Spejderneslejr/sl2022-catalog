@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { getContext } from 'svelte'
   import Fa from 'svelte-fa'
   import { faUserPlus } from '@fortawesome/free-solid-svg-icons'
   import type { Config } from '../store'
@@ -6,7 +7,8 @@
   export let strings: Record<string, string>
   export let lang: string
   export let config: Config
-  export let noqueue: boolean
+
+  const noqueue: boolean = getContext('noqueue')
 
   let signUpUrl = `https://${config.odoo}/${lang}/sl2022/activities/${identifier}`
 
