@@ -1,5 +1,7 @@
 <script type="ts">
   import { getContext } from 'svelte'
+  import { querystring } from 'svelte-spa-router'
+
   import Fa from 'svelte-fa'
   import { faAngleLeft } from '@fortawesome/free-solid-svg-icons'
   export let params: { id?: string } = {}
@@ -23,6 +25,9 @@
 
   const lang: string = getContext('lang')
   const strings: Record<string, string> = getContext('strings')
+  
+  const searchParams = new URLSearchParams($querystring)
+  const noqueue = searchParams.has('noqueue')
 
   activities.subscribe((value) => {
     activity = value.find((item) => item.id.toString() === params.id)
@@ -56,7 +61,7 @@
 <div class="flex flex-col">
   {#if activity}
     <button onclick="history.back()" class="btn btn-outline btn-sm mb-4 w-40 px-2 hover:fill-white">
-      <Fa icon={faAngleLeft}/>
+      <Fa icon={faAngleLeft} />
       <span class="ml-1">{strings.back}</span>
     </button>
 
@@ -88,7 +93,7 @@
           {#if activity.friendship_award} <div>FRIENDSHIP AWARD</div> {/if}
 
           {#if $config.signup && activity.signup && activity.timeslots && activity.identifier !== 1046}
-            <Signup identifier={activity.identifier} {lang} {strings} config={$config} />
+            <Signup identifier={activity.identifier} {lang} {strings} config={$config} {noqueue} />
           {/if}
 
           {#if activity.location.id === 'a12'}
