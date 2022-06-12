@@ -64,14 +64,14 @@
 
         {#each day.timeslots as timeslot}
           {#if config.signup && timeslot.id && timeslot.available > 0 && identifier !== 1046}
-            <a
-              href={`${queueItUrl}&t=https://${config.odoo}/${lang}/sl2022/activities/instance/${timeslot.id}`}
-              title={strings.signup_button}
-            >
+            {@const signUpUrl = encodeURIComponent(
+              `https://${config.odoo}/${lang}/sl2022/activities/instance/${timeslot.id}`
+            )}
+            <a href={`${queueItUrl}&t=${signUpUrl}`} title={strings.signup_button}>
               <WeekProgramItem {timeslot} {strings} {identifier} />
             </a>
           {:else}
-            <WeekProgramItem {timeslot} {strings} {identifier} /> 
+            <WeekProgramItem {timeslot} {strings} {identifier} />
           {/if}
         {/each}
       </div>
