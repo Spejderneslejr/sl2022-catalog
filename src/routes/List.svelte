@@ -20,9 +20,14 @@
     item: Activity
   }
 
-  const [html] = document.getElementsByClassName('paragraph--type--text')
+  const [html] = document.getElementsByClassName('paragraph--type--text') as HTMLCollectionOf<HTMLElement>
   if (html) {
     html.style.display = 'block'
+  }
+
+  const [download] = document.getElementsByClassName('paragraph--type--download') as HTMLCollectionOf<HTMLElement>
+  if (download) {
+    download.style.display = 'block'
   }
 
   const lang: string = getContext('lang')

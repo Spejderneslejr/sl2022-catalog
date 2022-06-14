@@ -1,7 +1,6 @@
 import type { Dayjs } from 'dayjs'
 import { writable } from 'svelte/store'
 import { persist, localStorage } from '@macfja/svelte-persistent-store'
-
 export interface Activity {
   id: number
   identifier: number
@@ -110,12 +109,15 @@ export const activityLanguages = writable<string[]>(null)
 
 export const config = writable<Config>({ signup: false, odoo: '' })
 
+const [html] = document.getElementsByTagName('html')
+const lang = html.getAttribute('lang')
+
 export const searchInitial = {
   query: '',
   typeSelected: [],
   ageSelected: [],
   sizeSelected: [],
-  languageSelected: [],
+  languageSelected: lang === 'en' ? ['english'] : [],
   locationSelected: [],
   enrolmentSelected: [],
   advanced: false,

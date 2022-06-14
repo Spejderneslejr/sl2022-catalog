@@ -1,7 +1,17 @@
 <script type="ts">
   import { getContext } from 'svelte'
+
+  import Fa from 'svelte-fa'
+  import { faAngleLeft } from '@fortawesome/free-solid-svg-icons'
   export let params: { id?: string } = {}
-  import { activities, activitySizes, activityTypes, config } from '../store'
+  import {
+    activities,
+    activitySizes,
+    activityTypes,
+    config,
+    type ActivitySizes,
+    type KeyValue,
+  } from '../store'
   import type { Activity } from '../store'
   import ActivityMap from '../lib/ActivityMap.svelte'
   import ShowDirections from '../lib/ShowDirections.svelte'
@@ -9,62 +19,52 @@
   import Signup from '../lib/Signup.svelte'
 
   let activity: Activity
-  let sizes: string[] | Boolean
-  let types: string[] | Boolean
+  let sizes: string[]
+  let types: string[]
 
   const lang: string = getContext('lang')
   const strings: Record<string, string> = getContext('strings')
 
-  const unsubscribe = activities.subscribe((value) => {
+  activities.subscribe((value) => {
     activity = value.find((item) => item.id.toString() === params.id)
   })
 
   $: sizes = getValues('size', lang, activity, $activitySizes)
   $: types = getValues('type', lang, activity, $activityTypes)
 
-  function getValues(fieldName, lang, activity, allSizes) {
+  function getValues(fieldName: string, lang: string, activity: Activity, allSizes: ActivitySizes) {
     if (!activity || !allSizes) {
-      return false
+      return null
     }
     let res = []
     for (const t of activity[fieldName]) {
-      const found = allSizes[lang].find((item) => item.key === t)
+      const found = allSizes[lang].find((item: KeyValue) => item.key === t)
       if (found) {
         res.push(found.value)
       }
     }
-    return res.length > 0 ? res : false
+    return res.length > 0 ? res : null
   }
 
-  const [html] = document.getElementsByClassName('paragraph--type--text')
+  const [html] = document.getElementsByClassName(
+    'paragraph--type--text'
+  ) as HTMLCollectionOf<HTMLElement>
   if (html) {
     html.style.display = 'none'
   }
 
+  const [download] = document.getElementsByClassName(
+    'paragraph--type--download'
+  ) as HTMLCollectionOf<HTMLElement>
+  if (download) {
+    download.style.display = 'none'
+  }
 </script>
 
 <div class="flex flex-col">
   {#if activity}
     <button onclick="history.back()" class="btn btn-outline btn-sm mb-4 w-40 px-2 hover:fill-white">
-      <svg
-        height="12px"
-        version="1.1"
-        id="Capa_1"
-        xmlns="http://www.w3.org/2000/svg"
-        xmlns:xlink="http://www.w3.org/1999/xlink"
-        x="12px"
-        y="12px"
-        viewBox="0 0 477.175 477.175"
-        style="enable-background:new 0 0 477.175 477.175;"
-        xml:space="preserve"
-      >
-        <g>
-          <path
-            d="M145.188,238.575l215.5-215.5c5.3-5.3,5.3-13.8,0-19.1s-13.8-5.3-19.1,0l-225.1,225.1c-5.3,5.3-5.3,13.8,0,19.1l225.1,225
-         c2.6,2.6,6.1,4,9.5,4s6.9-1.3,9.5-4c5.3-5.3,5.3-13.8,0-19.1L145.188,238.575z"
-          />
-        </g>
-      </svg>
+      <Fa icon={faAngleLeft} />
       <span class="ml-1">{strings.back}</span>
     </button>
 
@@ -95,10 +95,6 @@
             />{/if}
           {#if activity.friendship_award} <div>FRIENDSHIP AWARD</div> {/if}
 
-          {#if $config.signup && activity.signup && activity.timeslots && activity.identifier !== 1046}
-            <Signup identifier={activity.identifier} {strings} config={$config} />
-          {/if}
-
           {#if activity.location.id === 'a12'}
             <ShowDirections
               lat={activity.location.lat}
@@ -106,6 +102,11 @@
               label={strings.directions}
             />
           {/if}
+          
+          {#if $config.signup && activity.signup && activity.timeslots && activity.identifier !== 1046}
+            <Signup identifier={activity.identifier} {lang} {strings} config={$config} />
+          {/if}
+
         </div>
       </div>
 
@@ -222,7 +223,12 @@
     </div>
 
     {#if activity.timeslots?.length > 0}
-      <WeekProgram identifier={activity.identifier} timeslots={activity.timeslots} {strings} config={$config} />
+      <WeekProgram
+        identifier={activity.identifier}
+        timeslots={activity.timeslots}
+        {strings}
+        config={$config}
+      />
     {/if}
 
     <ActivityMap {activity} {strings} />

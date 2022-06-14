@@ -12,9 +12,9 @@
   import SimpleMarkerSymbol from '@arcgis/core/symbols/SimpleMarkerSymbol'
 
   export let activity: Activity
-  export let strings :  Record<string, string>
+  export let strings: Record<string, string>
 
-  let map
+  let map: any
 
   async function createMap(container) {
     const basemap = new WMTSLayer({

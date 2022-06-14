@@ -13,6 +13,7 @@
     activityLocations,
     config,
     type Timeslot,
+    type Activity,
   } from './store'
   import * as translation from './translation.json'
 
@@ -21,14 +22,22 @@
   setContext('lang', lang)
   setContext('strings', translation[lang])
 
-  const { data: request } = useSWR('https://aktiviteter.sl22.dk/api/activities', {
+  const searchParams = new URLSearchParams(window.location.search)
+  setContext('noqueue', searchParams.has('noqueue'))
+
+  const apiUrl =
+    window.location.hostname === 'spejderneslejr.dk'
+      ? 'https://aktiviteter.sl22.dk/api/activities'
+      : 'https://test-t6dnbai-7qektsweefnaa.de-2.platformsh.site/api/activities'
+
+  const { data: request } = useSWR(apiUrl, {
     dedupingInterval: 300,
     revalidateOnReconnect: true,
   })
 
   request.subscribe((value) => {
     if (value) {
-      const mappedActivities = value.data.map((activity) => {
+      const mappedActivities = value.data.map((activity: Activity) => {
         if (activity.timeslots) {
           activity.timeslots = activity.timeslots.map((item) => {
             item.start = dayjs(item.start)
@@ -41,8 +50,8 @@
         return activity
       })
 
-      // config.set({ signup: value.meta.signup, odoo: value.meta.odoo })
-      config.set({ signup: false, odoo: value.meta.odoo })
+      config.set({ signup: value.meta.signup, odoo: value.meta.odoo })
+      // config.set({ signup: false, odoo: value.meta.odoo })
       activities.set(mappedActivities)
       activityTypes.set(value.meta.types)
       activityLocations.set(value.meta.locations)
