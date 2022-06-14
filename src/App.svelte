@@ -21,11 +21,16 @@
   const lang = html.getAttribute('lang')
   setContext('lang', lang)
   setContext('strings', translation[lang])
-  
+
   const searchParams = new URLSearchParams(window.location.search)
   setContext('noqueue', searchParams.has('noqueue'))
 
-  const { data: request } = useSWR('https://aktiviteter.sl22.dk/api/activities', {
+  const apiUrl =
+    window.location.hostname === 'spejderneslejr.dk'
+      ? 'https://aktiviteter.sl22.dk/api/activities'
+      : 'https://aktiviteter.sl22.test/api/activities'
+
+  const { data: request } = useSWR(apiUrl, {
     dedupingInterval: 300,
     revalidateOnReconnect: true,
   })
