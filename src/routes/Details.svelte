@@ -52,6 +52,13 @@
   if (html) {
     html.style.display = 'none'
   }
+
+  const [download] = document.getElementsByClassName(
+    'paragraph--type--download'
+  ) as HTMLCollectionOf<HTMLElement>
+  if (download) {
+    download.style.display = 'none'
+  }
 </script>
 
 <div class="flex flex-col">
@@ -88,10 +95,6 @@
             />{/if}
           {#if activity.friendship_award} <div>FRIENDSHIP AWARD</div> {/if}
 
-          {#if $config.signup && activity.signup && activity.timeslots && activity.identifier !== 1046}
-            <Signup identifier={activity.identifier} {lang} {strings} config={$config} />
-          {/if}
-
           {#if activity.location.id === 'a12'}
             <ShowDirections
               lat={activity.location.lat}
@@ -99,6 +102,11 @@
               label={strings.directions}
             />
           {/if}
+          
+          {#if $config.signup && activity.signup && activity.timeslots && activity.identifier !== 1046}
+            <Signup identifier={activity.identifier} {lang} {strings} config={$config} />
+          {/if}
+
         </div>
       </div>
 

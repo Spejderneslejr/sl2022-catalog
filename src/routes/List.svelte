@@ -25,6 +25,11 @@
     html.style.display = 'block'
   }
 
+  const [download] = document.getElementsByClassName('paragraph--type--download') as HTMLCollectionOf<HTMLElement>
+  if (download) {
+    download.style.display = 'block'
+  }
+
   const lang: string = getContext('lang')
   const strings: Record<string, string> = getContext('strings')
 
