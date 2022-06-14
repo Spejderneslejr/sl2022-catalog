@@ -28,7 +28,7 @@
   const apiUrl =
     window.location.hostname === 'spejderneslejr.dk'
       ? 'https://aktiviteter.sl22.dk/api/activities'
-      : 'https://aktiviteter.sl22.test/api/activities'
+      : 'https://test-t6dnbai-7qektsweefnaa.de-2.platformsh.site/api/activities'
 
   const { data: request } = useSWR(apiUrl, {
     dedupingInterval: 300,
