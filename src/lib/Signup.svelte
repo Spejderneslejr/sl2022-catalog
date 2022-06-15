@@ -13,9 +13,7 @@
   let signUpUrl = `https://${config.odoo}/${lang}/sl2022/activities/${identifier}`
 
   if (!noqueue) {
-    const encodeSignUpUrl = encodeURIComponent(
-      `https://${config.odoo}/${lang}/sl2022/activities/${identifier}`
-    )
+    const encodeSignUpUrl = encodeURIComponent(signUpUrl)
     signUpUrl = `https://spejderneslejr.queue-it.net/?c=spejderneslejr&e=spejderneslejr&t=${encodeSignUpUrl}`
   }
 </script>
