@@ -2,6 +2,8 @@
   import { link } from 'svelte-spa-router'
   export let id: number
   export let identifier: number
+  export let available: number
+  export let capacity: number
   export let dropin: boolean
   export let signup: boolean
   export let ontime: boolean
@@ -67,6 +69,18 @@
       >
         {strings.signupshort}
       </div>
+    {/if}
+
+    {#if signup}
+      {#if available === 0}
+        <div class="absolute bottom-2 right-14 rounded-sm bg-red-200 p-1 text-sm">
+          {strings.full}
+        </div>
+      {:else if available / capacity < 0.1}
+        <div class="absolute bottom-2 right-14 rounded-sm bg-red-200 p-1 text-sm">
+          {strings.few}
+        </div>
+      {/if}
     {/if}
 
     {#if identifier}

@@ -23,7 +23,8 @@
     "duration": "Varighed",
     "minutes": "minutter",
     "reset_search": "Nulstil søgning",
-    "full": "Alt optaget"
+    "full": "Alt optaget",
+    "few": "Få pladser tilbage"
   },
   "en": {
     "identifier": "Activity number",
@@ -49,6 +50,7 @@
     "duration": "Duration",
     "minutes": "minutes",
     "reset_search": "Reset search",
-    "full": "No seats left"
+    "full": "No seats left",
+    "few": "Few seats left"
   }
 }
