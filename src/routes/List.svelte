@@ -294,6 +294,8 @@
         title={activity.title}
         summary={activity.summary}
         image={activity.images.sm}
+        capacity={activity.capacity}
+        available={activity.available}
       />
     {/each}
   </div>

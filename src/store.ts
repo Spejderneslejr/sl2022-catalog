@@ -11,6 +11,8 @@ export interface Activity {
   signup: boolean
   dropin: boolean
   ontime: boolean
+  capacity: number
+  available: number
   type: string[]
   age: string[]
   size: string[]
