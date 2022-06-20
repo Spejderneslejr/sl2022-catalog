@@ -103,7 +103,7 @@
             />
           {/if}
           
-          {#if $config.signup && activity.signup && activity.timeslots && activity.identifier !== 1046}
+          {#if $config.signup && activity.signup && activity.timeslots}
             <Signup identifier={activity.identifier} {lang} {strings} config={$config} />
           {/if}
 

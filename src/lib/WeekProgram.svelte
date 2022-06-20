@@ -74,7 +74,7 @@
         </div>
 
         {#each day.timeslots as timeslot}
-          {#if config.signup && timeslot.id && timeslot.available > 0 && identifier !== 1046}
+          {#if config.signup && timeslot.id && timeslot.available > 0}
             <a href={signupUrl(timeslot)} title={strings.signup_button}>
               <WeekProgramItem {timeslot} {strings} {identifier} />
             </a>

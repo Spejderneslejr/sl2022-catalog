@@ -34,7 +34,7 @@
   {:else}
     24:00
   {/if}
-  {#if timeslot.type === 'signup' && timeslot.available < 1 && identifier !== 1046}
+  {#if timeslot.type === 'signup' && timeslot.available < 1}
     <Fa class="hidden md:inline-block" icon={faUserSlash} />
     <div
       class="absolute right-0 hidden w-full bg-amber-200 text-center text-sm md:group-hover:inline-block"
@@ -42,7 +42,7 @@
       {strings.full}
     </div>
   {/if}
-  {#if timeslot.type === 'signup' && timeslot.available > 1 && identifier !== 1046}
+  {#if timeslot.type === 'signup' && timeslot.available > 1}
     <Fa class="hidden md:inline-block" icon={faUserPlus} />
   {/if}
 </div>
