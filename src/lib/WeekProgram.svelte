@@ -33,10 +33,12 @@
   function signupUrl(timeslot: Timeslot): string {
     let signUpUrl = `https://${config.odoo}/${lang}/sl2022/activities/instance/${timeslot.id}`
 
-    if (!noqueue) {
+    /*
+      if (!noqueue) {
       const encodeSignUpUrl = encodeURIComponent(signUpUrl)
       signUpUrl = `https://spejderneslejr.queue-it.net/?c=spejderneslejr&e=spejderneslejr&t=${encodeSignUpUrl}`
     }
+    */
 
     return signUpUrl
   }
