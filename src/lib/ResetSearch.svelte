@@ -6,6 +6,6 @@
   }
 </script>
 
-<button on:click={handleClick}>
+<button on:click={handleClick} class="md:mr-4 border-2 px-2 py-1">
   {strings.reset_search}
 </button>

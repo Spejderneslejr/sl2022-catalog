@@ -24,6 +24,7 @@ export interface Activity {
   friendship_award: boolean
   patch: string | null
   timeslots: Timeslot[]
+  dropinStatus: string
 }
 
 export interface Images {
@@ -94,7 +95,8 @@ export interface Search {
   languageSelected: string[]
   locationSelected: string[]
   enrolmentSelected: string[]
-  advanced: boolean
+  advanced: boolean,
+  orderByStatus: boolean
 }
 
 export const activities = writable<Activity[]>([])
@@ -123,6 +125,7 @@ export const searchInitial = {
   locationSelected: [],
   enrolmentSelected: [],
   advanced: false,
+  orderByStatus: true,
 }
 
 export const search = persist(writable<Search>(searchInitial), localStorage(), 'search')

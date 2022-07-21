@@ -7,6 +7,7 @@
   export let dropin: boolean
   export let signup: boolean
   export let ontime: boolean
+  export let dropinStatus: string
   export let lang: string
   export let title: { da: string; en: string }
   export let summary: { da: string; en: string }
@@ -84,7 +85,27 @@
     {/if}
 
     {#if identifier}
-      <div class="absolute bottom-2 right-2 rounded-sm bg-slate-100 p-1 text-sm">{identifier}</div>
+      {#if dropin && dropinStatus}
+        {#if dropinStatus === 'red'}
+          <div class="absolute bottom-2 right-2 rounded-sm bg-red-400 p-1 text-sm text-white">
+            {identifier}
+          </div>
+        {/if}
+        {#if dropinStatus === 'yellow'}
+          <div class="absolute bottom-2 right-2 rounded-sm bg-yellow-400 p-1 text-sm text-white">
+            {identifier}
+          </div>
+        {/if}
+        {#if dropinStatus === 'green'}
+          <div class="absolute bottom-2 right-2 rounded-sm bg-green-400 p-1 text-sm text-white">
+            {identifier}
+          </div>
+        {/if}
+      {:else}
+        <div class="absolute bottom-2 right-2 rounded-sm bg-slate-100 p-1 text-sm">
+          {identifier}
+        </div>
+      {/if}
     {/if}
   </div>
 </a>

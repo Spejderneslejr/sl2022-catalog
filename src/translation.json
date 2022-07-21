@@ -24,7 +24,12 @@
     "minutes": "minutter",
     "reset_search": "Nulstil søgning",
     "full": "Alt optaget",
-    "few": "Få pladser tilbage"
+    "few": "Få pladser tilbage",
+    "sort_by_status": "Sortér efter travlhed",
+    "not_busy" : "Ingen kø",
+    "medium_busy" : "Næsten ingen kø",
+    "very_busy" : "Lang kø"
+    
   },
   "en": {
     "identifier": "Activity number",
@@ -51,6 +56,10 @@
     "minutes": "minutes",
     "reset_search": "Reset search",
     "full": "No seats left",
-    "few": "Few seats left"
+    "few": "Few seats left",
+    "by_status": "Sort by busyness",
+    "not_busy" : "No queue",
+    "medium_busy" : "Small queue",
+    "very_busy" : "Long queue"
   }
 }
