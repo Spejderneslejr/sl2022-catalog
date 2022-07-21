@@ -23,9 +23,11 @@
     const GraphicsLayer = (await import('@arcgis/core/layers/GraphicsLayer')).default
 
     const symbol = new PictureMarkerSymbol({
-      url: 'https://test-t6dnbai-7qektsweefnaa.de-2.platformsh.site/images/aktivitet.svg',
+      url: 'https://aktiviteter.sl22.dk/images/aktivitet.svg',
       width: 60,
       height: 70,
+      xoffset: 18,
+			yoffset: 30
     })
     const point = new Point({ x: activity.location.lon, y: activity.location.lat })
     const marker = new Graphic({ geometry: point, symbol: symbol })
