@@ -20,12 +20,16 @@
     item: Activity
   }
 
-  const [html] = document.getElementsByClassName('paragraph--type--text') as HTMLCollectionOf<HTMLElement>
+  const [html] = document.getElementsByClassName(
+    'paragraph--type--text'
+  ) as HTMLCollectionOf<HTMLElement>
   if (html) {
     html.style.display = 'block'
   }
 
-  const [download] = document.getElementsByClassName('paragraph--type--download') as HTMLCollectionOf<HTMLElement>
+  const [download] = document.getElementsByClassName(
+    'paragraph--type--download'
+  ) as HTMLCollectionOf<HTMLElement>
   if (download) {
     download.style.display = 'block'
   }
@@ -45,6 +49,7 @@
   let fuse = null
   let result: null | SearchResult[] = null
   let advanced: boolean = false
+  let orderByStatus: boolean = true
 
   let typeSelected: string[] = []
   let ageSelected: string[] = []
@@ -62,6 +67,7 @@
     locationSelected = value.locationSelected
     enrolmentSelected = value.enrolmentSelected
     advanced = value.advanced
+    orderByStatus = value.orderByStatus
   })
 
   activities.subscribe((value) => {
@@ -138,6 +144,7 @@
       locationSelected,
       enrolmentSelected,
       advanced,
+      orderByStatus,
     })
   })
 </script>
@@ -156,7 +163,7 @@
       <div>
         <div class="mb-1">{strings.location}</div>
         <div
-          class="grid grid-cols-3 md:flex md:flex-row md:gap-x-2 gap-y-2 p-3 border-2 border-dashed border-gray-400"
+          class="grid grid-cols-3 gap-y-2 border-2 border-dashed border-gray-400 p-3 md:flex md:flex-row md:gap-x-2"
         >
           {#each $activityLocations[lang] as option}
             <label class="flex cursor-pointer gap-x-2">
@@ -176,7 +183,7 @@
     <div class="">
       <div class="mb-1">{strings.enrolment}</div>
       <div
-        class="flex flex-row gap-x-2 justify-between border-2 border-dashed border-gray-400 p-3 text-sm"
+        class="flex flex-row justify-between gap-x-2 border-2 border-dashed border-gray-400 p-3 text-sm"
       >
         {#each ['signup', 'without-signup'] as option}
           <label class="flex cursor-pointer gap-x-2">
@@ -220,7 +227,7 @@
           <div class="md:w-1/2">
             <div class="mb-1">{strings.age}</div>
             <div
-              class="grid grid-cols-3 md:grid-cols-6 gap-x-2 gap-y-2 border-2 border-dashed border-sl-yellow p-3"
+              class="grid grid-cols-3 gap-x-2 gap-y-2 border-2 border-dashed border-sl-yellow p-3 md:grid-cols-6"
             >
               {#each $activityAges as option}
                 <label class="flex cursor-pointer gap-x-2">
@@ -277,7 +284,21 @@
     </div>
   </div>
 
-  <ResetSearch {strings} />
+  <div class="flex md:flex-row flex-col justify-between">
+
+    <label class="flex cursor-pointer gap-x-2 md:ml-4">
+      <input bind:checked={orderByStatus} type="checkbox" class="checkbox" />
+      <span class="label-text select-none whitespace-nowrap ">{strings.sort_by_status}</span>
+    </label>
+    
+    <div class="flex flex-row gap-x-4">
+      <div class="bg-green-400 py-1 px-2 text-white">{strings.not_busy}</div>
+      <div class="bg-yellow-400 py-1 px-2 text-white">{strings.medium_busy}</div>
+      <div class="bg-red-400 py-1 px-2 text-white">{strings.very_busy}</div>
+    </div>
+    
+    <ResetSearch {strings} />
+  </div>
 </div>
 
 <section class="my-10">
@@ -289,6 +310,7 @@
         dropin={activity.dropin}
         signup={activity.signup}
         ontime={activity.ontime}
+        dropinStatus={activity.dropinStatus}
         {lang}
         {strings}
         title={activity.title}
