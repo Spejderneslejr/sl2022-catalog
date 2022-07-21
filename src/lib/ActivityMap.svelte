@@ -92,7 +92,6 @@
 </script>
 
 <div class="mt-4">
-    { activity.location.id }
   <div class="border-b-2 border-gray-200 pb-2 text-lg font-medium">{strings.mapheader}</div>
   <div class="mt-4 w-full" style="height:600px" id="viewDiv" />
 </div>
