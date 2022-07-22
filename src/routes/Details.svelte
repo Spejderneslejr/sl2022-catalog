@@ -218,12 +218,12 @@
             <span class="ml-3">{activity.duration} {strings.minutes}</span>
           </div>
         {/if}
+        
+        <div class="!prose my-2 max-w-xl">{@html activity.description[lang]}</div>
 
         {#if activity.location.id !== 'lejren'}
-          <TransportInfo {strings}/>
+          <TransportInfo {strings} area={activity.location.id}/>
         {/if}
-
-        <div class="!prose my-2 max-w-xl">{@html activity.description[lang]}</div>
       </div>
     </div>
 
