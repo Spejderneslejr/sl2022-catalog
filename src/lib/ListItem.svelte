@@ -73,7 +73,7 @@
     {/if}
 
     {#if signup}
-      {#if available === 0}
+      {#if available <= 0}
         <div class="absolute bottom-2 right-14 rounded-sm bg-red-200 p-1 text-sm">
           {strings.full}
         </div>
