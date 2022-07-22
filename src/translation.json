@@ -40,6 +40,9 @@
     "a13outText" : "Busser til Greve Marina (afgår fra begge busterminaler)",
     "a12outText" : "Busser til Roskilde - Vikingeskibsmuseet (afgår fra begge busterminaler)",
     "a14outText" : "Busser til Mosede Fort (afgår fra begge busterminaler)",
+    "kroppedaloutText": "Busser til Kroppedal (afgår fra begge busterminaler)",
+    "skateoutText": "Busser til City2/Skaterpart (afgår fra begge busterminaler)",
+    "swimoutText": "Busser til svømmehallen (afgår fra begge busterminaler)",
     "backText": "Busser retur til lejren",
     "halfHourly": "Hver 1/2 time"
   },
@@ -84,6 +87,9 @@
     "a12outText" : "Busses to Roskilde (departs from both bus terminals)",
     "a13outText" : "Busses to Greve Marina (departs from both bus terminals)",
     "a14outText" : "Busses to Mosede Fort (departs from both bus terminals)",
+    "kroppedaloutText": "Busses tol Kroppedal (departs from both bus terminals)",
+    "skateoutText": "Busses to City2/Skaterpart (departs from both bus terminals)",
+    "swimoutText": "Busses to public swimming pool (departs from both bus terminals)",
     "backText": "Busses back to the camp",
     "halfHourly": "Every half hour"
   }

@@ -222,7 +222,7 @@
         <div class="!prose my-2 max-w-xl">{@html activity.description[lang]}</div>
 
         {#if activity.location.id !== 'lejren'}
-          <TransportInfo {strings} area={activity.location.id}/>
+          <TransportInfo {strings} locationId={activity.location.id} identifier={activity.identifier}/>
         {/if}
       </div>
     </div>
