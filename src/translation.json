@@ -28,7 +28,8 @@
     "sort_by_status": "Sortér efter travlhed",
     "not_busy" : "Ingen kø",
     "medium_busy" : "Næsten ingen kø",
-    "very_busy" : "Lang kø"
+    "very_busy" : "Lang kø",
+    "transport_info": "Se businformation"
     
   },
   "en": {
@@ -60,6 +61,7 @@
     "by_status": "Sort by busyness",
     "not_busy" : "No queue",
     "medium_busy" : "Small queue",
-    "very_busy" : "Long queue"
+    "very_busy" : "Long queue",
+    "transport_info": "Goto transport information"
   }
 }

@@ -17,6 +17,7 @@
   import ShowDirections from '../lib/ShowDirections.svelte'
   import WeekProgram from '../lib/WeekProgram.svelte'
   import Signup from '../lib/Signup.svelte'
+  import TransportInfo from '../lib/TransportInfo.svelte'
 
   let activity: Activity
   let sizes: string[]
@@ -216,6 +217,10 @@
             <span>{strings.duration}:</span>
             <span class="ml-3">{activity.duration} {strings.minutes}</span>
           </div>
+        {/if}
+
+        {#if activity.location.id !== 'lejren'}
+          <TransportInfo {strings}/>
         {/if}
 
         <div class="!prose my-2 max-w-xl">{@html activity.description[lang]}</div>
