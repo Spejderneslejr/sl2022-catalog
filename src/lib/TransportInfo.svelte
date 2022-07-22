@@ -1,6 +1,19 @@
 <script lang="ts">
   export let strings: Record<string, string>
-  export let area: string
+  export let locationId: string
+  export let identifier: number
+
+  if (identifier === 1406 || identifier === 1414) {
+    locationId = 'skate'
+  }
+
+  if (identifier === 1362) {
+    locationId = 'swim'
+  }
+
+  if (identifier === 1405) {
+    locationId = 'kroppedal'
+  }
 
   const schedules = {
     a14: {
@@ -165,17 +178,164 @@
         },
       ],
     },
+
+    kroppedal: {
+      outText: strings.kroppedaloutText,
+      backText: strings.backText,
+      out: [
+        {
+          name: 'monday',
+          departures: ['11:30', '13:00'],
+        },
+        {
+          name: 'tuesday',
+          departures: ['11:30', '13:00'],
+        },
+        {
+          name: 'wednesday',
+          departures: ['11:30', '13:00'],
+        },
+        {
+          name: 'thursday',
+          departures: ['11:30', '13:00'],
+        },
+        {
+          name: 'friday',
+          departures: ['11:30', '13:00'],
+        },
+      ],
+      back: [
+        {
+          name: 'monday',
+          departures: ['13:30', '15:00'],
+        },
+        {
+          name: 'tuesday',
+          departures: ['13:30', '15:00'],
+        },
+        {
+          name: 'wednesday',
+          departures: ['13:30', '15:00'],
+        },
+        {
+          name: 'thursday',
+          departures: ['13:30', '15:00'],
+        },
+        {
+          name: 'friday',
+          departures: ['13:30', '15:00'],
+        },
+      ],
+    },
+
+    skate: {
+      outText: strings.skateoutText,
+      backText: strings.backText,
+      out: [
+        {
+          name: 'monday',
+          departures: ['11:30', '13:00'],
+        },
+        {
+          name: 'tuesday',
+          departures: ['11:30', '13:00'],
+        },
+        {
+          name: 'wednesday',
+          departures: ['11:30', '13:00'],
+        },
+        {
+          name: 'thursday',
+          departures: ['11:30', '13:00'],
+        },
+        {
+          name: 'friday',
+          departures: ['11:30', '13:00'],
+        },
+      ],
+      back: [
+        {
+          name: 'monday',
+          departures: ['14:00', '15:30'],
+        },
+        {
+          name: 'tuesday',
+          departures: ['14:00', '15:30'],
+        },
+        {
+          name: 'wednesday',
+          departures: ['14:00', '15:30'],
+        },
+        {
+          name: 'thursday',
+          departures: ['14:00', '15:30'],
+        },
+        {
+          name: 'friday',
+          departures: ['14:00', '15:30'],
+        },
+      ],
+    },
+
+    swim: {
+      outText: strings.swimoutText,
+      backText: strings.backText,
+      out: [
+        {
+          name: 'monday',
+          departures: ["9:30", "10:30", "11:30", "12:30", "13:30", "14:30"]
+        },
+        {
+          name: 'tuesday',
+          departures: ["9:30", "10:30", "11:30", "12:30", "13:30", "14:30"]
+        },
+        {
+          name: 'wednesday',
+          departures: ["9:30", "10:30", "11:30", "12:30", "13:30", "14:30"]
+        },
+        {
+          name: 'thursday',
+          departures: ["9:30", "10:30", "11:30", "12:30", "13:30", "14:30"]
+        },
+        {
+          name: 'friday',
+          departures: ["9:30", "10:30", "11:30", "12:30", "13:30", "14:30"]
+        },
+      ],
+      back: [
+        {
+          name: 'monday',
+          departures: [ "12:00", "13:00", "14:00", "15:00", "16:00", "17:00"]	
+        },
+        {
+          name: 'tuesday',
+          departures: [ "12:00", "13:00", "14:00", "15:00", "16:00", "17:00"]	
+        },
+        {
+          name: 'wednesday',
+          departures: [ "12:00", "13:00", "14:00", "15:00", "16:00", "17:00"]	
+        },
+        {
+          name: 'thursday',
+          departures: [ "12:00", "13:00", "14:00", "15:00", "16:00", "17:00"]	
+        },
+        {
+          name: 'friday',
+          departures: [ "12:00", "13:00", "14:00", "15:00", "16:00", "17:00"]	
+        },
+      ],
+    },
   }
 </script>
 
-{#if schedules[area]}
+{#if schedules[locationId]}
   <div class="mb-1 text-base font-semibold">{strings.transport_info}</div>
   <div class="flex flex-col gap-x-4 gap-y-4 sm:flex-row sm:gap-y-0">
     <table class="table-auto border-2">
       <tr class="bg-blue-200">
-        <td class="border-b-2 p-1" colspan="6">{schedules[area].outText}</td>
+        <td class="border-b-2 p-1" colspan="7">{schedules[locationId].outText}</td>
       </tr>
-      {#each schedules[area].out as day, index}
+      {#each schedules[locationId].out as day, index}
         {@const even = index % 2 === 0}
         <tr class:bg-gray-100={even}>
           <td class="p-1">{strings[day.name]}</td>
@@ -187,9 +347,9 @@
     </table>
     <table class="table-auto border-2">
       <tr class="bg-blue-200">
-        <td class="border-b-2 p-1" colspan="6">{schedules[area].backText}</td>
+        <td class="border-b-2 p-1" colspan="7">{schedules[locationId].backText}</td>
       </tr>
-      {#each schedules[area].back as day, index}
+      {#each schedules[locationId].back as day, index}
         {@const even = index % 2 === 0}
         <tr class:bg-gray-100={even}>
           <td class="p-1">{strings[day.name]}</td>
