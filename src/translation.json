@@ -44,7 +44,8 @@
     "skateoutText": "Busser til City2/Skaterpart (afgår fra begge busterminaler)",
     "swimoutText": "Busser til svømmehallen (afgår fra begge busterminaler)",
     "backText": "Busser retur til lejren",
-    "halfHourly": "Hver 1/2 time"
+    "halfHourly": "Hver 1/2 time",
+    "scheduleNotice": "NB: Tidsplanen vil snarest blive opdateret med de rigtige tider."
   },
   "en": {
     "identifier": "Activity number",
@@ -91,6 +92,7 @@
     "skateoutText": "Busses to City2/Skaterpart (departs from both bus terminals)",
     "swimoutText": "Busses to public swimming pool (departs from both bus terminals)",
     "backText": "Busses back to the camp",
-    "halfHourly": "Every half hour"
+    "halfHourly": "Every half hour",
+    "scheduleNotice": "Notice: The schedule will be corrected as soon as possible"
   }
 }
