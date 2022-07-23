@@ -3,7 +3,7 @@
 
   import Fa from 'svelte-fa'
   import { faAngleLeft } from '@fortawesome/free-solid-svg-icons'
-  export let params: { id?: string } = {}
+  export let params: { id?: string; code?: string } = {}
   import {
     activities,
     activitySizes,
@@ -27,7 +27,11 @@
   const strings: Record<string, string> = getContext('strings')
 
   activities.subscribe((value) => {
-    activity = value.find((item) => item.id.toString() === params.id)
+    if (params.code) {
+      activity = value.find((item) => item.identifier.toString() === params.id)
+    } else {
+      activity = value.find((item) => item.id.toString() === params.id)
+    }
   })
 
   $: sizes = getValues('size', lang, activity, $activitySizes)
@@ -103,11 +107,10 @@
               label={strings.directions}
             />
           {/if}
-          
+
           {#if $config.signup && activity.signup && activity.timeslots}
             <Signup identifier={activity.identifier} {lang} {strings} config={$config} />
           {/if}
-
         </div>
       </div>
 
@@ -218,11 +221,15 @@
             <span class="ml-3">{activity.duration} {strings.minutes}</span>
           </div>
         {/if}
-        
+
         <div class="!prose my-2 max-w-xl">{@html activity.description[lang]}</div>
 
         {#if activity.location.id !== 'lejren'}
-          <TransportInfo {strings} locationId={activity.location.id} identifier={activity.identifier}/>
+          <TransportInfo
+            {strings}
+            locationId={activity.location.id}
+            identifier={activity.identifier}
+          />
         {/if}
       </div>
     </div>
