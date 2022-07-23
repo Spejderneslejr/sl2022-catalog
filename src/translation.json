@@ -72,7 +72,7 @@
     "reset_search": "Reset search",
     "full": "No seats left",
     "few": "Few seats left",
-    "by_status": "Sort by busyness",
+    "sort_by_status": "Sort by busyness",
     "not_busy" : "No queue",
     "medium_busy" : "Small queue",
     "very_busy" : "Long queue",

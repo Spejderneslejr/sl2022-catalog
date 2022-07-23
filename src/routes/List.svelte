@@ -135,6 +135,25 @@
       return 0
     })
 
+    const order = {
+      green: 1,
+      yellow: 2,
+      red: 3,
+      null: 2,
+    }
+
+    if (orderByStatus && (enrolmentSelected.length !== 1 || enrolmentSelected.includes('without-signup'))) {
+      filtered = filtered.slice().sort((a, b) => {
+        if (order[a.dropinStatus] < order[b.dropinStatus]) {
+          return -1
+        }
+        if (order[a.dropinStatus] > order[b.dropinStatus]) {
+          return 1
+        }
+        return 0
+      })
+    }
+
     search.set({
       query,
       typeSelected,
@@ -195,7 +214,7 @@
     </div>
   </div>
 
-  <div class="collapse collapse-arrow border border-base-300">
+  <div class="collapse-arrow collapse border border-base-300">
     <input type="checkbox" bind:checked={advanced} />
     <div class="collapse-title text-xl font-medium">
       {strings.advanced_filters}
@@ -284,19 +303,20 @@
     </div>
   </div>
 
-  <div class="flex md:flex-row flex-col justify-between">
+  <div class="flex flex-col justify-between gap-y-4 md:flex-row md:gap-y-0">
+    {#if enrolmentSelected.length !== 1 || enrolmentSelected.includes('without-signup')}
+      <label class="flex cursor-pointer gap-x-2 md:ml-4">
+        <input bind:checked={orderByStatus} type="checkbox" class="checkbox" />
+        <span class="label-text select-none whitespace-nowrap ">{strings.sort_by_status}</span>
+      </label>
 
-    <label class="flex cursor-pointer gap-x-2 md:ml-4">
-      <input bind:checked={orderByStatus} type="checkbox" class="checkbox" />
-      <span class="label-text select-none whitespace-nowrap ">{strings.sort_by_status}</span>
-    </label>
-    
-    <div class="flex flex-row gap-x-4">
-      <div class="bg-green-400 py-1 px-2 text-white">{strings.not_busy}</div>
-      <div class="bg-yellow-400 py-1 px-2 text-white">{strings.medium_busy}</div>
-      <div class="bg-red-400 py-1 px-2 text-white">{strings.very_busy}</div>
-    </div>
-    
+      <div class="flex flex-row justify-between gap-x-4">
+        <div class="bg-green-400 py-1 px-3 text-white">{strings.not_busy}</div>
+        <div class="bg-yellow-400 py-1 px-3 text-white">{strings.medium_busy}</div>
+        <div class="bg-red-400 py-1 px-3 text-white">{strings.very_busy}</div>
+      </div>
+    {/if}
+
     <ResetSearch {strings} />
   </div>
 </div>
