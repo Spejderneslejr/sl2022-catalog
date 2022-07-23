@@ -97,6 +97,7 @@ export interface Search {
   enrolmentSelected: string[]
   advanced: boolean,
   orderByStatus: boolean
+  orderByAvailability: boolean
 }
 
 export const activities = writable<Activity[]>([])
@@ -126,6 +127,7 @@ export const searchInitial = {
   enrolmentSelected: [],
   advanced: false,
   orderByStatus: true,
+  orderByAvailability: true,
 }
 
 export const search = persist(writable<Search>(searchInitial), localStorage(), 'search')

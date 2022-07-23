@@ -50,6 +50,7 @@
   let result: null | SearchResult[] = null
   let advanced: boolean = false
   let orderByStatus: boolean = true
+  let orderByAvailability: boolean = true
 
   let typeSelected: string[] = []
   let ageSelected: string[] = []
@@ -68,6 +69,7 @@
     enrolmentSelected = value.enrolmentSelected
     advanced = value.advanced
     orderByStatus = value.orderByStatus
+    orderByAvailability = value.orderByAvailability
   })
 
   activities.subscribe((value) => {
@@ -135,19 +137,39 @@
       return 0
     })
 
-    const order = {
-      green: 1,
-      yellow: 2,
-      red: 3,
-      null: 2,
-    }
-
-    if (orderByStatus && (enrolmentSelected.length !== 1 || enrolmentSelected.includes('without-signup'))) {
+    // Sort by red/yellow/green status
+    if (
+      orderByStatus &&
+      (enrolmentSelected.length !== 1 || enrolmentSelected.includes('without-signup'))
+    ) {
+      const order = {
+        green: 1,
+        yellow: 2,
+        red: 3,
+        null: 2,
+      }
       filtered = filtered.slice().sort((a, b) => {
         if (order[a.dropinStatus] < order[b.dropinStatus]) {
           return -1
         }
         if (order[a.dropinStatus] > order[b.dropinStatus]) {
+          return 1
+        }
+        return 0
+      })
+    }
+
+    // Sort by availability
+    if (
+      orderByAvailability &&
+      enrolmentSelected.length === 1 &&
+      enrolmentSelected.includes('signup')
+    ) {
+      filtered = filtered.slice().sort((a, b) => {
+        if (a.available > b.available) {
+          return -1
+        }
+        if (a.available < b.available) {
           return 1
         }
         return 0
@@ -164,6 +186,7 @@
       enrolmentSelected,
       advanced,
       orderByStatus,
+      orderByAvailability,
     })
   })
 </script>
@@ -315,6 +338,14 @@
         <div class="bg-yellow-400 py-1 px-3 text-white">{strings.medium_busy}</div>
         <div class="bg-red-400 py-1 px-3 text-white">{strings.very_busy}</div>
       </div>
+    {/if}
+
+    {#if enrolmentSelected.length === 1 && enrolmentSelected.includes('signup')}
+      <label class="flex cursor-pointer gap-x-2 md:ml-4">
+        <input bind:checked={orderByAvailability} type="checkbox" class="checkbox" />
+        <span class="label-text select-none whitespace-nowrap ">{strings.sort_by_availability}</span
+        >
+      </label>
     {/if}
 
     <ResetSearch {strings} />
