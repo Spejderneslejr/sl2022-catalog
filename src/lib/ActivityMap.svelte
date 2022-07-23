@@ -10,7 +10,7 @@
     a14: { x: 12.274835, y: 55.563856, scale: 4000 },
     a13: { x: 12.35558, y: 55.59478, scale: 10000 },
     a20: { x: activity.location.lon, y: activity.location.lat, scale: 10000 },
-    lejren: { x: 12.177261, y: 55.626132, scale: 16000 },
+    lejren: { x: activity.location.lon, y: activity.location.lat, scale: 16000 },
   }
 
   onMount(async () => {
@@ -36,8 +36,6 @@
 
     const map = new Map({ basemap: 'gray-vector' })
     const center = new Point(centers[activity.location.id])
-
-    map.add(graphicsLayer)
 
     if (activity.location.id === 'lejren') {
       const tents = new FeatureLayer({
@@ -78,6 +76,8 @@
       map.add(areas)
       map.add(tents)
     }
+    
+    map.add(graphicsLayer)
 
     const view = new MapView({
       container: 'viewDiv',
