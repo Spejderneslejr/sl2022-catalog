@@ -49,6 +49,10 @@
     <div class="justify-self-start text-lg font-medium">{strings.programheader}</div>
     <div class="flex-cols mt-4 flex gap-x-4 text-xs md:mt-0 md:gap-x-8 md:text-sm">
       <div class="flex items-center gap-x-2">
+        <div class="inline-block h-6 w-6 bg-red-500" />
+        <div>{strings.cancelled}</div>
+      </div>
+      <div class="flex items-center gap-x-2">
         <div class="inline-block h-6 w-6 bg-amber-200" />
         <div>{strings.signup}</div>
       </div>

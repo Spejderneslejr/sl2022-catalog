@@ -1,8 +1,7 @@
 <script lang="ts">
   import Fa from 'svelte-fa'
-  import { faUserPlus, faUserSlash } from '@fortawesome/free-solid-svg-icons'
+  import { faUserPlus, faUserSlash, faTriangleExclamation } from '@fortawesome/free-solid-svg-icons'
   import type { Timeslot } from '../store'
-  export let identifier: number
   export let timeslot: Timeslot
   export let strings: Record<string, string>
 
@@ -23,6 +22,11 @@
       className = 'bg-purple-200'
     }
   }
+   
+  if (timeslot.cancelled) {
+    className = 'bg-red-500 text-white font-semibold'
+  }
+
 </script>
 
 <div class={`group relative m-1 flex justify-evenly p-1 text-center md:m-2 md:p-2 ${className}`}>
@@ -34,7 +38,7 @@
   {:else}
     24:00
   {/if}
-  {#if timeslot.type === 'signup' && timeslot.available < 1}
+  {#if timeslot.type === 'signup' && timeslot.available < 1 && !timeslot.cancelled}
     <Fa class="hidden md:inline-block" icon={faUserSlash} />
     <div
       class="absolute right-0 hidden w-full bg-amber-200 text-center text-sm md:group-hover:inline-block"
@@ -42,6 +46,15 @@
       {strings.full}
     </div>
   {/if}
+  {#if timeslot.cancelled}
+  <Fa class="hidden md:inline-block" icon={faTriangleExclamation} />
+  <div
+    class="absolute right-0 hidden w-full bg-red-500 text-center text-sm md:group-hover:inline-block"
+  >
+    {strings.cancelled}
+  </div>
+  {/if}
+
   {#if timeslot.type === 'signup' && timeslot.available > 1}
     <Fa class="hidden md:inline-block" icon={faUserPlus} />
   {/if}
