@@ -24,7 +24,7 @@ export interface Activity {
   friendship_award: boolean
   patch: string | null
   timeslots: Timeslot[]
-  dropinStatus: string
+  dropinStatus: string | null
 }
 
 export interface Images {
