@@ -9,6 +9,8 @@ export default {
 
   '/activity/:id': Details,
 
+  '/activity/:code/:id': Details,
+
   // Catch-all
   '*': NotFound,
 }
