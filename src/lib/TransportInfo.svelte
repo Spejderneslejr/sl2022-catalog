@@ -328,6 +328,10 @@
   }
 </script>
 
+{#if locationId === 'skate'}
+<div class="font-bold text-red-500">{strings.scheduleNotice}</div>
+{/if}
+
 {#if schedules[locationId]}
   <div class="mb-1 text-base font-semibold">{strings.transport_info}</div>
   <div class="flex flex-col gap-x-4 gap-y-4 sm:flex-row sm:gap-y-0">
