@@ -102,7 +102,7 @@
       back: [
         {
           name: 'sunday',
-          departures: ['', '13:30', '', '17:30', ''],
+          departures: ['', '13:30', '16:30', '17:30', ''],
         },
         {
           name: 'monday',
