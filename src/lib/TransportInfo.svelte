@@ -16,6 +16,7 @@
   }
 
   const schedules = {
+    // Mosede Fort
     a14: {
       outText: strings.a14outText,
       backText: strings.backText,
@@ -64,68 +65,68 @@
         },
       ],
     },
-
+    // Greve Marina
     a13: {
       outText: strings.a13outText,
       backText: strings.backText,
       out: [
         {
           name: 'sunday',
-          departures: ['', '', '13:00', '17:00'],
+          departures: ['', '', '', '13:00', '17:00'],
         },
         {
           name: 'monday',
-          departures: ['8:30', '', '13:00', '17:00'],
+          departures: ['8:30', '', '12:30', '13:00', '17:00'],
         },
         {
           name: 'tuesday',
-          departures: ['8:30', '11:30', '13:00', '17:00'],
+          departures: ['8:30', '11:30', '12:30', '13:00', '17:00'],
         },
         {
           name: 'wednesday',
-          departures: ['8:30', '11:30', '13:00', '17:00'],
+          departures: ['8:30', '11:30', '12:30', '13:00', '17:00'],
         },
         {
           name: 'thursday',
-          departures: ['8:30', '11:30', '13:00', '17:00'],
+          departures: ['8:30', '11:30', '12:30', '13:00', '17:00'],
         },
         {
           name: 'friday',
-          departures: ['8:30', '11:30', '13:00', '17:00'],
+          departures: ['8:30', '11:30', '12:30', '13:00', '17:00'],
         },
         {
           name: 'saturday',
-          departures: ['8:30', '', '', ''],
+          departures: ['8:30', '', '', '', ''],
         },
       ],
       back: [
         {
           name: 'sunday',
-          departures: ['', '16:30', '17:30', ''],
+          departures: ['', '13:30', '', '17:30', ''],
         },
         {
           name: 'monday',
-          departures: ['12:00', '16:30', '17:30', '22:00'],
+          departures: ['12:00', '13:30', '16:30', '17:30', '22:00'],
         },
         {
           name: 'tuesday',
-          departures: ['12:00', '16:30', '17:30', ''],
+          departures: ['12:00', '13:30', '16:30', '17:30', ''],
         },
         {
           name: 'wednesday',
-          departures: ['12:00', '16:30', '17:30', ''],
+          departures: ['12:00', '13:30', '16:30', '17:30', ''],
         },
         {
           name: 'thursday',
-          departures: ['12:00', '16:30', '17:30', ''],
+          departures: ['12:00', '13:30', '16:30', '17:30', ''],
         },
         {
           name: 'friday',
-          departures: ['12:00', '16:30', '17:30', ''],
+          departures: ['12:00', '13:30', '16:30', '17:30', ''],
         },
         {
           name: 'saturday',
-          departures: ['12:00', '15:00', '', ''],
+          departures: ['12:00', '', '15:00', '', ''],
         },
       ],
     },
@@ -283,45 +284,45 @@
       out: [
         {
           name: 'monday',
-          departures: ["9:30", "10:30", "11:30", "12:30", "13:30", "14:30"]
+          departures: ['9:30', '10:30', '11:30', '12:30', '13:30', '14:30'],
         },
         {
           name: 'tuesday',
-          departures: ["9:30", "10:30", "11:30", "12:30", "13:30", "14:30"]
+          departures: ['9:30', '10:30', '11:30', '12:30', '13:30', '14:30'],
         },
         {
           name: 'wednesday',
-          departures: ["9:30", "10:30", "11:30", "12:30", "13:30", "14:30"]
+          departures: ['9:30', '10:30', '11:30', '12:30', '13:30', '14:30'],
         },
         {
           name: 'thursday',
-          departures: ["9:30", "10:30", "11:30", "12:30", "13:30", "14:30"]
+          departures: ['9:30', '10:30', '11:30', '12:30', '13:30', '14:30'],
         },
         {
           name: 'friday',
-          departures: ["9:30", "10:30", "11:30", "12:30", "13:30", "14:30"]
+          departures: ['9:30', '10:30', '11:30', '12:30', '13:30', '14:30'],
         },
       ],
       back: [
         {
           name: 'monday',
-          departures: [ "12:00", "13:00", "14:00", "15:00", "16:00", "17:00"]	
+          departures: ['12:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
         },
         {
           name: 'tuesday',
-          departures: [ "12:00", "13:00", "14:00", "15:00", "16:00", "17:00"]	
+          departures: ['12:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
         },
         {
           name: 'wednesday',
-          departures: [ "12:00", "13:00", "14:00", "15:00", "16:00", "17:00"]	
+          departures: ['12:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
         },
         {
           name: 'thursday',
-          departures: [ "12:00", "13:00", "14:00", "15:00", "16:00", "17:00"]	
+          departures: ['12:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
         },
         {
           name: 'friday',
-          departures: [ "12:00", "13:00", "14:00", "15:00", "16:00", "17:00"]	
+          departures: ['12:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
         },
       ],
     },
@@ -329,7 +330,7 @@
 </script>
 
 {#if locationId === 'skate'}
-<div class="font-bold text-red-500">{strings.scheduleNotice}</div>
+  <div class="font-bold text-red-500">{strings.scheduleNotice}</div>
 {/if}
 
 {#if schedules[locationId]}
