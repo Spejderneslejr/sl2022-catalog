@@ -25,45 +25,45 @@
       out: [
         {
           name: 'monday',
-          departures: ['8:30', '', '13:00', '16:00', '18:30'],
+          departures: ['8:30', '12:45', '18:30'],
         },
         {
           name: 'tuesday',
-          departures: ['8:30', '', '13:00', '16:00', '18:30'],
+          departures: ['8:30', '12:45', '18:30'],
         },
         {
           name: 'wednesday',
-          departures: ['8:30', '', '13:00', '16:00', ''],
+          departures: ['8:30', '12:45', ''],
         },
         {
           name: 'thursday',
-          departures: ['8:30', '11:30', '13:00', '16:00', ''],
+          departures: ['8:30', '12:45', ''],
         },
         {
           name: 'friday',
-          departures: ['8:30', '', '13:00', '16:00', ''],
+          departures: ['8:30', '12:45', ''],
         },
       ],
       back: [
         {
           name: 'monday',
-          departures: ['12:00', '16:30', '17:30', '22:00', '23:00'],
+          departures: ['12:15', '16:30', '23:00'],
         },
         {
           name: 'tuesday',
-          departures: ['12:00', '16:30', '', '22:00', '23:00'],
+          departures: ['12:15', '16:30', '23:00'],
         },
         {
           name: 'wednesday',
-          departures: ['12:00', '16:30', '17:30', '', ''],
+          departures: ['12:15', '16:30', ''],
         },
         {
           name: 'thursday',
-          departures: ['12:00', '16:30', '17:30', '', ''],
+          departures: ['12:15', '16:30', ''],
         },
         {
           name: 'friday',
-          departures: ['12:00', '16:30', '17:30', '', ''],
+          departures: ['12:15', '16:30', ''],
         },
       ],
     },
@@ -74,61 +74,61 @@
       out: [
         {
           name: 'sunday',
-          departures: ['', '', '', '13:00', '17:00'],
+          departures: ['8:30', '12:45'],
         },
         {
           name: 'monday',
-          departures: ['8:30', '', '12:30', '13:00', '17:00'],
+          departures: ['8:30', '12:45'],
         },
         {
           name: 'tuesday',
-          departures: ['8:30', '11:30', '12:30', '13:00', '17:00'],
+          departures: ['8:30', '12:45'],
         },
         {
           name: 'wednesday',
-          departures: ['8:30', '11:30', '12:30', '13:00', '17:00'],
+          departures: ['8:30', '12:45'],
         },
         {
           name: 'thursday',
-          departures: ['8:30', '11:30', '12:30', '13:00', '17:00'],
+          departures: ['8:30', '12:45'],
         },
         {
           name: 'friday',
-          departures: ['8:30', '11:30', '12:30', '13:00', '17:00'],
+          departures: ['8:30', '12:45'],
         },
         {
           name: 'saturday',
-          departures: ['8:30', '', '', '', ''],
+          departures: ['8:30', ''],
         },
       ],
       back: [
         {
           name: 'sunday',
-          departures: ['', '13:30', '16:30', '17:30', ''],
+          departures: ['12:15', '16:30'],
         },
         {
           name: 'monday',
-          departures: ['12:00', '13:30', '16:30', '17:30', '22:00'],
+          departures: ['12:15', '16:30'],
         },
         {
           name: 'tuesday',
-          departures: ['12:00', '13:30', '16:30', '17:30', ''],
+          departures: ['12:15', '16:30'],
         },
         {
           name: 'wednesday',
-          departures: ['12:00', '13:30', '16:30', '17:30', ''],
+          departures: ['12:15', '16:30'],
         },
         {
           name: 'thursday',
-          departures: ['12:00', '13:30', '16:30', '17:30', ''],
+          departures: ['12:15', '16:30'],
         },
         {
           name: 'friday',
-          departures: ['12:00', '13:30', '16:30', '17:30', ''],
+          departures: ['12:15', '16:30'],
         },
         {
           name: 'saturday',
-          departures: ['12:00', '', '15:00', '', ''],
+          departures: ['12:15', ''],
         },
       ],
     },
