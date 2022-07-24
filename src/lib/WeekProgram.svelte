@@ -82,10 +82,10 @@
         {#each day.timeslots as timeslot}
           {#if config.signup && timeslot.id && timeslot.available > 0}
             <a href={signupUrl(timeslot)} title={strings.signup_button}>
-              <WeekProgramItem {timeslot} {strings} {identifier} />
+              <WeekProgramItem {timeslot} {strings} />
             </a>
           {:else}
-            <WeekProgramItem {timeslot} {strings} {identifier} />
+            <WeekProgramItem {timeslot} {strings} />
           {/if}
         {/each}
       </div>

@@ -3,16 +3,18 @@
   export let locationId: string
   export let identifier: number
 
+  let id = locationId;
+
   if (identifier === 1406 || identifier === 1414) {
-    locationId = 'skate'
+    id = 'skate'
   }
 
   if (identifier === 1362) {
-    locationId = 'swim'
+    id = 'swim'
   }
 
   if (identifier === 1405) {
-    locationId = 'kroppedal'
+    id = 'kroppedal'
   }
 
   const schedules = {
@@ -235,45 +237,45 @@
       out: [
         {
           name: 'monday',
-          departures: ['11:30', '13:00'],
+          departures: ['12:00', '13:30'],
         },
         {
           name: 'tuesday',
-          departures: ['11:30', '13:00'],
+          departures: ['12:00', '13:30'],
         },
         {
           name: 'wednesday',
-          departures: ['11:30', '13:00'],
+          departures: ['12:00', '13:30'],
         },
         {
           name: 'thursday',
-          departures: ['11:30', '13:00'],
+          departures: ['12:00', '13:30'],
         },
         {
           name: 'friday',
-          departures: ['11:30', '13:00'],
+          departures: ['12:00', '13:30'],
         },
       ],
       back: [
         {
           name: 'monday',
-          departures: ['14:00', '15:30'],
+          departures: ['15:00', '16:30'],
         },
         {
           name: 'tuesday',
-          departures: ['14:00', '15:30'],
+          departures: ['15:00', '16:30'],
         },
         {
           name: 'wednesday',
-          departures: ['14:00', '15:30'],
+          departures: ['15:00', '16:30'],
         },
         {
           name: 'thursday',
-          departures: ['14:00', '15:30'],
+          departures: ['15:00', '16:30'],
         },
         {
           name: 'friday',
-          departures: ['14:00', '15:30'],
+          departures: ['15:00', '16:30'],
         },
       ],
     },
@@ -329,18 +331,14 @@
   }
 </script>
 
-{#if locationId === 'skate'}
-  <div class="font-bold text-red-500">{strings.scheduleNotice}</div>
-{/if}
-
-{#if schedules[locationId]}
+{#if schedules[id]}
   <div class="mb-1 text-base font-semibold">{strings.transport_info}</div>
   <div class="flex flex-col gap-x-4 gap-y-4 sm:flex-row sm:gap-y-0">
     <table class="table-auto border-2">
       <tr class="bg-blue-200">
-        <td class="border-b-2 p-1" colspan="7">{schedules[locationId].outText}</td>
+        <td class="border-b-2 p-1" colspan="7">{schedules[id].outText}</td>
       </tr>
-      {#each schedules[locationId].out as day, index}
+      {#each schedules[id].out as day, index}
         {@const even = index % 2 === 0}
         <tr class:bg-gray-100={even}>
           <td class="p-1">{strings[day.name]}</td>
@@ -352,9 +350,9 @@
     </table>
     <table class="table-auto border-2">
       <tr class="bg-blue-200">
-        <td class="border-b-2 p-1" colspan="7">{schedules[locationId].backText}</td>
+        <td class="border-b-2 p-1" colspan="7">{schedules[id].backText}</td>
       </tr>
-      {#each schedules[locationId].back as day, index}
+      {#each schedules[id].back as day, index}
         {@const even = index % 2 === 0}
         <tr class:bg-gray-100={even}>
           <td class="p-1">{strings[day.name]}</td>
