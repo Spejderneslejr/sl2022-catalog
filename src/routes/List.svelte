@@ -75,7 +75,7 @@
     onlyToday = value.onlyToday
   })
 
-  let total : number
+  let total: number
 
   activities.subscribe((value) => {
     fuse = new Fuse(value, options)
@@ -132,16 +132,15 @@
 
     // Filter - only today
     if (onlyToday) {
-      const now = dayjs();
-      filtered = filtered.filter(
-        (item) =>
-          item.timeslots?.find((ts => ts.start.isSame(now, 'day')))
+      const now = dayjs()
+      filtered = filtered.filter((item) =>
+        item.timeslots?.find((ts) => ts.start.isSame(now, 'day'))
       )
     }
 
     // Slice used to copy the array as sort mutates the array
     filtered = filtered.slice().sort((a, b) => {
-      let fa = a.title[lang].toLowerCase(), 
+      let fa = a.title[lang].toLowerCase(),
         fb = b.title[lang].toLowerCase()
       if (fa < fb) {
         return -1
@@ -364,20 +363,27 @@
     {/if}
 
     {#if enrolmentSelected.length === 1 && enrolmentSelected.includes('signup')}
-      <label class="flex cursor-pointer gap-x-2 md:ml-4">
-        <input bind:checked={orderByAvailability} type="checkbox" class="checkbox" />
-        <span class="label-text select-none whitespace-nowrap ">{strings.sort_by_availability}</span
-        >
-      </label>
+      <div class="flex flex-row gap-8">
+        <label class="flex cursor-pointer gap-x-2 md:ml-4">
+          <input bind:checked={orderByAvailability} type="checkbox" class="checkbox" />
+          <span class="label-text select-none whitespace-nowrap "
+            >{strings.sort_by_availability}</span
+          >
+        </label>
+
+        <label class="flex cursor-pointer gap-x-2 md:ml-4">
+          <input bind:checked={onlyToday} type="checkbox" class="checkbox" />
+          <span class="label-text select-none whitespace-nowrap ">{strings.only_today}</span>
+        </label>
+      </div>
     {/if}
 
     <ResetSearch {strings} />
   </div>
-  
-  {#if filtered}
-  <div>{strings.displaying} { filtered?.length } {strings.of} { total }</div>
-  {/if}
 
+  {#if filtered}
+    <div class="md:ml-4">{strings.displaying} {filtered?.length} {strings.of} {total}</div>
+  {/if}
 </div>
 
 <section class="my-10">
