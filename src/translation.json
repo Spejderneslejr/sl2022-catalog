@@ -28,6 +28,7 @@
     "few": "Få pladser tilbage",
     "sort_by_status": "Sortér efter travlhed",
     "sort_by_availability": "Sortér efter ledige pladser",
+    "only_today": "Foregår idag",
     "not_busy" : "Ingen kø",
     "medium_busy" : "Næsten ingen kø",
     "very_busy" : "Lang kø",
@@ -47,7 +48,9 @@
     "swimoutText": "Busser til svømmehallen (afgår fra begge busterminaler)",
     "backText": "Busser retur til lejren",
     "halfHourly": "Hver 1/2 time",
-    "scheduleNotice": "NB: Tidsplanen vil snarest blive opdateret med de rigtige tider."
+    "scheduleNotice": "NB: Tidsplanen vil snarest blive opdateret med de rigtige tider.",
+    "displaying": "Viser",
+    "of" : "af"
   },
   "en": {
     "identifier": "Activity number",
@@ -78,6 +81,7 @@
     "few": "Few seats left",
     "sort_by_status": "Sort by busyness",
     "sort_by_availability": "Sort by available seats",
+    "only_today": "Today only",
     "not_busy" : "No queue",
     "medium_busy" : "Small queue",
     "very_busy" : "Long queue",
@@ -97,6 +101,8 @@
     "swimoutText": "Busses to public swimming pool (departs from both bus terminals)",
     "backText": "Busses back to the camp",
     "halfHourly": "Every half hour",
-    "scheduleNotice": "Notice: The schedule will be corrected as soon as possible"
+    "scheduleNotice": "Notice: The schedule will be corrected as soon as possible",
+    "displaying": "Displaying",
+    "of" : "of"
   }
 }

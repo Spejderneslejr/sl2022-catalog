@@ -98,6 +98,7 @@ export interface Search {
   advanced: boolean,
   orderByStatus: boolean
   orderByAvailability: boolean
+  onlyToday: boolean
 }
 
 export const activities = writable<Activity[]>([])
@@ -128,6 +129,7 @@ export const searchInitial = {
   advanced: false,
   orderByStatus: true,
   orderByAvailability: true,
+  onlyToday: false,
 }
 
 export const search = persist(writable<Search>(searchInitial), localStorage(), 'search')

@@ -2,6 +2,7 @@
   import { beforeUpdate } from 'svelte'
   import Fuse from 'fuse.js'
   import { getContext } from 'svelte'
+  import dayjs from 'dayjs'
   import {
     activities,
     activityTypes,
@@ -51,6 +52,7 @@
   let advanced: boolean = false
   let orderByStatus: boolean = true
   let orderByAvailability: boolean = true
+  let onlyToday: boolean = false
 
   let typeSelected: string[] = []
   let ageSelected: string[] = []
@@ -70,10 +72,14 @@
     advanced = value.advanced
     orderByStatus = value.orderByStatus
     orderByAvailability = value.orderByAvailability
+    onlyToday = value.onlyToday
   })
+
+  let total : number
 
   activities.subscribe((value) => {
     fuse = new Fuse(value, options)
+    total = value.length
   })
 
   let filtered: Activity[]
@@ -124,9 +130,18 @@
       )
     }
 
+    // Filter - only today
+    if (onlyToday) {
+      const now = dayjs();
+      filtered = filtered.filter(
+        (item) =>
+          item.timeslots?.find((ts => ts.start.isSame(now, 'day')))
+      )
+    }
+
     // Slice used to copy the array as sort mutates the array
     filtered = filtered.slice().sort((a, b) => {
-      let fa = a.title[lang].toLowerCase(),
+      let fa = a.title[lang].toLowerCase(), 
         fb = b.title[lang].toLowerCase()
       if (fa < fb) {
         return -1
@@ -187,6 +202,7 @@
       advanced,
       orderByStatus,
       orderByAvailability,
+      onlyToday,
     })
   })
 </script>
@@ -328,10 +344,17 @@
 
   <div class="flex flex-col justify-between gap-y-4 md:flex-row md:gap-y-0">
     {#if enrolmentSelected.length !== 1 || enrolmentSelected.includes('without-signup')}
-      <label class="flex cursor-pointer gap-x-2 md:ml-4">
-        <input bind:checked={orderByStatus} type="checkbox" class="checkbox" />
-        <span class="label-text select-none whitespace-nowrap ">{strings.sort_by_status}</span>
-      </label>
+      <div class="flex flex-row gap-8">
+        <label class="flex cursor-pointer gap-x-2 md:ml-4">
+          <input bind:checked={orderByStatus} type="checkbox" class="checkbox" />
+          <span class="label-text select-none whitespace-nowrap ">{strings.sort_by_status}</span>
+        </label>
+
+        <label class="flex cursor-pointer gap-x-2 md:ml-4">
+          <input bind:checked={onlyToday} type="checkbox" class="checkbox" />
+          <span class="label-text select-none whitespace-nowrap ">{strings.only_today}</span>
+        </label>
+      </div>
 
       <div class="flex flex-row justify-between gap-x-4">
         <div class="bg-green-400 py-1 px-3 text-white">{strings.not_busy}</div>
@@ -350,6 +373,11 @@
 
     <ResetSearch {strings} />
   </div>
+  
+  {#if filtered}
+  <div>{strings.displaying} { filtered?.length } {strings.of} { total }</div>
+  {/if}
+
 </div>
 
 <section class="my-10">
