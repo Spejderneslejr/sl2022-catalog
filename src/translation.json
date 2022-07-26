@@ -50,7 +50,16 @@
     "halfHourly": "Hver 1/2 time",
     "scheduleNotice": "NB: Tidsplanen vil snarest blive opdateret med de rigtige tider.",
     "displaying": "Viser",
-    "of" : "af"
+    "of" : "af",
+    "patches": "Aktivitetsmærke & Friendshop award",
+    "patch": "Aktivitetsmærke",
+    "p0": "Ikke valgt",
+    "p1": "Vores fremtid",
+    "p2": "Vores nære fællesskab",
+    "p3": "Vores globale fællesskab",
+    "p4": "Vores kulturelle fællesskab",
+    "p5": "Mit eventyr mod fremtiden",
+    "fa": "Friendshop Award"
   },
   "en": {
     "identifier": "Activity number",
@@ -103,6 +112,15 @@
     "halfHourly": "Every half hour",
     "scheduleNotice": "Notice: The schedule will be corrected as soon as possible",
     "displaying": "Displaying",
-    "of" : "of"
+    "of" : "of",
+    "patches": "Activity badge & Friendshop Award",
+    "patch": "Activity badge",
+    "p0": "No selection",
+    "p1": "Our common future",
+    "p2": "Our near community",
+    "p3": "Our global community",
+    "p4": "Our cultural community",
+    "p5": "My adventure into the future",
+    "fa": "Friendshop Award"
   }
 }
