@@ -54,6 +54,10 @@
   let orderByAvailability: boolean = true
   let onlyToday: boolean = false
 
+  let patches: boolean = false
+  let patchSelected = 'p0'
+  let friendshipAwardSelected = false
+
   let typeSelected: string[] = []
   let ageSelected: string[] = []
   let sizeSelected: string[] = []
@@ -73,6 +77,9 @@
     orderByStatus = value.orderByStatus
     orderByAvailability = value.orderByAvailability
     onlyToday = value.onlyToday
+    patchSelected = value.patchSelected
+    friendshipAwardSelected = value.friendshipAwardSelected
+    patches = value.patches
   })
 
   let total: number
@@ -136,6 +143,16 @@
       filtered = filtered.filter((item) =>
         item.timeslots?.find((ts) => ts.start.isSame(now, 'day'))
       )
+    }
+
+    // Filter - patches
+    if (patchSelected !== 'p0') {
+      filtered = filtered.filter((item) => item.patch === patchSelected)
+    }
+
+    // Filter - friendship award
+    if (friendshipAwardSelected) {
+      filtered = filtered.filter((item) => item.friendship_award && friendshipAwardSelected)
     }
 
     // Slice used to copy the array as sort mutates the array
@@ -202,6 +219,9 @@
       orderByStatus,
       orderByAvailability,
       onlyToday,
+      patchSelected,
+      friendshipAwardSelected,
+      patches,
     })
   })
 </script>
@@ -337,6 +357,33 @@
             </div>
           {/if}
         </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="collapse-arrow collapse border border-base-300">
+    <input type="checkbox" bind:checked={patches} />
+    <div class="collapse-title text-lg font-medium">
+      {strings.patches}
+    </div>
+    <div class="collapse-content flex flex-col gap-y-2">
+      <div class="mb-1">{strings.patch}</div>
+      <div
+        class="grid grid-cols-2 gap-y-2 border-2 border-dashed border-gray-400 p-3 md:grid-cols-3"
+      >
+        {#each ['p0', 'p1', 'p2', 'p3', 'p4', 'p5'] as option}
+          <label class="flex cursor-pointer gap-x-2">
+            <input bind:group={patchSelected} value={option} type="radio" class="checkbox" />
+            <span class="label-text select-none ">{strings[option]}</span>
+          </label>
+        {/each}
+      </div>
+
+      <div class="border-2 border-dashed border-gray-400 p-3">
+        <label class="flex cursor-pointer gap-x-2">
+          <input bind:checked={friendshipAwardSelected} type="checkbox" class="checkbox" />
+          <span class="label-text select-none whitespace-nowrap ">{strings.fa}</span>
+        </label>
       </div>
     </div>
   </div>

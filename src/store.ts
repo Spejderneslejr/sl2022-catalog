@@ -99,6 +99,9 @@ export interface Search {
   orderByStatus: boolean
   orderByAvailability: boolean
   onlyToday: boolean
+  patchSelected: string
+  friendshipAwardSelected: boolean
+  patches: boolean
 }
 
 export const activities = writable<Activity[]>([])
@@ -130,6 +133,9 @@ export const searchInitial = {
   orderByStatus: true,
   orderByAvailability: true,
   onlyToday: false,
+  patchSelected: 'p0',
+  friendshipAwardSelected: false,
+  patches: false,
 }
 
 export const search = persist(writable<Search>(searchInitial), localStorage(), 'search')
