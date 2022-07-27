@@ -77,7 +77,7 @@
     orderByStatus = value.orderByStatus
     orderByAvailability = value.orderByAvailability
     onlyToday = value.onlyToday
-    patchSelected = value.patchSelected
+    patchSelected = value.patchSelected ? value.patchSelected : 'p0'
     friendshipAwardSelected = value.friendshipAwardSelected
     patches = value.patches
   })
