@@ -268,7 +268,7 @@
           {/each}
           <div class="colspan-2">
             {#if inCamp}
-              <select bind:value={areaSelected} class="select select-bordered px-4">
+              <select bind:value={areaSelected} class="select select-bordered px-4 max-w-sm">
                 {#each ['a0', 'a1', 'a2', 'a3', 'a4', 'a5', 'a6', 'a7', 'a8', 'a9', 'a10', 'a11', 'a15', 'a16', 'a17', 'a18', 'a19', 'a21', 'a22', 'a23'] as val}
                   <option value={val}>{strings[val]}</option>
                 {/each}
