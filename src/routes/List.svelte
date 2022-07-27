@@ -53,6 +53,7 @@
   let orderByStatus: boolean = true
   let orderByAvailability: boolean = true
   let onlyToday: boolean = false
+  let inCamp: boolean = false
 
   let patches: boolean = false
   let patchSelected = 'p0'
@@ -64,6 +65,7 @@
   let languageSelected: string[] = []
   let locationSelected: string[] = []
   let enrolmentSelected: string[] = []
+  let areaSelected: string = 'a0'
 
   search.subscribe((value) => {
     query = value.query
@@ -72,6 +74,7 @@
     sizeSelected = value.sizeSelected
     languageSelected = value.languageSelected
     locationSelected = value.locationSelected
+    areaSelected = value.areaSelected ? value.areaSelected : 'a0'
     enrolmentSelected = value.enrolmentSelected
     advanced = value.advanced
     orderByStatus = value.orderByStatus
@@ -92,6 +95,9 @@
   let filtered: Activity[]
 
   beforeUpdate(() => {
+
+    inCamp = locationSelected.length === 1 && locationSelected.includes('lejren')
+
     if (query.length > 1) {
       result = fuse.search(query)
       filtered = result.map((hit) => hit.item)
@@ -107,6 +113,10 @@
 
     if (locationSelected.length > 0) {
       filtered = filtered.filter((item) => locationSelected.includes(item.location.id))
+    }
+
+    if (inCamp && areaSelected !== 'a0') {
+      filtered = filtered.filter((item) => item.area[lang] === strings[areaSelected])
     }
 
     if (ageSelected.length > 0) {
@@ -214,6 +224,7 @@
       sizeSelected,
       languageSelected,
       locationSelected,
+      areaSelected,
       enrolmentSelected,
       advanced,
       orderByStatus,
@@ -243,16 +254,27 @@
           class="grid grid-cols-3 gap-y-2 border-2 border-dashed border-gray-400 p-3 md:flex md:flex-row md:gap-x-2"
         >
           {#each $activityLocations[lang] as option}
-            <label class="flex cursor-pointer gap-x-2">
-              <input
-                bind:group={locationSelected}
-                value={option.key}
-                type="checkbox"
-                class="checkbox"
-              />
-              <span class="label-text select-none ">{option.value}</span>
-            </label>
+            {#if !inCamp || (inCamp && option.key === 'lejren')}
+              <label class="flex cursor-pointer gap-x-2">
+                <input
+                  bind:group={locationSelected}
+                  value={option.key}
+                  type="checkbox"
+                  class="checkbox"
+                />
+                <span class="label-text select-none ">{option.value}</span>
+              </label>
+            {/if}
           {/each}
+          <div class="colspan-2">
+            {#if inCamp}
+              <select bind:value={areaSelected} class="select select-bordered px-4">
+                {#each ['a0', 'a1', 'a2', 'a3', 'a4', 'a5', 'a6', 'a7', 'a8', 'a9', 'a10', 'a11', 'a15', 'a16', 'a17', 'a18', 'a19', 'a21', 'a22', 'a23'] as val}
+                  <option value={val}>{strings[val]}</option>
+                {/each}
+              </select>
+            {/if}
+          </div>
         </div>
       </div>
     {/if}
