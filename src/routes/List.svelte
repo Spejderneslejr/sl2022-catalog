@@ -95,7 +95,6 @@
   let filtered: Activity[]
 
   beforeUpdate(() => {
-
     inCamp = locationSelected.length === 1 && locationSelected.includes('lejren')
 
     if (query.length > 1) {
@@ -268,8 +267,8 @@
           {/each}
           <div class="colspan-2">
             {#if inCamp}
-              <select bind:value={areaSelected} class="select select-bordered pl-4 pr-8 min-w-max">
-                {#each ['a0', 'a1', 'a2', 'a3', 'a4', 'a5', 'a6', 'a7', 'a8', 'a9', 'a10', 'a11', 'a15', 'a16', 'a17', 'a18', 'a19', 'a21', 'a22', 'a23'] as val}
+              <select bind:value={areaSelected} class="select select-bordered min-w-max pl-4 pr-8">
+                {#each ['a0', 'a21', 'a15', 'a11', 'a18', 'a2', 'a19', 'a8', 'a5', 'a6', 'a7', 'a4', 'a22', 'a3', 'a1', 'a17', 'a10', 'a16', 'a9', 'a23'] as val}
                   <option value={val}>{strings[val]}</option>
                 {/each}
               </select>
@@ -294,7 +293,7 @@
     </div>
   </div>
 
-  <div class="collapse-arrow collapse border border-base-300">
+  <div class="collapse collapse-arrow border border-base-300">
     <input type="checkbox" bind:checked={advanced} />
     <div class="collapse-title text-xl font-medium">
       {strings.advanced_filters}
