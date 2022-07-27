@@ -132,7 +132,8 @@
         },
       ],
     },
-
+    
+    // Roskilde
     a12: {
       outText: strings.a12outText,
       backText: strings.backText,
@@ -161,23 +162,23 @@
       back: [
         {
           name: 'monday',
-          departures: ['8:00', '9:00', strings.halfHourly, '21:00', '22:00'],
+          departures: ['8:00', '9:00', strings.halfHourly, '21:00'],
         },
         {
           name: 'tuesday',
-          departures: ['8:00', '9:00', strings.halfHourly, '21:00', '22:00'],
+          departures: ['8:00', '9:00', strings.halfHourly, '21:00'],
         },
         {
           name: 'wednesday',
-          departures: ['8:00', '9:00', strings.halfHourly, '21:00', '22:00'],
+          departures: ['8:00', '9:00', strings.halfHourly, '21:00'],
         },
         {
           name: 'thursday',
-          departures: ['8:00', '9:00', strings.halfHourly, '21:00', '22:00'],
+          departures: ['8:00', '9:00', strings.halfHourly, '21:00'],
         },
         {
           name: 'friday',
-          departures: ['8:00', '9:00', strings.halfHourly, '21:00', '22:00'],
+          departures: ['8:00', '9:00', strings.halfHourly, '21:00'],
         },
       ],
     },

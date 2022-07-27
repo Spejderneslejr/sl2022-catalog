@@ -94,6 +94,7 @@ export interface Search {
   sizeSelected: string[]
   languageSelected: string[]
   locationSelected: string[]
+  areaSelected: string
   enrolmentSelected: string[]
   advanced: boolean,
   orderByStatus: boolean
@@ -128,6 +129,7 @@ export const searchInitial = {
   sizeSelected: [],
   languageSelected: lang === 'en' ? ['english'] : [],
   locationSelected: [],
+  areaSelected: 'a0',
   enrolmentSelected: [],
   advanced: false,
   orderByStatus: true,
