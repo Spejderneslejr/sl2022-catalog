@@ -46,6 +46,15 @@
     keys: ['title.' + lang, 'description.' + lang, 'identifier'],
   }
 
+  const colors = {
+    p0: 'indeterminate:bg-none bg-white',
+    p1: 'indeterminate:bg-none bg-gray-400',
+    p2: 'indeterminate:bg-none bg-blue-500',
+    p3: 'indeterminate:bg-none bg-green-500',
+    p4: 'indeterminate:bg-none bg-sl-flamingo',
+    p5: 'indeterminate:bg-none bg-yellow-300',
+  }
+
   let query = ''
   let fuse = null
   let result: null | SearchResult[] = null
@@ -394,7 +403,7 @@
       >
         {#each ['p0', 'p1', 'p2', 'p3', 'p4', 'p5'] as option}
           <label class="flex cursor-pointer gap-x-2">
-            <input bind:group={patchSelected} value={option} type="radio" class="checkbox" />
+            <input  bind:group={patchSelected} value={option} type="radio" class="checkbox {colors[option]}" />
             <span class="label-text select-none ">{strings[option]}</span>
           </label>
         {/each}
